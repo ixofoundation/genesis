@@ -1,0 +1,306 @@
+{
+  "genesis_time": "2019-10-24T11:54:11.166551279Z",
+  "chain_id": "pandora-1",
+  "consensus_params": {
+    "block": {
+      "max_bytes": "22020096",
+      "max_gas": "-1",
+      "time_iota_ms": "1000"
+    },
+    "evidence": {
+      "max_age": "100000"
+    },
+    "validator": {
+      "pub_key_types": [
+        "ed25519"
+      ]
+    }
+  },
+  "app_hash": "",
+  "app_state": {
+    "project": null,
+    "did": {},
+    "fees": {
+      "ixoFactor": "1.000000000000000000",
+      "initiationFeeAmount": "50000000000.000000000000000000",
+      "initiationNodeFeePercentage": "0.000000000000000000",
+      "claimFeeAmount": "60000000.000000000000000000",
+      "evaluationFeeAmount": "40000000.000000000000000000",
+      "serviceAgentRegistrationFeeAmount": "0.000000000000000000",
+      "evaluationAgentRegistrationFeeAmount": "0.000000000000000000",
+      "nodeFeePercentage": "0.500000000000000000",
+      "evaluationPayFeePercentage": "0.100000000000000000",
+      "evaluationPayNodeFeePercentage": "0.200000000000000000"
+    },
+    "supply": {
+      "supply": []
+    },
+    "auth": {
+      "params": {
+        "max_memo_characters": "256",
+        "tx_sig_limit": "7",
+        "tx_size_cost_per_byte": "10",
+        "sig_verify_cost_ed25519": "590",
+        "sig_verify_cost_secp256k1": "1000"
+      }
+    },
+    "bank": {
+      "send_enabled": true
+    },
+    "genutil": {
+      "gentxs": [
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "Simply VC Malta",
+                    "identity": "",
+                    "website": "",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.200000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "cosmos12sw6u6cgpmdtvg9mjd40dc95e2e7ls68qhw46a",
+                  "validator_address": "cosmosvaloper12sw6u6cgpmdtvg9mjd40dc95e2e7ls689r6qkw",
+                  "pubkey": "cosmosvalconspub1zcjduepq2puk7ez8qhr3ap8wjku2g3ed49ky7uu7cp0g2sl0s86n0kxnx2sq59y67h",
+                  "value": {
+                    "denom": "stake",
+                    "amount": "100000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "AnNqGV9XgchH8wv6MlNZj7N0Y36aQ7msIYjHbU/yCwKM"
+                },
+                "signature": "rtmFq4ZBgmAKMBcZDhSz9LYVWXbYzBLmXckdXOtythoePFpCmdZ+KRCkUH6VGO+IuPoYQG1Vzsnv8OwfUJhfDg=="
+              }
+            ],
+            "memo": "a9fb4f7437e47b15c8b9f22f4cc960535e21fa99@172.16.151.65:26656"
+          }
+        }
+      ]
+    },
+    "gov": {
+      "starting_proposal_id": "1",
+      "deposits": null,
+      "votes": null,
+      "proposals": null,
+      "deposit_params": {
+        "min_deposit": [
+          {
+            "denom": "stake",
+            "amount": "10000000"
+          }
+        ],
+        "max_deposit_period": "172800000000000"
+      },
+      "voting_params": {
+        "voting_period": "172800000000000"
+      },
+      "tally_params": {
+        "quorum": "0.334000000000000000",
+        "threshold": "0.500000000000000000",
+        "veto": "0.334000000000000000"
+      }
+    },
+    "distribution": {
+      "fee_pool": {
+        "community_pool": []
+      },
+      "community_tax": "0.020000000000000000",
+      "base_proposer_reward": "0.010000000000000000",
+      "bonus_proposer_reward": "0.040000000000000000",
+      "withdraw_addr_enabled": true,
+      "delegator_withdraw_infos": [],
+      "previous_proposer": "",
+      "outstanding_rewards": [],
+      "validator_accumulated_commissions": [],
+      "validator_historical_rewards": [],
+      "validator_current_rewards": [],
+      "delegator_starting_infos": [],
+      "validator_slash_events": []
+    },
+    "params": null,
+    "staking": {
+      "params": {
+        "unbonding_time": "1814400000000000",
+        "max_validators": 100,
+        "max_entries": 7,
+        "bond_denom": "stake"
+      },
+      "last_total_power": "0",
+      "last_validator_powers": null,
+      "validators": null,
+      "delegations": null,
+      "unbonding_delegations": null,
+      "redelegations": null,
+      "exported": false
+    },
+    "slashing": {
+      "params": {
+        "max_evidence_age": "120000000000",
+        "signed_blocks_window": "100",
+        "min_signed_per_window": "0.500000000000000000",
+        "downtime_jail_duration": "600000000000",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.010000000000000000"
+      },
+      "signing_infos": {},
+      "missed_blocks": {}
+    },
+    "mint": {
+      "minter": {
+        "inflation": "0.130000000000000000",
+        "annual_provisions": "0.000000000000000000"
+      },
+      "params": {
+        "mint_denom": "stake",
+        "inflation_rate_change": "0.130000000000000000",
+        "inflation_max": "0.200000000000000000",
+        "inflation_min": "0.070000000000000000",
+        "goal_bonded": "0.670000000000000000",
+        "blocks_per_year": "6311520"
+      }
+    },
+    "node": {
+      "ETHGenesisStates": [
+        {
+          "did": "did:ixo:Sdjhti1ywgWgQJqtgYrGzJ",
+          "ethWallet": "0x4E23eB835c1EFe608494A1b1aeB31c64fAA6E3B3"
+        }
+      ]
+    },
+    "contracts": {
+      "foundationWallet": "Enter ETH wallet address to accumulate foundations tokens",
+      "authContractAddress": "Enter ETH auth contract address",
+      "ixoTokenContractAddress": "Enter ETH Ixo Token contract address",
+      "projectRegistryContractAddress": "Enter ETH project registry contract address",
+      "projectWalletAuthoriserAddress": "Enter ETH project wallet authoriser contract address"
+    },
+    "ixoParams": null,
+    "crisis": {
+      "constant_fee": {
+        "denom": "stake",
+        "amount": "1000"
+      }
+    },
+    "accounts": [
+      {
+        "address": "cosmos12sw6u6cgpmdtvg9mjd40dc95e2e7ls68qhw46a",
+        "coins": [
+          {
+            "denom": "stake",
+            "amount": "1000000000"
+          }
+        ],
+        "sequence_number": "0",
+        "account_number": "0",
+        "original_vesting": [],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "start_time": "0",
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ]
+      },
+      {
+        "address": "cosmos1radgmy78q6gw6ywdzmuht03earu9wlyr7v6slk",
+        "coins": [
+          {
+            "denom": "stake",
+            "amount": "1000000000"
+          }
+        ],
+        "sequence_number": "0",
+        "account_number": "0",
+        "original_vesting": [],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "start_time": "0",
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ]
+      },
+      {
+        "address": "cosmos10wpjakzvtw8v0jynjt5eg8h55ugg4e0h5swkdg",
+        "coins": [
+          {
+            "denom": "stake",
+            "amount": "1000000000"
+          }
+        ],
+        "sequence_number": "0",
+        "account_number": "0",
+        "original_vesting": [],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "start_time": "0",
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ]
+      },
+      {
+        "address": "cosmos1t98gy4pzd7detd9gpr7gnmj2xrve68mrruy6r5",
+        "coins": [
+          {
+            "denom": "stake",
+            "amount": "1000000000"
+          }
+        ],
+        "sequence_number": "0",
+        "account_number": "0",
+        "original_vesting": [],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "start_time": "0",
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ]
+      },
+      {
+        "address": "cosmos1cqf40jkf4rnr45497gzzsjn7wnycjkjef6yjze",
+        "coins": [
+          {
+            "denom": "stake",
+            "amount": "1000000000"
+          }
+        ],
+        "sequence_number": "0",
+        "account_number": "0",
+        "original_vesting": [],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "start_time": "0",
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ]
+      }
+    ]
+  }
+}
