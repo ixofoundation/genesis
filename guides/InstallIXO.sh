@@ -99,12 +99,8 @@ read -p "Initialising configuration of the node - Input the node's moniker: " MO
 mkdir /home/ixo/.ixod
 mkdir /home/ixo/.ixod/config
 
-cp /root/genesis/pandora-1/genesis.json /home/ixo/.ixod/config/genesis.json
-
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
-
 
 su $USERNAME <<EOSU
 
@@ -114,14 +110,14 @@ EOSU
 
 sleep 5
 
-cp /root/genesis/pandora-1/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/pandora-1/guides/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
 CONFIG_FILE="/home/ixo/.$DAEMONNAME/config/config.toml"
 
 sed -i 's/pex =.*/pex = true/' $CONFIG_FILE
-sed -i 's/persistent_peers.*/persistent_peers = "ffb550c044dcf63726c24d18f54ddbb2d7b15609@46.166.138.194:26656"/' $CONFIG_FILE
+sed -i 's/persistent_peers.*/persistent_peers = "ffb550c044dcf63726c24d18f54ddbb2d7b15609@46.166.138.209:26656,a9fb4f7437e47b15c8b9f22f4cc960535e21fa99@80.64.208.22:26656"/' $CONFIG_FILE
 
 echo "---"
 echo "Your peer ID:"
@@ -154,6 +150,7 @@ systemctl daemon-reload
 sleep 3
 
 systemctl enable $DAEMONNAME.service
+systemctl start $DAEMONNAME.service
 
 echo "Service created at /etc/systemd/system/$DAEMONNAME.service."
 echo "Run 'systemctl start $DAEMONNAME.service' to start the node"
