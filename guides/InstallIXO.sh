@@ -110,7 +110,7 @@ EOSU
 
 sleep 5
 
-cp /root/genesis/pandora-1/guides/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/guides/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
