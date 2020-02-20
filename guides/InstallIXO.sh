@@ -47,7 +47,7 @@ GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-cosmos"
 GITRELEASE="master"
-
+GITCOMMIT="7ee1d6f268ce0bee281c165eb5c4c9951dcd3229"
 
 su $USERNAME <<EOSU
 
@@ -75,7 +75,7 @@ mkdir -p $GOPATH/src/github.com/$GITNAME
 cd $GOPATH/src/github.com/$GITNAME
 git clone https://github.com/$GITNAME/$GITREPO
 sleep 1
-cd $GITREPO && git fetch --all && git checkout $GITRELEASE
+cd $GITREPO && git fetch --all && git checkout $GITCOMMIT
 sleep 1
 make clean
 make distclean
