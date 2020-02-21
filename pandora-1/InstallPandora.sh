@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOFILENAME="go1.13.3.linux-amd64.tar.gz"
+GOFILENAME="go1.13.8.linux-amd64.tar.gz"
 GODOWNLOADLINK="https://dl.google.com/go/$GOFILENAME"
 
 echo "Ixo Chain Installer"
@@ -17,7 +17,7 @@ sleep 1
 echo "Installing dependencies"
 apt-get update -y
 apt-get upgrade -y
-apt-get install -y make git gcc curl
+apt-get install -y make gcc curl
 rm -r /usr/local/go
 rm -r ~/go 
 cd ~
@@ -47,6 +47,7 @@ GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-cosmos"
 GITRELEASE="master"
+GITCOMMIT="7ee1d6f268ce0bee281c165eb5c4c9951dcd3229"
 
 
 su $USERNAME <<EOSU
@@ -75,7 +76,7 @@ mkdir -p $GOPATH/src/github.com/$GITNAME
 cd $GOPATH/src/github.com/$GITNAME
 git clone https://github.com/$GITNAME/$GITREPO
 sleep 1
-cd $GITREPO && git fetch --all && git checkout $GITRELEASE
+cd $GITREPO && git fetch --all && git checkout $GITCOMMIT
 sleep 1
 make clean
 make distclean
@@ -94,8 +95,6 @@ CLI=$GOBIN/$CLINAME
 
 sleep 1
 
-read -p "Initialising configuration of the node - Input the node's moniker: " MONIKERNAME
-
 mkdir /home/ixo/.ixod
 mkdir /home/ixo/.ixod/config
 
@@ -108,7 +107,7 @@ chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
 su $USERNAME <<EOSU
 
-$DAEMON init "$MONIKERNAME"
+$DAEMON init "Pandora node"
 
 EOSU
 
@@ -118,10 +117,6 @@ cp /root/genesis/pandora-1/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
-CONFIG_FILE="/home/ixo/.$DAEMONNAME/config/config.toml"
-
-sed -i 's/pex =.*/pex = true/' $CONFIG_FILE
-sed -i 's/persistent_peers.*/persistent_peers = "ffb550c044dcf63726c24d18f54ddbb2d7b15609@46.166.138.194:26656"/' $CONFIG_FILE
 
 echo "---"
 echo "Your peer ID:"
