@@ -97,8 +97,8 @@ Follow the configuration steps as the node is installed.
    The default value of this entry should be "". This must be changed to
    look as follows:
    
-   ``` persistent_peers =
-   "ffb550c044dcf63726c24d18f54ddbb2d7b15609@46.166.138.209:26656,a9fb4f7437e47b15c8b9f22f4cc960535e21fa99@80.64.208.22:26656"
+   ``` 
+   persistent_peers = "ffb550c044dcf63726c24d18f54ddbb2d7b15609@46.166.138.209:26656,a9fb4f7437e47b15c8b9f22f4cc960535e21fa99@80.64.208.22:26656"
    ```
   - Required: Enable the peer exchange reactor `pex`, which enables nodes to share each other's peers. This ensures your node discovers other peers on the network.
    
