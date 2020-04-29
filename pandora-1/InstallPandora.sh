@@ -45,9 +45,9 @@ GOROOT="/usr/local/go"
 GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
-GITREPO="ixo-cosmos"
+GITREPO="ixo-blockchain"
 GITRELEASE="master"
-GITCOMMIT="7ee1d6f268ce0bee281c165eb5c4c9951dcd3229"
+GITCOMMIT="5c580038d37a9657264f29db2bbe7f1913682061"
 
 
 su $USERNAME <<EOSU
