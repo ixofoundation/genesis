@@ -1,5 +1,5 @@
 {
-  "genesis_time": "2020-04-27T12:15:42.485844185Z",
+  "genesis_time": "2020-06-02T13:59:06.707070771Z",
   "chain_id": "pandora-1",
   "consensus_params": {
     "block": {
@@ -18,94 +18,23 @@
   },
   "app_hash": "",
   "app_state": {
-    "genutil": {
-      "gentxs": [
-        {
-          "type": "cosmos-sdk/StdTx",
-          "value": {
-            "msg": [
-              {
-                "type": "cosmos-sdk/MsgCreateValidator",
-                "value": {
-                  "description": {
-                    "moniker": "ixo-testnet-validator-nl",
-                    "identity": "",
-                    "website": "",
-                    "details": ""
-                  },
-                  "commission": {
-                    "rate": "0.100000000000000000",
-                    "max_rate": "0.200000000000000000",
-                    "max_change_rate": "0.010000000000000000"
-                  },
-                  "min_self_delegation": "1",
-                  "delegator_address": "ixo1x9utua8wgktynevlwshvzygx29l2fwfwk90dkm",
-                  "validator_address": "ixovaloper1x9utua8wgktynevlwshvzygx29l2fwfwuyluw7",
-                  "pubkey": "ixovalconspub1zcjduepqttg7mu8np4hjh3fc9jhgkxamcnscg2ts7ntl6mh92te028plrz0qjw8eyl",
-                  "value": {
-                    "denom": "stake",
-                    "amount": "100000000"
-                  }
-                }
-              }
-            ],
-            "fee": {
-              "amount": [],
-              "gas": "200000"
-            },
-            "signatures": [
-              {
-                "pub_key": {
-                  "type": "tendermint/PubKeySecp256k1",
-                  "value": "A+HnZJbp62MKh7dnp4RFjhUK7VAPtU1UGvy7W4sIoWpt"
-                },
-                "signature": "Xv+VkK/XUJ4U2fLdXmhbJhN6JCInSDnEOhUN31fN7O8Mn3u3fsFAcNL/B+6w0pvp4gmEokO8Rk3GlfP/j9q3hA=="
-              }
-            ],
-            "memo": "6098df32ec7e5b859032a9f22e415de0f369fbaf@172.26.10.45:26656"
-          }
-        }
-      ]
-    },
-    "did": {
-      "did_docs": null
-    },
-    "crisis": {
-      "constant_fee": {
-        "denom": "stake",
-        "amount": "1000"
+    "mint": {
+      "minter": {
+        "inflation": "0.130000000000000000",
+        "annual_provisions": "0.000000000000000000"
+      },
+      "params": {
+        "mint_denom": "stake",
+        "inflation_rate_change": "0.130000000000000000",
+        "inflation_max": "0.200000000000000000",
+        "inflation_min": "0.070000000000000000",
+        "goal_bonded": "0.670000000000000000",
+        "blocks_per_year": "6311520"
       }
-    },
-    "staking": {
-      "params": {
-        "unbonding_time": "1814400000000000",
-        "max_validators": 100,
-        "max_entries": 7,
-        "bond_denom": "stake"
-      },
-      "last_total_power": "0",
-      "last_validator_powers": null,
-      "validators": null,
-      "delegations": null,
-      "unbonding_delegations": null,
-      "redelegations": null,
-      "exported": false
-    },
-    "slashing": {
-      "params": {
-        "max_evidence_age": "120000000000",
-        "signed_blocks_window": "100",
-        "min_signed_per_window": "0.500000000000000000",
-        "downtime_jail_duration": "600000000000",
-        "slash_fraction_double_sign": "0.050000000000000000",
-        "slash_fraction_downtime": "0.010000000000000000"
-      },
-      "signing_infos": {},
-      "missed_blocks": {}
     },
     "accounts": [
       {
-        "address": "ixo1x9utua8wgktynevlwshvzygx29l2fwfwk90dkm",
+        "address": "ixo1w3rgj02sl4qs5dw68wx34ul4nwjssvuuzazvxh",
         "coins": [
           {
             "denom": "ixo",
@@ -137,7 +66,7 @@
         ]
       },
       {
-        "address": "ixo1yq7h3487rs2jysr470eqsgg48gwsu2cul8xz9u",
+        "address": "ixo1xuad9hsz2cq32f8uh7hketjf2fxc9cu5efjxpt",
         "coins": [
           {
             "denom": "ixo",
@@ -169,7 +98,7 @@
         ]
       },
       {
-        "address": "ixo1zq6zpngmv7y4nuu4v4cprjvxf2d3y9sgz3gqrj",
+        "address": "ixo1qh56n22mz89gqla5er92c2w6d3ypljqvja7u4v",
         "coins": [
           {
             "denom": "ixo",
@@ -297,9 +226,6 @@
         ]
       }
     ],
-    "bonddoc": {
-      "bond_docs": null
-    },
     "distribution": {
       "fee_pool": {
         "community_pool": []
@@ -317,9 +243,23 @@
       "delegator_starting_infos": [],
       "validator_slash_events": []
     },
-    "treasury": null,
-    "bank": {
-      "send_enabled": true
+    "slashing": {
+      "params": {
+        "max_evidence_age": "120000000000",
+        "signed_blocks_window": "100",
+        "min_signed_per_window": "0.500000000000000000",
+        "downtime_jail_duration": "600000000000",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.010000000000000000"
+      },
+      "signing_infos": {},
+      "missed_blocks": {}
+    },
+    "crisis": {
+      "constant_fee": {
+        "denom": "stake",
+        "amount": "1000"
+      }
     },
     "fees": {
       "params": {
@@ -335,31 +275,67 @@
         "evaluation_pay_node_fee_percentage": "0.200000000000000000"
       }
     },
-    "mint": {
-      "minter": {
-        "inflation": "0.130000000000000000",
-        "annual_provisions": "0.000000000000000000"
-      },
-      "params": {
-        "mint_denom": "stake",
-        "inflation_rate_change": "0.130000000000000000",
-        "inflation_max": "0.200000000000000000",
-        "inflation_min": "0.070000000000000000",
-        "goal_bonded": "0.670000000000000000",
-        "blocks_per_year": "6311520"
-      }
-    },
-    "bonds": {
-      "bonds": null,
-      "batches": null
-    },
     "project": {
       "project_docs": null,
       "account_maps": null,
       "withdrawal_infos": null,
       "params": {
+        "ixo_did": "did:ixo:U4tSpzzv91HHqWW1YmFkHJ",
         "project_minimum_initial_funding": "1"
       }
+    },
+    "treasury": null,
+    "genutil": {
+      "gentxs": [
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "ixo-testnet-validator-nl",
+                    "identity": "",
+                    "website": "",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.200000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "ixo1w3rgj02sl4qs5dw68wx34ul4nwjssvuuzazvxh",
+                  "validator_address": "ixovaloper1w3rgj02sl4qs5dw68wx34ul4nwjssvuuguja7j",
+                  "pubkey": "ixovalconspub1zcjduepq4m8e9akmyq4wrz003rd8puss84wzzelzqnte76gycqcvaahnd0pqte0wnj",
+                  "value": {
+                    "denom": "stake",
+                    "amount": "100000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "A7pVc3fxAU0a6lrJRa0o2u+3g4bIRmWQnG0MjgNDh3Dz"
+                },
+                "signature": "agJXFrUuzT/LI0FRNpkUh6KGGUyreF6XW5C/hmHZRXQrs5vQLQG59dg1GXDrywnPp7I+10kjxSR4XL6Il1HTnQ=="
+              }
+            ],
+            "memo": "3e6c0845dadd4cd3702d11185ff242639cf77ab9@172.26.10.45:26656"
+          }
+        }
+      ]
+    },
+    "supply": {
+      "supply": []
     },
     "params": null,
     "auth": {
@@ -370,6 +346,9 @@
         "sig_verify_cost_ed25519": "590",
         "sig_verify_cost_secp256k1": "1000"
       }
+    },
+    "bank": {
+      "send_enabled": true
     },
     "oracles": {
       "oracles": [
@@ -389,6 +368,14 @@
           "capabilities": [
             {
               "denom": "ixo",
+              "capabilities": [
+                "mint",
+                "burn",
+                "transfer"
+              ]
+            },
+            {
+              "denom": "xusd",
               "capabilities": [
                 "mint",
                 "burn",
@@ -416,8 +403,12 @@
         }
       ]
     },
-    "supply": {
-      "supply": []
+    "bonds": {
+      "bonds": null,
+      "batches": null
+    },
+    "bonddoc": {
+      "bond_docs": null
     },
     "gov": {
       "starting_proposal_id": "1",
@@ -441,6 +432,24 @@
         "threshold": "0.500000000000000000",
         "veto": "0.334000000000000000"
       }
+    },
+    "staking": {
+      "params": {
+        "unbonding_time": "1814400000000000",
+        "max_validators": 100,
+        "max_entries": 7,
+        "bond_denom": "stake"
+      },
+      "last_total_power": "0",
+      "last_validator_powers": null,
+      "validators": null,
+      "delegations": null,
+      "unbonding_delegations": null,
+      "redelegations": null,
+      "exported": false
+    },
+    "did": {
+      "did_docs": null
     }
   }
 }

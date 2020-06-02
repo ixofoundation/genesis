@@ -19,7 +19,7 @@ apt-get update -y
 apt-get upgrade -y
 apt-get install -y make gcc curl
 rm -r /usr/local/go
-rm -r ~/go 
+rm -r ~/go
 cd ~
 
 cd $HOME && curl -O $GODOWNLOADLINK
@@ -46,8 +46,7 @@ GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-blockchain"
-GITRELEASE="master"
-GITCOMMIT="fe91bdceab65133f9a02302a47c7361551f3348f"
+GITRELEASE="v1.1.0"
 
 
 su $USERNAME <<EOSU
@@ -76,7 +75,7 @@ mkdir -p $GOPATH/src/github.com/$GITNAME
 cd $GOPATH/src/github.com/$GITNAME
 git clone https://github.com/$GITNAME/$GITREPO
 sleep 1
-cd $GITREPO && git fetch --all && git checkout $GITCOMMIT
+cd $GITREPO && git fetch --all && git checkout $GITRELEASE
 sleep 1
 make clean
 make distclean
