@@ -46,7 +46,7 @@ GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-blockchain"
-GITRELEASE="v1.1.0"
+GITRELEASE="v1.2.1"
 
 
 su $USERNAME <<EOSU
@@ -128,7 +128,7 @@ echo "---"
 [Unit]
 Description=$DAEMONNAME Node
 After=network.target
- 
+
 [Service]
 Type=simple
 User=$USERNAME
@@ -137,7 +137,7 @@ ExecStart=$DAEMON start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
- 
+
 [Install]
 WantedBy=multi-user.target
 
