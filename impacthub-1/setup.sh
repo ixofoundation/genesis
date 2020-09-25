@@ -30,7 +30,7 @@ rm $HOME/$GOFILENAME
 mv $HOME/go /usr/local
 
 USERNAME=ixo
-echo "Creating new IXO system user"
+echo "Creating new ixo system user"
 sleep 1
 
 if getent passwd $USERNAME > /dev/null 2>&1; then
