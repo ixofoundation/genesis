@@ -3,7 +3,7 @@
 GOFILENAME="go1.14.1.linux-amd64.tar.gz"
 GODOWNLOADLINK="https://dl.google.com/go/$GOFILENAME"
 
-echo "Ixo Chain Installer"
+echo "ixo Chain Installer"
 echo -e "-------------------------\n\n"
 sleep 2
 
