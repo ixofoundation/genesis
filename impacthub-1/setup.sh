@@ -12,7 +12,7 @@ if [ "$USER" != "root" ]; then
         exit 0;
 fi
 
-echo "Starting IXO based install"
+echo "Starting ixo based install"
 sleep 1
 echo "Installing dependencies"
 apt-get update -y
