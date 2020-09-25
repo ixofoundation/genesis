@@ -97,7 +97,7 @@ sleep 1
 mkdir /home/ixo/.ixod
 mkdir /home/ixo/.ixod/config
 
-cp /root/genesis/pangea-1/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/impacthub-1/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/
@@ -106,13 +106,13 @@ chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
 su $USERNAME <<EOSU
 
-$DAEMON init "Pangea node"
+$DAEMON init "Impacthub node"
 
 EOSU
 
 sleep 5
 
-cp /root/genesis/pangea/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/impacthub-1/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
