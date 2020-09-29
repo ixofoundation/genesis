@@ -21,7 +21,7 @@ wget https://raw.githubusercontent.com/ixofoundation/genesis/master/impacthub-1/
 mv final-genesis.json genesis.json
 ```
 
-Make sure the following command outputs the this hash: 7b722ddd50ecd8b9111fa0b3bb810d099d74a6b25e6d615ac91542ed7b1501ac
+Make sure the following command outputs this hash: 7b722ddd50ecd8b9111fa0b3bb810d099d74a6b25e6d615ac91542ed7b1501ac
 ```
 shasum -a 256 genesis.json
 ```
