@@ -1,0 +1,2055 @@
+{
+  "genesis_time": "2020-09-30T12:00:00Z",
+  "chain_id": "impacthub-1",
+  "consensus_params": {
+    "block": {
+      "max_bytes": "22020096",
+      "max_gas": "-1",
+      "time_iota_ms": "1000"
+    },
+    "evidence": {
+      "max_age": "100000"
+    },
+    "validator": {
+      "pub_key_types": [
+        "ed25519"
+      ]
+    }
+  },
+  "app_hash": "",
+  "app_state": {
+    "gov": {
+      "deposit_params": {
+        "max_deposit_period": "172800000000000",
+        "min_deposit": [
+          {
+            "amount": "10000000",
+            "denom": "uixo"
+          }
+        ]
+      },
+      "deposits": null,
+      "proposals": null,
+      "starting_proposal_id": "1",
+      "tally_params": {
+        "quorum": "0.334000000000000000",
+        "threshold": "0.500000000000000000",
+        "veto": "0.334000000000000000"
+      },
+      "votes": null,
+      "voting_params": {
+        "voting_period": "172800000000000"
+      }
+    },
+    "crisis": {
+      "constant_fee": {
+        "amount": "1000",
+        "denom": "uixo"
+      }
+    },
+    "slashing": {
+      "missed_blocks": {},
+      "params": {
+        "downtime_jail_duration": "600000000000",
+        "max_evidence_age": "120000000000",
+        "min_signed_per_window": "0.050000000000000000",
+        "signed_blocks_window": "10000",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.000100000000000000"
+      },
+      "signing_infos": {}
+    },
+    "mint": {
+      "minter": {
+        "annual_provisions": "0.000000000000000000",
+        "inflation": "0.000000000000000000"
+      },
+      "params": {
+        "blocks_per_year": "6311520",
+        "goal_bonded": "0.670000000000000000",
+        "inflation_max": "0.000000000000000000",
+        "inflation_min": "0.000000000000000000",
+        "inflation_rate_change": "0.000000000000000000",
+        "mint_denom": "uixo"
+      }
+    },
+    "payments": {
+      "payment_contracts": null,
+      "payment_templates": null,
+      "subscriptions": null
+    },
+    "bonds": {
+      "batches": null,
+      "bonds": null,
+      "params": {
+        "reserved_bond_tokens": [
+          "ccc",
+          "echf",
+          "eeur",
+          "egbp",
+          "iusd",
+          "uixo"
+        ]
+      }
+    },
+    "did": {
+      "did_docs": null
+    },
+    "genutil": {
+      "gentxs": [
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "zaValidator",
+                    "identity": "",
+                    "website": "",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.300000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "ixo1prt7v0yx8sfy20nsz6k8c55x4wrdt405leqgyt",
+                  "validator_address": "ixovaloper1prt7v0yx8sfy20nsz6k8c55x4wrdt4054cseuw",
+                  "pubkey": "ixovalconspub1zcjduepqmzm5kwx2jhzq8vcjp4jmsj59wy0mjfccd9chegdrw585rantahmqgtc7ga",
+                  "value": {
+                    "denom": "uixo",
+                    "amount": "9000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "A8u1Rwjhz/viq+ERBEhRkwmewNCfPdPhqHcmamcLe+Lj"
+                },
+                "signature": "HeSwpep0bT2CBFUQ1J3VZ4QeY53JZ9JB54Vr1hkVxX0xEwzzt6ceghF6MSx0g3Hk53S1KoQIqx5olqqNAtHw5A=="
+              }
+            ],
+            "memo": "6f3cefb2bbec3c7a161739adacb8f3825270080b@172.31.45.161:26656"
+          }
+        },
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "AUDIT.one",
+                    "identity": "",
+                    "website": "https://audit.one",
+                    "details": "Validators of today, Auditors of tomorrow"
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.200000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "ixo12w0jxvj80emnx3vgqnnw6wqmav48nsez4geu59",
+                  "validator_address": "ixovaloper12w0jxvj80emnx3vgqnnw6wqmav48nsezlffdvq",
+                  "pubkey": "ixovalconspub1zcjduepqkanp0v4h7yk2pz92pfsd30jz6fjs7wgj0d4nwgn2ygel5zvfppvs9340ef",
+                  "value": {
+                    "denom": "uixo",
+                    "amount": "9000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "A6+qLFx3XHekTIbUsMS+FNBDbDusyYEFQY2yrFhjfWCM"
+                },
+                "signature": "trwgPdR0Z9YyUsQFUGBqDiJ5Ea4WnhX50pvoQIuinooBlqfj632rUyU+5FD8Nrb7ycXT4yXY3YYJ1FDL4Bu66g=="
+              }
+            ],
+            "memo": "9cce09cbcaf72dfcea6f47453ab5c798aef2015f@172.17.0.2:26656"
+          }
+        },
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "Shanzhai City",
+                    "identity": "",
+                    "website": "",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.300000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "ixo13gff4l96xwngtwuud0td4ntewvrald66delm3l",
+                  "validator_address": "ixovaloper13gff4l96xwngtwuud0td4ntewvrald668c02f6",
+                  "pubkey": "ixovalconspub1zcjduepq0apgyeg3yz2vu2zkrtuukp6nvg4rvurtzq85hvjc0fkh2fs7uw9s8zkc7f",
+                  "value": {
+                    "denom": "uixo",
+                    "amount": "9000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "AkYBOj8bC7mClwRICt/6Y/QrfnXef+VATZz0IrNci1aU"
+                },
+                "signature": "orOR51QRCeCVX+8A0XLvg/sclBo8cSjJBN0zaNGv4LJKXOS4Xa+5snSgXech7qrukXvI5tAbBKZUxKHvo3vmwA=="
+              }
+            ],
+            "memo": "c95af93f0386f8e19e65997262c9f874d1901dc5@10.1.1.183:26656"
+          }
+        },
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "Simply Staking",
+                    "identity": "",
+                    "website": "https://simply-vc.com.mt",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.300000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "ixo1m3kz9q3hp50udyq5tt4rawrexnay4y7jt9u6mq",
+                  "validator_address": "ixovaloper1m3kz9q3hp50udyq5tt4rawrexnay4y7jpyvtr9",
+                  "pubkey": "ixovalconspub1zcjduepqpyv43zjzducvkjmk40gxfmnv5mppqs5atnsf9sk7wgxq499a0xyqccn3vr",
+                  "value": {
+                    "denom": "uixo",
+                    "amount": "9000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "At2p8r/g/PaJ+4q2lpTJT5vYdEpDH/TRaQN8V4+KXM4P"
+                },
+                "signature": "AN4TyEKacrp/AtnHpxQoZCflsv1pUWTdKOZlvhB16OclImeOJnQE5kxdg1/cB/1JFTJ3Rgx56tea5qe/BXYRjA=="
+              }
+            ],
+            "memo": "dde3d8aacfef1490ef4ae43698e3e2648bb8363c@172.16.152.110:26656"
+          }
+        },
+        {
+          "type": "cosmos-sdk/StdTx",
+          "value": {
+            "msg": [
+              {
+                "type": "cosmos-sdk/MsgCreateValidator",
+                "value": {
+                  "description": {
+                    "moniker": "ixo world",
+                    "identity": "",
+                    "website": "",
+                    "details": ""
+                  },
+                  "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.300000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                  },
+                  "min_self_delegation": "1",
+                  "delegator_address": "ixo1kr8v9qt46ysltgmzcrtgyw5ckke83up65svm8e",
+                  "validator_address": "ixovaloper1kr8v9qt46ysltgmzcrtgyw5ckke83up673u2lu",
+                  "pubkey": "ixovalconspub1zcjduepq2a2m78aae75xgqw4pn7fc74a0t8vpu5lukugyj8c9hs78d0cjd0scsenxw",
+                  "value": {
+                    "denom": "uixo",
+                    "amount": "9000000"
+                  }
+                }
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas": "200000"
+            },
+            "signatures": [
+              {
+                "pub_key": {
+                  "type": "tendermint/PubKeySecp256k1",
+                  "value": "AxqtcjHgeFtrzebIT5aXcuDpmPsIzpScjTg/6fpTjxfO"
+                },
+                "signature": "4J6qJXPxaCqCeQobPEGguiZaYpWtsuyfWKoL//popXUS3pDcPO4CG3sS+H2xtmDbg33KHQGmaiyyU9wbrAv73g=="
+              }
+            ],
+            "memo": "f0d4546fa5e0c2d84a4244def186b9da3c12ba1a@172.26.10.110:26656"
+          }
+        }
+      ]
+    },
+    "project": {
+      "account_maps": null,
+      "claims": null,
+      "params": {
+        "ixo_did": "did:sov:23Ao6yMFogqEBQN1CMHXNh",
+        "node_fee_percentage": "10.000000000000000000",
+        "oracle_fee_percentage": "10.000000000000000000",
+        "project_minimum_initial_funding": [
+          {
+            "amount": "0",
+            "denom": "uixo"
+          }
+        ]
+      },
+      "project_docs": null,
+      "withdrawal_infos": null
+    },
+    "auth": {
+      "params": {
+        "max_memo_characters": "256",
+        "sig_verify_cost_ed25519": "590",
+        "sig_verify_cost_secp256k1": "1000",
+        "tx_sig_limit": "7",
+        "tx_size_cost_per_byte": "10"
+      }
+    },
+    "oracles": {
+      "oracles": [
+        {
+          "capabilities": [
+            {
+              "capabilities": [
+                "burn",
+                "mint",
+                "transfer"
+              ],
+              "denom": "ccc"
+            }
+          ],
+          "oracle_did": "did:sov:6sHaX54XEaxWG21McskFAX"
+        },
+        {
+          "capabilities": [
+            {
+              "capabilities": [
+                "burn",
+                "mint",
+                "transfer"
+              ],
+              "denom": "echf"
+            },
+            {
+              "capabilities": [
+                "burn",
+                "mint",
+                "transfer"
+              ],
+              "denom": "eeur"
+            },
+            {
+              "capabilities": [
+                "burn",
+                "mint",
+                "transfer"
+              ],
+              "denom": "egbp"
+            }
+          ],
+          "oracle_did": "did:sov:3yyqAJsj11C7zR3H7bVAhA"
+        },
+        {
+          "capabilities": [
+            {
+              "capabilities": [
+                "burn",
+                "mint",
+                "transfer"
+              ],
+              "denom": "iusd"
+            }
+          ],
+          "oracle_did": "did:sov:6McxGFGh3mFhFSETc2nnQL"
+        },
+        {
+          "capabilities": [
+            {
+              "capabilities": [
+                "burn",
+                "mint",
+                "transfer"
+              ],
+              "denom": "uixo"
+            }
+          ],
+          "oracle_did": "did:sov:SSfCrAS5dZtSahZ7bgSq82"
+        },
+        {
+          "capabilities": [
+            {
+              "capabilities": [
+                "burn",
+                "transfer"
+              ],
+              "denom": "uixo"
+            }
+          ],
+          "oracle_did": "did:sov:a1fAeC7iSGHwgXJ2T1bba"
+        }
+      ]
+    },
+    "bank": {
+      "send_enabled": true
+    },
+    "distribution": {
+      "base_proposer_reward": "0.010000000000000000",
+      "bonus_proposer_reward": "0.040000000000000000",
+      "community_tax": "0.020000000000000000",
+      "delegator_starting_infos": [],
+      "delegator_withdraw_infos": [],
+      "fee_pool": {
+        "community_pool": [
+          {
+            "amount": "40000000000000.000000000000000000",
+            "denom": "uixo"
+          }
+        ]
+      },
+      "outstanding_rewards": [],
+      "previous_proposer": "",
+      "validator_accumulated_commissions": [],
+      "validator_current_rewards": [],
+      "validator_historical_rewards": [],
+      "validator_slash_events": [],
+      "withdraw_addr_enabled": true
+    },
+    "treasury": null,
+    "params": null,
+    "staking": {
+      "delegations": null,
+      "exported": false,
+      "last_total_power": "0",
+      "last_validator_powers": null,
+      "params": {
+        "bond_denom": "uixo",
+        "max_entries": 7,
+        "max_validators": 100,
+        "unbonding_time": "1814400000000000"
+      },
+      "redelegations": null,
+      "unbonding_delegations": null,
+      "validators": null
+    },
+    "accounts": [
+      {
+        "account_number": "0",
+        "address": "ixo100dpejqgy30hey57fgvvjzry8elqxvqp92q8gs",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo10476khwpqlakzz53kcf0qhuvcrzdcv8xwk9n52",
+        "coins": [
+          {
+            "amount": "20000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo10atxwxgg6l52tvjtzm8mmpd4ga7qwenkn7afyv",
+        "coins": [
+          {
+            "amount": "34102000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo10r23vhzmgndxdvu93jhxa7temqth4kssmh378s",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo12lm8e5n0dctlnst39d9zylf62hk02j4k7yfzwn",
+        "coins": [
+          {
+            "amount": "20000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo12r6hg2y7zepz7vrhxggzqf84tcyvzqdzmgqyrr",
+        "coins": [
+          {
+            "amount": "300000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo12w0jxvj80emnx3vgqnnw6wqmav48nsez4geu59",
+        "coins": [
+          {
+            "amount": "10000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo12ze9tavvvrzxxxse7hl5z4ckhvkx2rayck8qxp",
+        "coins": [
+          {
+            "amount": "8099000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo130yru3jn0cat4z3qlqyswfpfnpw6x98djq5vct",
+        "coins": [
+          {
+            "amount": "150000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo13gff4l96xwngtwuud0td4ntewvrald66delm3l",
+        "coins": [
+          {
+            "amount": "10000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo13yv8nahrk4na8pkw9xszrfdxns58vun8dfulus",
+        "coins": [
+          {
+            "amount": "1794438000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo147m9z0ew8qk6qdhj3lven25xpsw04a6zkh2jjp",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo14jxr3qsupe2lugctrh3arc260ulw6825ratee8",
+        "coins": [
+          {
+            "amount": "5000000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo14uh3ps5pu2e423fgdmgvm76auyjh8hp9kujjeq",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo158znlw79qdj537q9xvvlskqx4l680zd2lvzlmx",
+        "coins": [
+          {
+            "amount": "3505000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo15qez6jg7htphjm7eakrydmzes6guaya8waphaj",
+        "coins": [
+          {
+            "amount": "12071000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo15xm5rrv3urmas3q50wrk2c3raq3eu2pfcrrl8e",
+        "coins": [
+          {
+            "amount": "219683000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1600xw6hlnff842su8jzulvv6d43gddgkztp043",
+        "coins": [
+          {
+            "amount": "5116000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo162hadnq69957fl9naphtps8hqd274u7azekxh3",
+        "coins": [
+          {
+            "amount": "40000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo168nd08j38h4arnrwpkwp07eg5keszlffrzvrxk",
+        "coins": [
+          {
+            "amount": "500000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "1664539200",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [
+          {
+            "amount": "200000000000",
+            "denom": "uixo"
+          }
+        ],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo16efvtfhn4xuvjk8cv06unuqk98qnq60psq0eyd",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo16r82ccf69cwhd269jjj4xzjl8zpjsqgpuj9qtn",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo16uzwufrp6fcde59llus80qae82gh3h4663mua5",
+        "coins": [
+          {
+            "amount": "50000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "1633003200",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [
+          {
+            "amount": "25000000000",
+            "denom": "uixo"
+          }
+        ],
+        "sequence_number": "0",
+        "start_time": "1601467200"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo177qru39yjg7sjtgxcw7lgu0l50g3fj22h2367j",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo18scez54ghay4whqf89rd7d4fztvr6ff8rgpp93",
+        "coins": [
+          {
+            "amount": "3000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo19qv86w0k03mmkd02pskwn2l6xgmrmgld7jm5zw",
+        "coins": [
+          {
+            "amount": "30000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1a3gcetmg7keaypkh8zsf8q5vdgqqz4wj3pa4lx",
+        "coins": [
+          {
+            "amount": "5000000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "1664539200",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [
+          {
+            "amount": "5000000000000",
+            "denom": "uixo"
+          }
+        ],
+        "sequence_number": "0",
+        "start_time": "1601467200"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1ay2h94a02cmyrwkslx7ptqx3rphux4g5rl76va",
+        "coins": [
+          {
+            "amount": "2000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1cqdd5uycz7q0fkhpeuucvp6qsfnfageuewpcrh",
+        "coins": [
+          {
+            "amount": "12071000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1d386300z3z87xqmp20yrw7f57acvnupgmk2r3q",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1dj2thxafz0zrazs4k9z2lcay05fffhp56z8a3n",
+        "coins": [
+          {
+            "amount": "3234000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1dx8q7n80s3ls4druc5mxkc5g6ch7mdevjslr4j",
+        "coins": [
+          {
+            "amount": "5601000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1gq2j0negg46mvnmwfptsxv5lvewvhsjcammz2y",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1hl3r3uhuwrp3m2g5e3ce299enxlgdrhdzneq5w",
+        "coins": [
+          {
+            "amount": "40801000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1hv33k83mwcppwy90s25n3exj0259xkcdcm0kx3",
+        "coins": [
+          {
+            "amount": "255562000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1hzhxm0395cqltmg9p48tfkx964d05yrjl3p9p7",
+        "coins": [
+          {
+            "amount": "12636000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1j9zg9a75kzxvdqygcknnsevylw7zh47xj3ru05",
+        "coins": [
+          {
+            "amount": "58841000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1jw7x9jq5sp0y5g8gqx9xn6lasflxa0al8r3n7j",
+        "coins": [
+          {
+            "amount": "394433000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "1664539200",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [
+          {
+            "amount": "394433000000",
+            "denom": "uixo"
+          }
+        ],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1jyntf0fcscg36yrc7xcswyya8hhsqdm2a4mcge",
+        "coins": [
+          {
+            "amount": "200000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1k4tps62ejdd9h8p33hum787zmaf8ufgkudvphz",
+        "coins": [
+          {
+            "amount": "29488000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1k9z6m8c5we68agggfmj7ffcstfvrsz36aqx3c5",
+        "coins": [
+          {
+            "amount": "5548000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1khvs5ecny0lnjcwq7xqt3vykj685gujde7x2r8",
+        "coins": [
+          {
+            "amount": "3800000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1kp2mefy3n9vaff3lcr4q0ttzx28kd03w46nlra",
+        "coins": [
+          {
+            "amount": "1200000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1kr8v9qt46ysltgmzcrtgyw5ckke83up65svm8e",
+        "coins": [
+          {
+            "amount": "10000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1l3tv8hmuesxw6q6ap84x4nh5p93nh37l9xkzj9",
+        "coins": [
+          {
+            "amount": "10200000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "1664539200",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [
+          {
+            "amount": "10000000000000",
+            "denom": "uixo"
+          }
+        ],
+        "sequence_number": "0",
+        "start_time": "1601467200"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1lc2zsmf0jtzy267w7mk6wh7pdssnvm82l9ry2f",
+        "coins": [
+          {
+            "amount": "1152409000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1lwasyuzazkwcfy0tl8x46vl8qjgwrg6sujhr2u",
+        "coins": [
+          {
+            "amount": "35000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1m3kz9q3hp50udyq5tt4rawrexnay4y7jt9u6mq",
+        "coins": [
+          {
+            "amount": "10000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1mjqggzu0cv5jz347t0ucch2kvfnsn5jm7m4u4g",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1mkw8uq7kkhx469mszyewt580vjw804melgxcsu",
+        "coins": [
+          {
+            "amount": "92004000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1mnmw692pylg2xeyglhcgxp2s5mfy4m8wyy4uj9",
+        "coins": [
+          {
+            "amount": "3488000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1n7sttjdc6uvp6cm2876gvw2avgx3zmev3y548z",
+        "coins": [
+          {
+            "amount": "2000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1p9vrl50u9f8dpluw6wfg0prsup4xcfg785cauj",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1pgfk0xj9u0t5lccrgt4tvqs4ux4tzmyu6248p8",
+        "coins": [
+          {
+            "amount": "2000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1prt7v0yx8sfy20nsz6k8c55x4wrdt405leqgyt",
+        "coins": [
+          {
+            "amount": "10000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1qefujjd8kyg2qxkfz49a5d4nwgagymtnmv4xvk",
+        "coins": [
+          {
+            "amount": "12071000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1ryyyrahs0eupawqscep5ulsp9txzqsy9kskffp",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1sfj67jpl32sr8hh405pj8aglhs6at5tzy88dwn",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1smkd5rrc52vtvy5p0jkez2ac6psh6d5sgrrxz0",
+        "coins": [
+          {
+            "amount": "544603000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1tpsylf2qzg8x5ktyjk4j4pln6dp83ltutwrqy7",
+        "coins": [
+          {
+            "amount": "40000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1ttvxgej64jhzhx2e5gzelgrzzmaggjcv0q57at",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1txqrzrm34sfn2g99dwywr5r20vu4cy2qcw2xrg",
+        "coins": [
+          {
+            "amount": "22699950000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1v6j3pgylxpycwxuuml4fx8ywpn5ar2g85zzjpe",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1vcvus6tvkwef0622am4vssndx0kajpe7psj000",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1vke3x5rruzdc0aue9z8rdrsvky4688afh8k073",
+        "coins": [
+          {
+            "amount": "226807000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1vlr55u5zfphllslytnn3ljfcwunt4cjrlx3r80",
+        "coins": [
+          {
+            "amount": "17417000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1vwwn3tn68du3mjx0mc4p7pxpj2syeux00afj4l",
+        "coins": [
+          {
+            "amount": "70000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1w5hw0pvr8vrvdeenffa6wzshy2xwnnf6xyqp8r",
+        "coins": [
+          {
+            "amount": "72361000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1w7q7dhfk0ptlwd8k66vcwjak9u3djxd8s0a49t",
+        "coins": [
+          {
+            "amount": "50000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "1664539200",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [
+          {
+            "amount": "40000000000",
+            "denom": "uixo"
+          }
+        ],
+        "sequence_number": "0",
+        "start_time": "1601467200"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1xaccewlh0lvs3w6mx23gq9kwhjrntcflyj00ev",
+        "coins": [
+          {
+            "amount": "5252000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1xcck33a5klplclvu87hw7x3f96kxa6kkduhq9j",
+        "coins": [
+          {
+            "amount": "10000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1xp4ldqj07eq8n69nvyyj9uvg5nq07ladhfkzw3",
+        "coins": [
+          {
+            "amount": "16683000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1ycwhguta3pnhh0xw885s84944mk8zslyhdqdze",
+        "coins": [
+          {
+            "amount": "88426000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1yu9v0866rm8alumv6che0fm7vkr49jnx3ay44r",
+        "coins": [
+          {
+            "amount": "19250000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1z66xp824k57qnna6055p8vj59eum6kuzufv6yj",
+        "coins": [
+          {
+            "amount": "5000000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1zfaq999evldz8lk07wkyqewqfv5pzz2p6yuaan",
+        "coins": [
+          {
+            "amount": "5000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      },
+      {
+        "account_number": "0",
+        "address": "ixo1zqzx92e4h958ql38e7j0t430xhs7ujgadm3f76",
+        "coins": [
+          {
+            "amount": "300000000000",
+            "denom": "uixo"
+          }
+        ],
+        "delegated_free": [],
+        "delegated_vesting": [],
+        "end_time": "0",
+        "module_name": "",
+        "module_permissions": [
+          ""
+        ],
+        "original_vesting": [],
+        "sequence_number": "0",
+        "start_time": "0"
+      }
+    ],
+    "supply": {
+      "supply": []
+    }
+  }
+}
