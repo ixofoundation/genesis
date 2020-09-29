@@ -13,6 +13,14 @@ cd $HOME/.ixod/config
 rm genesis.json
 ```
 
+Ensure the correct ixo version:
+
+```
+ixod version
+1.3.0
+```
+
+
 Then, download the network's genesis file to your node's configuration folder.
 
 ```
