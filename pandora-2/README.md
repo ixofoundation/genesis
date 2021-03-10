@@ -1,10 +1,5 @@
 # ixo Network Validator: Pandora-2 Setup
-This documentation details the requirements and steps required to operate a validator and other relayer services on ixo's networks.
-
-The following modules will be detailed:
-- ixo Network Validator
-- ixo Elysian and APIs
-- ixo Web Apps
+This documentation details the requirements and steps required to operate a validator on ixo's Pandora-2 testnet.
 
 ## Infrastructure
 
