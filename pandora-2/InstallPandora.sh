@@ -36,7 +36,7 @@ sleep 1
 if getent passwd $USERNAME > /dev/null 2>&1; then
 	echo "the user exists"
 else
-	adduser $USERNAME
+	adduser $USERNAME --disabled-login
 fi
 sleep 1
 
