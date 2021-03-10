@@ -33,7 +33,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 3. Access the root user's home directory and clone the repository
     ```
     cd $HOME
-    git clone https://www.github.com/franono/genesis.git && git checkout master
+    git clone https://github.com/ixofoundation/genesis.git && git checkout master
     ```
 
     The pandora-2 directory includes:
@@ -73,7 +73,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
     peers to its value. The default value of this entry should be `""`. This must be changed as follows:
     
     ```
-    persistent_peers ="ffb550c044dcf63726c24d18f54ddbb2d7b15609@46.166.138.209:26656,a9fb4f7437e47b15c8b9f22f4cc960535e21fa99@80.64.208.22:26656"
+    persistent_peers ="3e6c0845dadd4cd3702d11185ff242639cf77ab9@46.166.138.209:26656,c0b2d9f8380313f0e2756dc187a96b7c65cae49b@80.64.208.22:26656"
     ```
     - **Required**: Enable the peer exchange reactor `pex`, which enables nodes to share each other's peers. This ensures your node discovers other peers on the network. The default value of this entry should be "false". This must be changed as follows:
     ```
