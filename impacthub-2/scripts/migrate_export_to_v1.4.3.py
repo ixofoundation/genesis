@@ -122,7 +122,7 @@ data['app_state']['upgrade'] = {}
 data['chain_id'] = 'impacthub-2'
 
 # Update genesis time
-data['genesis_time'] = '2021-03-18T12:00:00Z'
+data['genesis_time'] = '2021-03-23T12:00:00Z'
 
 # Migrate evidence consensus params
 data['consensus_params']['evidence']['max_age_num_blocks'] = \
