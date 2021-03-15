@@ -48,7 +48,7 @@ software version and genesis file hash before starting your validator and signin
 The riskiest thing a validator can do is discover that they made a mistake and repeat the upgrade
 procedure again during the network startup. If you discover a mistake in the process, the best thing
 to do is wait for the network to start before correcting it. If the network is halted and you have
-started with a different genesis file than the expected one, seek advice from an IXO developer
+started with a different genesis file than the expected one, seek advice from an ixo developer
 before resetting your validator.
 
 ## Recovery
@@ -96,11 +96,11 @@ __Note__: It is assumed you are currently operating a full-node running v1.3.0 o
    $ ixod export --for-zero-height --height=2567800 > impacthub_1_genesis_export.json
    ```
 
-3. Verify the SHA256 of the (sorted) exported genesis file with the rest of the community:
+3. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
 
    ```bash
    $ jq -S -c -M '' impacthub_1_genesis_export.json | shasum -a 256
-   [PLACEHOLDER]  impacthub_1_genesis_export.json
+   <hash output>  impacthub_1_genesis_export.json
    ```
 
 4. At this point you now have a valid exported genesis state! All further steps now require
@@ -141,13 +141,13 @@ v1.4.3 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ python migrate_export_to_v1.4.3
    ```
 
-   **NOTE**: The `migrate_export_to_v1` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.4.3, and updating the genesis time.
+   **NOTE**: The `igrate_export_to_v1.4.3` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.4.3, and updating the genesis time.
 
-7. Verify the SHA256 of the final genesis JSON:
+7. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared  with the rest of the community.
 
    ```bash
    $ jq -S -c -M '' genesis.json | shasum -a 256
-   [PLACEHOLDER]  genesis.json
+   <hash output>  genesis.json
    ```
 
 8. Reset state:
