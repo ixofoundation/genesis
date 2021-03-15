@@ -48,7 +48,7 @@ software version and genesis file hash before starting your validator and signin
 The riskiest thing a validator can do is discover that they made a mistake and repeat the upgrade
 procedure again during the network startup. If you discover a mistake in the process, the best thing
 to do is wait for the network to start before correcting it. If the network is halted and you have
-started with a different genesis file than the expected one, seek advice from a Tendermint developer
+started with a different genesis file than the expected one, seek advice from an IXO developer
 before resetting your validator.
 
 ## Recovery
