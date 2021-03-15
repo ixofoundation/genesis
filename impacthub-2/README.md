@@ -83,7 +83,13 @@ __Note__: It is assumed you are currently operating a full-node running v1.3.0 o
    go: go version go1.14.1 linux/amd64
    ```
 
-2. Export existing state from `impacthub-1`:
+2. Verify you have `jq` and `python` installed. If not, use the following command:
+
+   ```bash
+   sudo apt-get install jq python
+   ```
+   
+4. Export existing state from `impacthub-1`:
 
    **NOTE**: It is recommended for validators and operators to take a full data snapshot at the export
    height before proceeding in case the upgrade does not go as planned or if not enough voting power
@@ -93,14 +99,14 @@ __Note__: It is assumed you are currently operating a full-node running v1.3.0 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=2567800 > impacthub_1_genesis_export.json
+   $ ixod export --for-zero-height --height=2567800 > exported.json
    ```
 
 3. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
 
    ```bash
-   $ jq -S -c -M '' impacthub_1_genesis_export.json | shasum -a 256
-   <hash output>  impacthub_1_genesis_export.json
+   $ jq -S -c -M '' exported.json | shasum -a 256
+   <hash output> -
    ```
 
 4. At this point you now have a valid exported genesis state! All further steps now require
@@ -109,7 +115,7 @@ v1.4.3 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    **NOTE**: Go [1.14+](https://golang.org/dl/) is required!
 
    ```bash
-   $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo && git checkout v1.4.3; make install
+   $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v1.4.3; make install
    ```
 
 5. Verify you are currently running the correct version (v1.4.3) of _ixo_:
@@ -141,7 +147,7 @@ v1.4.3 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ python migrate_export_to_v1.4.3
    ```
 
-   **NOTE**: The `igrate_export_to_v1.4.3` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.4.3, and updating the genesis time.
+   **NOTE**: The `migrate_export_to_v1.4.3` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.4.3, and updating the genesis time.
 
 7. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared  with the rest of the community.
 
