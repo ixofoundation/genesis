@@ -114,7 +114,7 @@ v1.4.3 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo && git checkout v1.4.3; make install
    ```
 
-5. Verify you are currently running the correct version (v1.4.3) of the _ixo_:
+5. Verify you are currently running the correct version (v1.4.3) of _ixo_:
 
    ```bash
    $ ixod version --long
