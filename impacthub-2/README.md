@@ -5,9 +5,7 @@ must take in order to upgrade from `impacthub-1` to `impacthub-2`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-There is a strong social consensus around proposal `Impact Hub 2`
-on `impacthub-1`. This indicates that the upgrade procedure should be performed
-on `March 18, 2021 at or around 11:05 UTC` on block `2567800`.
+The upgrade procedure should be performed on `March 18, 2021 at or around 11:05 UTC` on block `2567800`.
 
   - [Updates](#updates)
   - [Risks](#risks)
