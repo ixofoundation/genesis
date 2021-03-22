@@ -5,7 +5,7 @@ must take in order to upgrade from `impacthub-1` to `impacthub-2`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be performed on `March 23, 2021 at or around 11:05 UTC` on block `2654200`, with `impacthub-2` having a genesis time of `2021-03-23T12:00:00Z`.
+The upgrade procedure should be performed on `March 23, 2021 at or around 11:05 UTC` on block `2646530`, with `impacthub-2` having a genesis time of `2021-03-23T12:00:00Z`.
 
   - [Updates](#updates)
   - [Risks](#risks)
