@@ -67,7 +67,7 @@ v1.3.0 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 __Note__: It is assumed you are currently operating a full-node running v1.3.0 of _ixo-blockchain_.
 
 - The version/commit hash of ixo v1.4.3: `6abb0176a77b74bae04e1ba0b4cf753ab841ab2a`
-- The upgrade height as agreed upon: **2,654,200**
+- The upgrade height as agreed upon: **2,646,530**
 
 
 1. Verify you are currently running the correct version (v0.34.6+) of the _Cosmos SDK_:
@@ -99,7 +99,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.3.0 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=2654200 > exported.json
+   $ ixod export --for-zero-height --height=2646530 > exported.json
    ```
 
 3. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
