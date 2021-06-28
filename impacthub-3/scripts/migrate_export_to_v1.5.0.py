@@ -49,22 +49,22 @@ data['app_state']['bank']['denom_metadata'] = [
 
 # Migrating bonds
 for batch in data['app_state']['bonds']['batches']:
-    if batch['buy_prices'] == None:
+    if batch['buy_prices'] is None:
         batch['buy_prices'] = []
-    if batch['buys'] == None:
+    if batch['buys'] is None:
         batch['buys'] = []
-    if batch['sell_prices'] == None:
+    if batch['sell_prices'] is None:
         batch['sell_prices'] = []
-    if batch['sells'] == None:
+    if batch['sells'] is None:
         batch['sells'] = []
-    if batch['swaps'] == None:
+    if batch['swaps'] is None:
         batch['swaps'] = []
 
 for bond in data['app_state']['bonds']['bonds']:
-    if bond['function_parameters'] == None:
+    if bond['function_parameters'] is None:
         bond['function_parameters'] = []
 
-if data['app_state']['bonds']['params']['reserved_bond_tokens'] == None:
+if data['app_state']['bonds']['params']['reserved_bond_tokens'] is None:
     data['app_state']['bonds']['params']['reserved_bond_tokens'] = []
 
 
@@ -80,7 +80,7 @@ for el in data['app_state']['did']['did_docs']:
     el['@type'] = "/did.BaseDidDoc"
     del el['type']
 
-    if el['value']['credentials'] != None:
+    if el['value']['credentials'] is not None:
         for cred in el['value']['credentials']:
             cred['claim']['KYC_validated'] = cred['claim']['KYCValidated']
             del cred['claim']['KYCValidated']
@@ -88,7 +88,7 @@ for el in data['app_state']['did']['did_docs']:
             cred['cred_type'] = cred['type']
             del cred['type']
 
-    if el['value']['credentials'] == None:
+    if el['value']['credentials'] is None:
         el['value']['credentials'] = []
 
     el['credentials'] = el['value']['credentials']
@@ -106,8 +106,7 @@ data['app_state']['ibc'] = {"channel_genesis": {"ack_sequences": [], "acknowledg
                                                 "send_sequences": []},
                             "client_genesis": {"clients": [], "clients_consensus": [], "clients_metadata": [],
                                                "create_localhost": False, "next_client_sequence": "0", "params": {"allowed_clients": []}},
-                            "connection_genesis" : {"client_connection_paths": [], "connections": [], "next_connection_sequence": "0"}}
-data['app_state']['ibc']['client_genesis']['params']['allowed_clients'].append("06-solomachine")
+                            "connection_genesis": {"client_connection_paths": [], "connections": [], "next_connection_sequence": "0"}}
 data['app_state']['ibc']['client_genesis']['params']['allowed_clients'].append("07-tendermint")
 
 
@@ -121,10 +120,10 @@ data['app_state']['params'] = None
 
 # Migrating payments
 for temp in data['app_state']['payments']['payment_templates']:
-    if temp['discounts'] == None:
+    if temp['discounts'] is None:
         temp['discounts'] = []
 
-if data['app_state']['payments']['subscriptions'] == None:
+if data['app_state']['payments']['subscriptions'] is None:
     data['app_state']['payments']['subscriptions'] = []
 
 
@@ -132,12 +131,12 @@ if data['app_state']['payments']['subscriptions'] == None:
 if len(data['app_state']['project']['account_maps']) > 0:
     maps = []
 
-    for map in data['app_state']['project']['account_maps']:
-        maps.append(map)
-        del map
+    for acc_map in data['app_state']['project']['account_maps']:
+        maps.append(acc_map)
+        del acc_map
 
-    for i, map in enumerate(maps):
-        data['app_state']['project']['account_maps'][i] = {"map": map}
+    for i, acc_map in enumerate(maps):
+        data['app_state']['project']['account_maps'][i] = {"map": acc_map}
 
 if len(data['app_state']['project']['claims']) > 0:
     claims = []
@@ -147,7 +146,7 @@ if len(data['app_state']['project']['claims']) > 0:
         del claims_list
 
     for i, claims_list in enumerate(claims):
-        if claims_list == None:
+        if claims_list is None:
             data['app_state']['project']['claims'][i] = {"claims_list": []}
         else:
             data['app_state']['project']['claims'][i] = {"claims_list": claims_list}
@@ -173,7 +172,7 @@ if len(data['app_state']['project']['withdrawal_infos']) > 0:
         del wd_list
 
     for i, wd_list in enumerate(wds):
-        if wd_list == None:
+        if wd_list is None:
             data['app_state']['project']['withdrawal_infos'][i] = {"docs_list": []}
         else:
             data['app_state']['project']['withdrawal_infos'][i] = {"docs_list": wd_list}
@@ -187,7 +186,7 @@ del data['app_state']['treasury']
 
 
 # Adding transfer
-data['app_state']['transfer'] = {"denom_traces" : [], "params": {"receive_enabled": False, "send_enabled": False}, "port_id": "transfer"}
+data['app_state']['transfer'] = {"denom_traces": [], "params": {"receive_enabled": False, "send_enabled": False}, "port_id": "transfer"}
 
 
 # Adding vesting
