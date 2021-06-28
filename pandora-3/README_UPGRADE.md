@@ -114,16 +114,20 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    ```
 
-7. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running the migration Python script.
-
-   Clone this repo to download the migration script.
+7. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running an `ixod` command and the migration Python script.
+   
+   Run the following command on the previously generated _exported.json_: `ixod migrate v0.40 exported.json`
+   
+   Copy the output into a new _exported_step_1.json_ file.
+   
+   Clone this repo to download the Python migration script.
    
    ```bash
    $ git clone https://github.com/ixofoundation/genesis
    $ cd genesis
    ```
    
-   Move your previously generated _exported.json_ to the repo's /scripts folder, as the script requires for it to be in its folder.
+   Move the _exported_step_1.json_ file to the repo's /scripts folder, as the script requires for it to be in its folder.
 
    ```bash
    $ python migrate_export_to_v1.5.0
