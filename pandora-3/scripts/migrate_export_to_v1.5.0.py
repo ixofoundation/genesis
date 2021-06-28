@@ -1,6 +1,6 @@
 import json
 
-in_file = 'exported.json'
+in_file = 'exported_step_1.json'
 out_file = 'genesis.json'
 
 # Load genesis
