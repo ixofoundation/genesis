@@ -22,6 +22,31 @@ if not found_treasury:
     raise Exception("Did not find treasury account in exported.json.")
 
 
+# Migrating bank
+data['app_state']['bank']['denom_metadata'] = [
+    {
+        "base": "uatom",
+        "denom_units": [
+            {"aliases": ["microatom"], "denom": "uatom", "exponent": 0},
+            {"aliases": ["milliatom"], "denom": "matom", "exponent": 3},
+            {"aliases": [], "denom": "atom", "exponent": 6}
+        ],
+        "description": "The native staking token of the Cosmos Hub.",
+        "display": "atom"
+    },
+    {
+        "base": "uixo",
+        "denom_units": [
+            {"aliases": ["microixo"], "denom": "uixo", "exponent": 0},
+            {"aliases": ["milliixo"], "denom": "mixo", "exponent": 3},
+            {"aliases": [], "denom": "ixo", "exponent": 6}
+        ],
+        "description": "The native staking token of ixo.",
+        "display": "ixo"
+    },
+]
+
+
 # Migrating bonds
 for batch in data['app_state']['bonds']['batches']:
     if batch['buy_prices'] == None:
