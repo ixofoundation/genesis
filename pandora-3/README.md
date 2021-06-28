@@ -99,7 +99,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 	Executed block    module=state height=20 validTxs=0 invalidTxs=0
 	Committed state   module=state height=20 txs=0 appHash=3A6BB8049C10D0FB3C9C58A85B8FD840BBD28BDDCB8566621FEDFAB240C2FB5C
 	```
-9. If the above steps were done successfully, the node should be syncing through the whole Pandora-3 blockchain. Should you have any issues.
+9. If the above steps were done successfully, the node should be syncing through the whole Pandora-3 blockchain.
 
 10. Next steps:
     1. Backing up the generated priv_validator_key.json, which is to be the validator's block/consensus signing key.
