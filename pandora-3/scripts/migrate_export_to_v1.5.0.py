@@ -194,8 +194,8 @@ data['app_state']['transfer'] = {"denom_traces" : [], "params": {"receive_enable
 data['app_state']['vesting'] = {}
 
 
-# Evidence
-data['consensus_params']['evidence']['max_bytes'] = "1048576"
+# Migrate evidence
+data['consensus_params']['evidence']['max_bytes'] = "50000"
 
 
 # Update chain ID
