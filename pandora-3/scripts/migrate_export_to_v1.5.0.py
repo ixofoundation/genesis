@@ -181,6 +181,10 @@ data['app_state']['project']['withdrawals_infos'] = data['app_state']['project']
 del data['app_state']['project']['withdrawal_infos']
 
 
+# Migrate staking
+data['app_state']['staking']['exported'] = True
+
+
 # Removing treasury
 del data['app_state']['treasury']
 
