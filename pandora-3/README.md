@@ -48,7 +48,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
      -  Sets required environmental variables for Golang.
      - Clones the ixo-cosmos repo at the specific commit of pandora-3, <TODO>. 
      - Creates the directories required for the ixo node configurations and blockchain data.
-     - Installs the IXO blockchain daemon and CLI tool
+     - Installs the IXO blockchain daemon
      - Configures the node to use pandora-3's genesis file. 
      - Creates and an enables a systemd service with which the IXO node daemon will be run.
      
