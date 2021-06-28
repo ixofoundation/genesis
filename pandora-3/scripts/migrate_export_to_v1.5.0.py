@@ -190,7 +190,7 @@ del data['app_state']['treasury']
 
 
 # Adding transfer
-data['app_state']['transfer'] = {"denom_traces" : [], "params": {"receive_enabled": True, "send_enabled": True}, "port_id": "transfer"}
+data['app_state']['transfer'] = {"denom_traces": [], "params": {"receive_enabled": True, "send_enabled": True}, "port_id": "transfer"}
 
 
 # Adding vesting
