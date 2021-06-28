@@ -114,10 +114,6 @@ data['app_state']['ibc']['client_genesis']['params']['allowed_clients'].append("
 del data['app_state']['oracles']
 
 
-# Adding params
-data['app_state']['params'] = None
-
-
 # Migrating payments
 for temp in data['app_state']['payments']['payment_templates']:
     if temp['discounts'] is None:
