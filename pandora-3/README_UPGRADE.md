@@ -140,9 +140,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
 9. Backup and delete config files (TODO: add more info)
 
-10. Re-configure your node (TODO: add more info)
-
-11. Reset state:
+10. Reset state:
 
    **NOTE**: Be sure you have a complete backed up state of your node before proceeding with this step.
    See [Recovery](#recovery) for details on how to proceed.
@@ -151,6 +149,8 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod unsafe-reset-all
    ```
 
+11. Re-configure your node since we deleted the configs in the above steps (TODO: add more info)
+     
 12. Move the new `genesis.json` to your `.ixod/config/` directory
 
 13. Restart your node and wait for consensus to be reached with other validators.
