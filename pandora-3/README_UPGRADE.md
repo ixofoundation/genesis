@@ -72,7 +72,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    sudo apt-get install jq python
    ```
    
-4. Export existing state from `pandora-2`:
+3. Export existing state from `pandora-2`:
 
    **NOTE**: It is recommended for validators and operators to take a full data snapshot at the export
    height before proceeding in case the upgrade does not go as planned or if not enough voting power
@@ -85,14 +85,14 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    $ ixod export --for-zero-height --height=<TODO> > exported.json
    ```
 
-3. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
+4. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
 
    ```bash
    $ jq -S -c -M '' exported.json | shasum -a 256
    <hash output> -
    ```
 
-4. At this point you now have a valid exported genesis state! All further steps now require
+5. At this point you now have a valid exported genesis state! All further steps now require
 v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    **NOTE**: Go [1.16+](https://golang.org/dl/) is required!
@@ -101,7 +101,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v1.5.0; make install
    ```
 
-5. Verify you are currently running the correct version (v1.5.0) of _ixo_:
+6. Verify you are currently running the correct version (v1.5.0) of _ixo_:
 
    ```bash
    $ ixod version --long
@@ -114,7 +114,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    ```
 
-6. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running the migration Python script.
+7. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running the migration Python script.
 
    Clone this repo to download the migration script.
    
@@ -131,18 +131,18 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    **NOTE**: The `migrate_export_to_v1.5.0` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.5.0, and updating the genesis time.
 
-7. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared with the rest of the community.
+8. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared with the rest of the community.
 
    ```bash
    $ jq -S -c -M '' genesis.json | shasum -a 256
    <hash output>  genesis.json
    ```
 
-7. Backup and delete config files (TODO: add more info)
+9. Backup and delete config files (TODO: add more info)
 
-8. Re-configure your node (TODO: add more info)
+10. Re-configure your node (TODO: add more info)
 
-9. Reset state:
+11. Reset state:
 
    **NOTE**: Be sure you have a complete backed up state of your node before proceeding with this step.
    See [Recovery](#recovery) for details on how to proceed.
@@ -151,6 +151,6 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod unsafe-reset-all
    ```
 
-10. Move the new `genesis.json` to your `.ixod/config/` directory
+12. Move the new `genesis.json` to your `.ixod/config/` directory
 
-11. Restart your node and wait for consensus to be reached with other validators.
+13. Restart your node and wait for consensus to be reached with other validators.
