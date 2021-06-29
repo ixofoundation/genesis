@@ -115,9 +115,10 @@ del data['app_state']['oracles']
 
 
 # Migrating payments
-for temp in data['app_state']['payments']['payment_templates']:
-    if temp['discounts'] is None:
-        temp['discounts'] = []
+if data['app_state']['payments']['payment_templates'] is not None:
+    for temp in data['app_state']['payments']['payment_templates']:
+        if temp['discounts'] is None:
+            temp['discounts'] = []
 
 if data['app_state']['payments']['subscriptions'] is None:
     data['app_state']['payments']['subscriptions'] = []
