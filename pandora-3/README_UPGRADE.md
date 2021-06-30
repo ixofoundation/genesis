@@ -169,14 +169,26 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod unsafe-reset-all
    ```
 
-1. Re-configure your node, since we deleted the configs in the above steps
-   
+1. Re-configure your node, since we deleted the configs in the above steps.
+
+
    ```bash
    $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
    $ nano config.toml
    $ nano app.toml
    ```
-     
+ 
+   In app.toml:
+   - ```minimum-gas-prices``` should be set to "0.025uixo"
+   - (optional) enable API and set address to ```0.0.0.0```
+   
+   In config.toml:
+   - ```moniker``` should be re-set
+   - (optional) Set RPC laddr to ```0.0.0.0```
+   - ```persistent_peers``` should be set to ```"c0b2d9f8380313f0e2756dc187a96b7c65cae49b@80.64.208.22:26656,3e6c0845dadd4cd3702d11185ff242639cf77ab9@46.166.138.209:26656"```
+   - ```pex``` should be set to ```true```
+   
+   
 1. Move the new `genesis.json` to your `.ixod/config/` directory
 
 1. Restart your node and wait for consensus to be reached with other validators.
