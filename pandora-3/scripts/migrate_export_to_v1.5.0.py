@@ -212,4 +212,4 @@ data = data.replace('&', '\\u0026')
 
 # Output migrated genesis
 with open(out_file, 'w') as f:
-    f.write(data)
+    f.write(data.encode('utf-8'))
