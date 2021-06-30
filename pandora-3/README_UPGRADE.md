@@ -5,7 +5,7 @@ must take in order to upgrade from `pandora-2` to `pandora-3`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be performed on `June 30, 2021 at or around <TODO> UTC` on block `<TODO>`, with `pandora-3` having a genesis time of `2021-06-30T<TODO>Z`.
+The upgrade procedure should be performed on `June 30, 2021 at or around 11:35 UTC` on block `1984650`, with `pandora-3` having a genesis time of `2021-06-30T12:00:00Z`.
 
   - [Updates](#updates)
   - [Risks](#risks)
@@ -50,7 +50,7 @@ v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 __Note__: It is assumed you are currently operating a full-node running v1.4.3 of _ixo-blockchain_.
 
 - The version/commit hash of ixo v1.5.0: `<TODO>`
-- The upgrade height as agreed upon: **`<TODO>`**
+- The upgrade height as agreed upon: **`1984650`**
 
 
 1. Verify you are currently running the correct version (v1.4.3) of the _ixo-blockchain_:
@@ -82,7 +82,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=<TODO> > exported.json
+   $ ixod export --for-zero-height --height=1984650 > exported.json
    ```
 
 1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
