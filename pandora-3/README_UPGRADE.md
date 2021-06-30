@@ -66,13 +66,13 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    go: go version go1.14.1 linux/amd64
    ```
 
-2. Verify you have `jq` and `python` installed. If not, use the following command:
+1. Verify you have `jq` and `python` installed. If not, use the following command:
 
    ```bash
    sudo apt-get install jq python
    ```
    
-3. Export existing state from `pandora-2`:
+1. Export existing state from `pandora-2`:
 
    **NOTE**: It is recommended for validators and operators to take a full data snapshot at the export
    height before proceeding in case the upgrade does not go as planned or if not enough voting power
@@ -85,14 +85,14 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    $ ixod export --for-zero-height --height=<TODO> > exported.json
    ```
 
-4. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
+1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
 
    ```bash
    $ jq -S -c -M '' exported.json | shasum -a 256
    <hash output> -
    ```
 
-5. At this point you now have a valid exported genesis state! All further steps now require
+1. At this point you now have a valid exported genesis state! All further steps now require
 v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    **NOTE**: Go [1.15+](https://golang.org/dl/) is required!
@@ -101,7 +101,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v1.5.0; make install
    ```
 
-6. Verify you are currently running the correct version (v1.5.0) of _ixo_:
+1. Verify you are currently running the correct version (v1.5.0) of _ixo_:
 
    ```bash
    $ ixod version --long
@@ -114,7 +114,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    ```
 
-7. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running an `ixod` command and the migration Python script.
+1. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running an `ixod` command and the migration Python script.
    
    Run the following command on the previously generated _exported.json_: `ixod migrate v0.40 exported.json`
    
@@ -135,14 +135,14 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
    **NOTE**: The `migrate_export_to_v1.5.0` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.5.0, and updating the genesis time.
 
-8. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared with the rest of the community.
+1. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared with the rest of the community.
 
    ```bash
    $ jq -S -c -M '' genesis.json | shasum -a 256
    <hash output>  genesis.json
    ```
 
-9. Backup/rename config files
+1. Backup/rename config files
    
    ```bash
    $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
@@ -150,7 +150,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ mv config.toml config.toml.backup
    ```
 
-10. Reset state:
+1. Reset state:
 
    **NOTE**: Be sure you have a complete backed up state of your node before proceeding with this step.
    See [Recovery](#recovery) for details on how to proceed.
@@ -159,7 +159,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod unsafe-reset-all
    ```
 
-11. Re-configure your node, since we deleted the configs in the above steps
+1. Re-configure your node, since we deleted the configs in the above steps
    
    ```bash
    $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
@@ -167,6 +167,6 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ nano app.toml
    ```
      
-12. Move the new `genesis.json` to your `.ixod/config/` directory
+1. Move the new `genesis.json` to your `.ixod/config/` directory
 
-13. Restart your node and wait for consensus to be reached with other validators.
+1. Restart your node and wait for consensus to be reached with other validators.
