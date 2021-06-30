@@ -70,7 +70,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    server_name: ixod
    client_name: ixocli
    version: 1.4.3
-   commit: 7ce84ffd86f8da7440f1a0336e4325de1cffd0b9
+   commit: 6abb0176a77b74bae04e1ba0b4cf753ab841ab2a
    build_tags: ""
    go: go version go1.14.1 linux/amd64
    ```
