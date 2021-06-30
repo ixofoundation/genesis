@@ -150,6 +150,8 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    ```bash
    $ git clone https://github.com/ixofoundation/genesis
    $ cd genesis
+   $ git checkout pandora-3
+   $ cd pandora-3
    ```
    
    Move the _exported_step_1.json_ file to the repo's /scripts folder, as the script requires for it to be in its folder.
