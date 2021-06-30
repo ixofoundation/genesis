@@ -17,7 +17,7 @@ The upgrade procedure should be performed on `June 30, 2021 at or around <TODO> 
 Many changes have occurred to the ixod software since the launch of pandora-2. These changes notably consist of many new features,
 protocol changes, and application structural changes that favor developer ergonomics and application development.
 
-<TODO>
+`<TODO>`
 
 __[ixo](https://github.com/ixofoundation/ixo-blockchain) application v1.5.0 is
 what full node operators will upgrade to and run in this next major upgrade__.
@@ -50,7 +50,7 @@ v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 __Note__: It is assumed you are currently operating a full-node running v1.4.3 of _ixo-blockchain_.
 
 - The version/commit hash of ixo v1.5.0: `<TODO>`
-- The upgrade height as agreed upon: **<TODO>**
+- The upgrade height as agreed upon: **`<TODO>`**
 
 
 1. Verify you are currently running the correct version (v1.4.3) of the _ixo-blockchain_:
