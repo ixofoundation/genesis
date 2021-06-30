@@ -14,10 +14,19 @@ The upgrade procedure should be started on `June 30, 2021 at or around 11:35 UTC
 
 ## Updates
 
-Many changes have occurred to the ixod software since the launch of pandora-2. These changes notably consist of many new features,
-protocol changes, and application structural changes that favor developer ergonomics and application development.
+Many changes have occurred to the ixod software since the launch of pandora-2. These changes notably consist of an upgrade to
+v0.42.6 of Cosmos SDK "Stargate", removal of some modules, new messages, bug fixes, and general application structural changes
+that favor developer ergonomics and application development.
 
-`<TODO>`
+- Upgraded to Cosmos SDK v0.42.6 "Stargate" 
+  - Introduced protobuf and grpc-gateway
+  - Deprecated use of `ixocli` which is now part of `ixod`
+- Deprecated `oracles` and `treasury` modules
+- Added new demo scripts: `demo_gov_param_change.sh`, `ibc/demo.sh`
+- Updated and fixed all demo scripts
+- Updated general documentation
+- (project) Introduced `MsgUpdateProjectDoc`
+- (project) Fixed bug which does not allow us to go to PAIDOUT status if there are zero funds
 
 __[ixo](https://github.com/ixofoundation/ixo-blockchain) application v1.5.0 is
 what full node operators will upgrade to and run in this next major upgrade__.
@@ -49,7 +58,7 @@ v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 
 __Note__: It is assumed you are currently operating a full-node running v1.4.3 of _ixo-blockchain_.
 
-- The version/commit hash of ixo v1.5.0: `<TODO>`
+- The version/commit hash of ixo v1.5.0: `7ce84ffd86f8da7440f1a0336e4325de1cffd0b9`
 - The upgrade height as agreed upon: **`1984650`**
 
 
@@ -61,7 +70,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    server_name: ixod
    client_name: ixocli
    version: 1.4.3
-   commit: <TODO>
+   commit: 7ce84ffd86f8da7440f1a0336e4325de1cffd0b9
    build_tags: ""
    go: go version go1.14.1 linux/amd64
    ```
@@ -108,7 +117,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    name: ixo
    app_name: ixod
    version: 1.5.0
-   commit: <TODO>
+   commit: 7ce84ffd86f8da7440f1a0336e4325de1cffd0b9
    build_tags: ""
    go: go version go1.15.1 linux/amd64
 
