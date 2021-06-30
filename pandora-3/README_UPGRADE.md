@@ -95,7 +95,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
 5. At this point you now have a valid exported genesis state! All further steps now require
 v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
-   **NOTE**: Go [1.16+](https://golang.org/dl/) is required!
+   **NOTE**: Go [1.15+](https://golang.org/dl/) is required!
 
    ```bash
    $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v1.5.0; make install
@@ -110,7 +110,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    version: 1.5.0
    commit: <TODO>
    build_tags: ""
-   go: go version go1.16.1 linux/amd64
+   go: go version go1.15.1 linux/amd64
 
    ```
 
@@ -142,7 +142,13 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    <hash output>  genesis.json
    ```
 
-9. Backup and delete config files (TODO: add more info)
+9. Backup/rename config files
+   
+   ```bash
+   $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
+   $ mv app.toml app.toml.backup
+   $ mv config.toml config.toml.backup
+   ```
 
 10. Reset state:
 
@@ -153,7 +159,13 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod unsafe-reset-all
    ```
 
-11. Re-configure your node since we deleted the configs in the above steps (TODO: add more info)
+11. Re-configure your node, since we deleted the configs in the above steps
+   
+   ```bash
+   $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
+   $ nano config.toml
+   $ nano app.toml
+   ```
      
 12. Move the new `genesis.json` to your `.ixod/config/` directory
 
