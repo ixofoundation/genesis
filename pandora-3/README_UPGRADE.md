@@ -134,6 +134,8 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    ```
 
    **NOTE**: The `migrate_export_to_v1.5.0` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.5.0, and updating the genesis time.
+   
+   **NOTE**: If you would like to understand what the Python migration script does, please refer to the [Python migration script steps](#python-migration-script-steps) section
 
 1. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared with the rest of the community.
 
@@ -170,3 +172,22 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 1. Move the new `genesis.json` to your `.ixod/config/` directory
 
 1. Restart your node and wait for consensus to be reached with other validators.
+
+## Python Migration Script Steps
+
+This section lists all steps that the [Python migration script](./pandora-3/scripts/migrate_export_to_v1.5.0.py) performs.
+
+- [**auth**] Removes `"treasury"` module account and replaces it with a `'transfer'` module account (**treasury** module was removed; **transfer** module was added)
+- [**bank**] Adds `denom_metadata` for IXO and ATOM tokens, the latter copied from `cosmoshub-4` genesis
+- [**capability**] Initialises the **capability** module state with IBC related capabilities, copied from `cosmoshub-4` genesis
+- [**did**] Migrates DID docs because of a new structure of data
+- [**ibc**] Initialises the **ibc** module state with empty lists and a list of `'allowed_clients'` having just the `'07-tendermint'` client allowed
+- [**oracles**] Remove **oracles** state, since module no longer exists
+- [**projects**] Migrates project account maps, claims, project docs, withdrawal infos, due to new structure of data
+- [**staking**] Set `exported` to `true`
+- [**treasury**] Remove **treasury** state, since module no longer exists
+- [**transfer**] Initialise the **transfer** module state with IBC enabled and using port `'transfer'`
+- [**vesting**] Add blank **vesting** module state
+- [**general**] Update chain ID to `pandora-3`
+- [**general**] Update genesis time
+- [**general**] Replaces any `null`s (`None` in Python) with an empty list `[]`
