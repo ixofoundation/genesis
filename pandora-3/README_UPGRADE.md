@@ -5,7 +5,7 @@ must take in order to upgrade from `pandora-2` to `pandora-3`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be performed on `June 30, 2021 at or around <TODO> UTC` on block `<TODO>`, with `pandora-3` having a genesis time of `2021-06-30T<TODO>Z`.
+The upgrade procedure should be started on `June 30, 2021 at or around 11:35 UTC` by halting on block `1984650`, with the new and exported genesis file of `pandora-3` having a genesis time of `2021-06-30T12:00:00Z`.
 
   - [Updates](#updates)
   - [Risks](#risks)
@@ -50,7 +50,7 @@ v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 __Note__: It is assumed you are currently operating a full-node running v1.4.3 of _ixo-blockchain_.
 
 - The version/commit hash of ixo v1.5.0: `<TODO>`
-- The upgrade height as agreed upon: **`<TODO>`**
+- The upgrade height as agreed upon: **`1984650`**
 
 
 1. Verify you are currently running the correct version (v1.4.3) of the _ixo-blockchain_:
@@ -82,7 +82,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=<TODO> > exported.json
+   $ ixod export --for-zero-height --height=1984650 > exported.json
    ```
 
 1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
@@ -116,9 +116,17 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
 1. Migrate exported state from the current v1.4.3 version to the new v1.5.0 version. This will require running an `ixod` command and the migration Python script.
    
-   Run the following command on the previously generated _exported.json_: `ixod migrate v0.40 exported.json`
+   Run the following command on the previously generated _exported.json_:
    
-   Copy the output into a new _exported_step_1.json_ file.
+      ```bash
+   $ ixod migrate v0.40 exported.json
+   ```
+   
+   Copy the json output into a new _exported_step_1.json_ file, excluding any command warnings that may show up in the process.
+   
+   ```bash
+   $ nano exported_step_1.json
+   ```
    
    Clone this repo to download the Python migration script.
    
@@ -161,14 +169,26 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod unsafe-reset-all
    ```
 
-1. Re-configure your node, since we deleted the configs in the above steps
-   
+1. Re-configure your node, since we deleted the configs in the above steps.
+
+
    ```bash
    $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
    $ nano config.toml
    $ nano app.toml
    ```
-     
+ 
+   In app.toml:
+   - ```minimum-gas-prices``` should be set to "0.025uixo"
+   - (optional) enable API and set address to ```0.0.0.0```
+   
+   In config.toml:
+   - ```moniker``` should be re-set
+   - (optional) Set RPC laddr to ```0.0.0.0```
+   - ```persistent_peers``` should be set to ```"c0b2d9f8380313f0e2756dc187a96b7c65cae49b@80.64.208.22:26656,3e6c0845dadd4cd3702d11185ff242639cf77ab9@46.166.138.209:26656"```
+   - ```pex``` should be set to ```true```
+   
+   
 1. Move the new `genesis.json` to your `.ixod/config/` directory
 
 1. Restart your node and wait for consensus to be reached with other validators.
