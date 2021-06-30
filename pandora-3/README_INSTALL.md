@@ -46,7 +46,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
      - Updates and upgrades Ubuntu packages. 
      - Prompts user to create a new IXO non-sudo user to run the software with.
      -  Sets required environmental variables for Golang.
-     - Clones the ixo-cosmos repo at the specific commit of pandora-3, <TODO>. 
+     - Clones the ixo-cosmos repo at the specific commit of pandora-3, `<TODO>`. 
      - Creates the directories required for the ixo node configurations and blockchain data.
      - Installs the IXO blockchain daemon
      - Configures the node to use pandora-3's genesis file. 
