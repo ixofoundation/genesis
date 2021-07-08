@@ -11,7 +11,6 @@ The upgrade procedure should be performed on `March 23, 2021 at or around 11:05 
   - [Risks](#risks)
   - [Recovery](#recovery)
   - [Upgrade Procedure](#upgrade-procedure)
-  - [Notes for Service Providers](#notes-for-service-providers)
 
 ## Updates
 
