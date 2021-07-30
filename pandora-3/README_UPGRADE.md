@@ -157,10 +157,10 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    Move the _exported_step_1.json_ file to the repo's /scripts folder, as the script requires for it to be in its folder.
 
    ```bash
-   $ python migrate_export_to_v1.5.0
+   $ python migrate_export_from_v1.4.3_to_v1.5.0
    ```
 
-   **NOTE**: The `migrate_export_to_v1.5.0` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.5.0, and updating the genesis time.
+   **NOTE**: The `migrate_export_from_v1.4.3_to_v1.5.0` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v1.5.0, and updating the genesis time.
    
    **NOTE**: If you would like to understand what the Python migration script does, please refer to the [Python migration script steps](#python-migration-script-steps) section
 
@@ -206,7 +206,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
 ## Python Migration Script Steps
 
-This section lists all steps that the [Python migration script](./scripts/migrate_export_to_v1.5.0.py) performs.
+This section lists all steps that the [Python migration script](./scripts/migrate_export_from_v1.4.3_to_v1.5.0.py) performs.
 
 - [**auth**] Removes `"treasury"` module account and replaces it with a `'transfer'` module account (**treasury** module was removed; **transfer** module was added)
 - [**bank**] Adds `denom_metadata` for IXO and ATOM tokens, the latter copied from `cosmoshub-4` genesis
