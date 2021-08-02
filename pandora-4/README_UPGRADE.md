@@ -46,7 +46,7 @@ v1.5.0 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 
 __Note__: It is assumed you are currently operating a full-node running v1.5.0 of _ixo-blockchain_.
 
-- The version/commit hash of ixo v1.6.0: `TODO`
+- The version/commit hash of ixo v1.6.0: `21e2c962e18220888d529bf156406260a321cf80`
 - The upgrade height as agreed upon: **`TODO`**
 
 
@@ -83,7 +83,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.5.0 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=1984650 > exported.json
+   $ ixod export --for-zero-height --height=TODO > exported.json
    ```
 
 1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
