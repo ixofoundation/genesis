@@ -13,6 +13,12 @@ for bond in data['app_state']['bonds']['bonds']:
     bond['allow_reserve_withdrawals'] = False
     bond['available_reserve'] = bond['current_reserve']
 
+# Update chain ID
+data['chain_id'] = 'pandora-4'
+
+# Update genesis time
+data['genesis_time'] = '2021-08-01T12:00:00Z'
+
 # Finishing touches (replace & with unicode)
 data = json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False)
 data = data.replace('&', '\\u0026')
