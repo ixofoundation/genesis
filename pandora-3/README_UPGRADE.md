@@ -206,7 +206,7 @@ v1.5.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
 ## Python Migration Script Steps
 
-This section lists all steps that the [Python migration script](./scripts/migrate_export_from_v1.4.3_to_v1.5.0.py) performs.
+This section lists all steps that the [Python migration script](./scripts/migrate_export_to_v1.5.0.py) performs.
 
 - [**auth**] Removes `"treasury"` module account and replaces it with a `'transfer'` module account (**treasury** module was removed; **transfer** module was added)
 - [**bank**] Adds `denom_metadata` for IXO and ATOM tokens, the latter copied from `cosmoshub-4` genesis
