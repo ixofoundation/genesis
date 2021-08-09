@@ -61,7 +61,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 
 6. Access the node's configuration file and add Simply VC's Pandora-4 peers.
 	```
-	nano $HOME/.ixod/config.toml
+	nano $HOME/.ixod/config/config.toml
 	```
 
     - **Required**: Find the `persistent_peers` parameter and add the following
@@ -70,15 +70,16 @@ An installation script `InstallPandora.sh` has been included which prepares the 
     ```
     persistent_peers ="3e6c0845dadd4cd3702d11185ff242639cf77ab9@46.166.138.209:26656,c0b2d9f8380313f0e2756dc187a96b7c65cae49b@80.64.208.22:26656"
     ```
-    - **Required**: Enable the peer exchange reactor `pex`, which enables nodes to share each other's peers. This ensures your node discovers other peers on the network. The default value of this entry should be "false". This must be changed as follows:
+    - **Required**: Enable the peer exchange reactor `pex`, which enables nodes to share each other's peers. This ensures your node discovers other peers on the network. The default value of this entry should be "true", but you should confirm that this is the case:
     ```
     pex = true 
     ```
     - **Optional**: The node's moniker can be changed from `Pandora node` to
     anything of your liking. The default value of the `moniker` entry is `"Pandora node".` This can be changed as desired.
 
-7. Start the IXO blockchain daemon.
+7. Exit back to the root user and start the IXO blockchain daemon.
     ```
+    exit
     systemctl start ixod.service
     ```
 
