@@ -1,4 +1,4 @@
-# ImpactHub-2 Upgrade Instructions
+# Upgrade Instructions: ImpactHub-2 -> ImpactHub-3
 
 The following document describes the necessary steps involved that full-node operators
 must take in order to upgrade from `impacthub-2` to `impacthub-3`. The IXO team
