@@ -7,6 +7,7 @@ out_file = 'genesis.json'
 with open(in_file, 'r') as f:
     data = json.load(f)
 
+# ------------------------------------------------------------ 1.4.3 to 1.5.0
 
 # Migrating auth
 # Removing treasury module account, adding transfer module account
@@ -20,7 +21,6 @@ for acc in data['app_state']['auth']['accounts']:
 
 if not found_treasury:
     raise Exception("Did not find treasury account in exported.json.")
-
 
 # Migrating bank
 data['app_state']['bank']['denom_metadata'] = [
@@ -46,7 +46,6 @@ data['app_state']['bank']['denom_metadata'] = [
     },
 ]
 
-
 # Migrating bonds
 for batch in data['app_state']['bonds']['batches']:
     if batch['buy_prices'] is None:
@@ -67,13 +66,11 @@ for bond in data['app_state']['bonds']['bonds']:
 if data['app_state']['bonds']['params']['reserved_bond_tokens'] is None:
     data['app_state']['bonds']['params']['reserved_bond_tokens'] = []
 
-
 # Adding capability
 data['app_state']['capability'] = {"index": "2", "owners": []}
 data['app_state']['capability']['owners'].append({"index": "1", "index_owners": {"owners": []}})
 data['app_state']['capability']['owners'][0]['index_owners']['owners'].append({"module": "ibc", "name": "ports/transfer"})
 data['app_state']['capability']['owners'][0]['index_owners']['owners'].append({"module": "transfer", "name": "ports/transfer"})
-
 
 # Migrating did
 for el in data['app_state']['did']['did_docs']:
@@ -99,7 +96,6 @@ for el in data['app_state']['did']['did_docs']:
 
     del el['value']
 
-
 # Adding ibc
 data['app_state']['ibc'] = {"channel_genesis": {"ack_sequences": [], "acknowledgements": [], "channels": [],
                                                 "commitments": [], "next_channel_sequence": "0", "receipts": [], "recv_sequences": [],
@@ -109,10 +105,8 @@ data['app_state']['ibc'] = {"channel_genesis": {"ack_sequences": [], "acknowledg
                             "connection_genesis": {"client_connection_paths": [], "connections": [], "next_connection_sequence": "0"}}
 data['app_state']['ibc']['client_genesis']['params']['allowed_clients'].append("07-tendermint")
 
-
 # Removing oracles
 del data['app_state']['oracles']
-
 
 # Migrating payments
 if data['app_state']['payments']['payment_templates'] is not None:
@@ -122,7 +116,6 @@ if data['app_state']['payments']['payment_templates'] is not None:
 
 if data['app_state']['payments']['subscriptions'] is None:
     data['app_state']['payments']['subscriptions'] = []
-
 
 # Migrating project
 if len(data['app_state']['project']['account_maps']) > 0:
@@ -177,14 +170,11 @@ if len(data['app_state']['project']['withdrawal_infos']) > 0:
 data['app_state']['project']['withdrawals_infos'] = data['app_state']['project']['withdrawal_infos']
 del data['app_state']['project']['withdrawal_infos']
 
-
 # Migrate staking
 data['app_state']['staking']['exported'] = True
 
-
 # Removing treasury
 del data['app_state']['treasury']
-
 
 # Adding transfer
 data['app_state']['transfer'] = {"denom_traces": [], "params": {"receive_enabled": False, "send_enabled": False}, "port_id": "transfer"}
@@ -193,18 +183,28 @@ data['app_state']['transfer'] = {"denom_traces": [], "params": {"receive_enabled
 # Adding vesting
 data['app_state']['vesting'] = {}
 
-
 # Migrate evidence
 data['consensus_params']['evidence']['max_bytes'] = "50000"
+
+# ------------------------------------------------------------ 1.5.0 to 1.6.0
+
+# Migrating bonds
+for bond in data['app_state']['bonds']['bonds']:
+    bond['reserve_withdrawal_address'] = bond['fee_address']
+    bond['allow_reserve_withdrawals'] = False
+    bond['available_reserve'] = bond['current_reserve']
+
+# ------------------------------------------------------------ GENERAL
 
 
 # Update chain ID
 data['chain_id'] = 'impacthub-3'
 
-
 # Update genesis time
-data['genesis_time'] = '2021-07-14T12:00:00Z'
+data['genesis_time'] = '2021-08-19T12:00:00Z'
 
+# Update initial height
+data['initial_height'] = '1'
 
 # Finishing touches (replace & with unicode)
 data = json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False)
