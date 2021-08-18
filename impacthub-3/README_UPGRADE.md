@@ -7,9 +7,11 @@ execute the following instructions in order to verify the resulting genesis file
 
 The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2289900`, with the new and exported genesis file of `impacthub-3` having a genesis time of `2021-08-19T12:00:00Z`.
 
+
   - [Updates](#updates)
   - [Risks](#risks)
   - [Recovery](#recovery)
+  - [Halting impacthub-2](#recovery)
   - [Upgrade Procedure](#upgrade-procedure)
 
 ## Updates
@@ -54,6 +56,17 @@ It is critically important to back-up the `.ixod/data/priv_validator_state.json`
 
 In the event that the upgrade does not succeed, validators and operators must downgrade back to
 v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before restarting their nodes.
+
+## Halting impacthub-2
+
+The current chain, impacthub-2, is proposed to be stopped at block `2289900`. It is important that validators set their nodes to stop processing transactions and participating in consensus at this height, by doing the following:
+
+1. Access the `app.toml` configuration file in the `$HOME/.ixod` directory
+2. Set `halt-height = 2289900`
+3. Save your changes.
+4. Restart the `ixod.service` using `systemctl restart ixod.service`.
+5. Monitor your node at around the time of the halt, 11:35am UTC on Aug 19th, and ensure that it halts at the above block. This can be checked from the node's logs, RPC or Prometheus endpoint. 
+6. Blocks will stop being produced once 33%+ of voting power stops participating in consensus.
 
 ## Upgrade Procedure
 
