@@ -28,7 +28,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 3. Access the root user's home directory and clone the repository
     ```
     cd $HOME
-    git clone https://github.com/ixofoundation/genesis.git && git checkout master
+    git clone https://github.com/ixofoundation/genesis.git && cd genesis && git checkout master
     ```
 
     The pandora-4 directory includes:
@@ -83,12 +83,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
     systemctl start ixod.service
     ```
 
-8. Check the node's logs as the root use
-
-	Switch to the root user. This can be done by exiting the current user's shell instance.
-	```
-	exit
-	```
+8. Check the node's logs as the root user
 
 	Tail the node's logs using the following:
 	```
