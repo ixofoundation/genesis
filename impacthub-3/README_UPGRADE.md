@@ -124,6 +124,14 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v1.6.0; make install
    ```
 
+1. Backup/rename config files
+
+   ```bash
+   $ # Navigate to .ixod/config/ folder, by default ~/.ixod/config/
+   $ mv app.toml app.toml.backup
+   $ mv config.toml config.toml.backup
+   ```
+
 1. Verify you are currently running the correct version (v1.6.0) of _ixo_:
 
    ```bash

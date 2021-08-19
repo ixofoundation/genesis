@@ -20,7 +20,20 @@ for acc in data['app_state']['auth']['accounts']:
         acc['base_account']['address'] = "ixo1yl6hdjhmkf37639730gffanpzndzdpmh32gmns"
 
 if not found_treasury:
-    raise Exception("Did not find treasury account in exported.json.")
+    first_unused_acc_number = str(len(data['app_state']['auth']['accounts']))
+    data['app_state']['auth']['accounts'].append(
+        {
+            '@type': '/cosmos.auth.v1beta1.ModuleAccount',
+            'base_account': {
+                'account_number': first_unused_acc_number,
+                'address': 'ixo1yl6hdjhmkf37639730gffanpzndzdpmh32gmns',
+                'pub_key': None,
+                'sequence': '0'
+            },
+            'name': 'transfer',
+            'permissions': ['minter', 'burner']
+        }
+    )
 
 # Migrating bank
 data['app_state']['bank']['denom_metadata'] = [
@@ -205,6 +218,10 @@ data['genesis_time'] = '2021-08-19T12:00:00Z'
 
 # Update initial height
 data['initial_height'] = '1'
+
+# Change max validators to 50 as indicated in:
+# https://github.com/ixofoundation/governance/blob/main/proposals/001-stargate-upgrade/readme.md
+data['app_state']['staking']['params']['max_validators'] = 50
 
 # Finishing touches (replace & with unicode)
 data = json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False)
