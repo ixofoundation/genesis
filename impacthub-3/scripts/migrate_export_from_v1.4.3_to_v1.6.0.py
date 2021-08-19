@@ -145,57 +145,61 @@ if data['app_state']['payments']['subscriptions'] is None:
     data['app_state']['payments']['subscriptions'] = []
 
 # Migrating project
-if len(data['app_state']['project']['account_maps']) > 0:
-    maps = []
+if data['app_state']['project'] and data['app_state']['project']['account_maps']:
+    if len(data['app_state']['project']['account_maps']) > 0:
+        maps = []
 
-    for acc_map in data['app_state']['project']['account_maps']:
-        maps.append(acc_map)
-        del acc_map
+        for acc_map in data['app_state']['project']['account_maps']:
+            maps.append(acc_map)
+            del acc_map
 
-    for i, acc_map in enumerate(maps):
-        data['app_state']['project']['account_maps'][i] = {"map": acc_map}
+        for i, acc_map in enumerate(maps):
+            data['app_state']['project']['account_maps'][i] = {"map": acc_map}
 
-if len(data['app_state']['project']['claims']) > 0:
-    claims = []
+if data['app_state']['project'] and data['app_state']['project']['claims']:
+    if len(data['app_state']['project']['claims']) > 0:
+        claims = []
 
-    for claims_list in data['app_state']['project']['claims']:
-        claims.append(claims_list)
-        del claims_list
+        for claims_list in data['app_state']['project']['claims']:
+            claims.append(claims_list)
+            del claims_list
 
-    for i, claims_list in enumerate(claims):
-        if claims_list is None:
-            data['app_state']['project']['claims'][i] = {"claims_list": []}
-        else:
-            data['app_state']['project']['claims'][i] = {
-                "claims_list": claims_list}
+        for i, claims_list in enumerate(claims):
+            if claims_list is None:
+                data['app_state']['project']['claims'][i] = {"claims_list": []}
+            else:
+                data['app_state']['project']['claims'][i] = {
+                    "claims_list": claims_list}
 
-for project_doc in data['app_state']['project']['project_docs']:
-    project_doc['project_did'] = project_doc['projectDid']
-    del project_doc['projectDid']
+if data['app_state']['project'] and data['app_state']['project']['project_docs']:
+    for project_doc in data['app_state']['project']['project_docs']:
+        project_doc['project_did'] = project_doc['projectDid']
+        del project_doc['projectDid']
 
-    project_doc['pub_key'] = project_doc['pubKey']
-    del project_doc['pubKey']
+        project_doc['pub_key'] = project_doc['pubKey']
+        del project_doc['pubKey']
 
-    project_doc['sender_did'] = project_doc['senderDid']
-    del project_doc['senderDid']
+        project_doc['sender_did'] = project_doc['senderDid']
+        del project_doc['senderDid']
 
-    project_doc['tx_hash'] = project_doc['txHash']
-    del project_doc['txHash']
+        project_doc['tx_hash'] = project_doc['txHash']
+        del project_doc['txHash']
 
-if len(data['app_state']['project']['withdrawal_infos']) > 0:
-    wds = []
+if data['app_state']['project'] and data['app_state']['project']['withdrawal_infos']:
+    if len(data['app_state']['project']['withdrawal_infos']) > 0:
+        wds = []
 
-    for wd_list in data['app_state']['project']['withdrawal_infos']:
-        wds.append(wd_list)
-        del wd_list
+        for wd_list in data['app_state']['project']['withdrawal_infos']:
+            wds.append(wd_list)
+            del wd_list
 
-    for i, wd_list in enumerate(wds):
-        if wd_list is None:
-            data['app_state']['project']['withdrawal_infos'][i] = {
-                "docs_list": []}
-        else:
-            data['app_state']['project']['withdrawal_infos'][i] = {
-                "docs_list": wd_list}
+        for i, wd_list in enumerate(wds):
+            if wd_list is None:
+                data['app_state']['project']['withdrawal_infos'][i] = {
+                    "docs_list": []}
+            else:
+                data['app_state']['project']['withdrawal_infos'][i] = {
+                    "docs_list": wd_list}
 
 data['app_state']['project']['withdrawals_infos'] = \
 data['app_state']['project']['withdrawal_infos']
