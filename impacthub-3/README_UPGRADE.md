@@ -127,7 +127,7 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 1. Verify you are currently running the correct version (v1.6.0) of _ixo_:
 
    ```bash
-   $ ixod version --long
+   $ ixod version --long --log_level info
    name: ixo
    server_name: ixod
    version: 1.6.0
