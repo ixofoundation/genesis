@@ -226,10 +226,11 @@ data['consensus_params']['evidence']['max_bytes'] = "50000"
 # ------------------------------------------------------------ 1.5.0 to 1.6.0
 
 # Migrating bonds
-for bond in data['app_state']['bonds']['bonds']:
-    bond['reserve_withdrawal_address'] = bond['fee_address']
-    bond['allow_reserve_withdrawals'] = False
-    bond['available_reserve'] = bond['current_reserve']
+if data['app_state']['bonds'] and data['app_state']['bonds']['bonds']:
+    for bond in data['app_state']['bonds']['bonds']:
+        bond['reserve_withdrawal_address'] = bond['fee_address']
+        bond['allow_reserve_withdrawals'] = False
+        bond['available_reserve'] = bond['current_reserve']
 
 # ------------------------------------------------------------ GENERAL
 
