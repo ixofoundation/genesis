@@ -14,10 +14,12 @@ with open(in_file, 'r') as f:
 found_treasury = False
 
 for acc in data['app_state']['auth']['accounts']:
-    if acc['@type'] == "/cosmos.auth.v1beta1.ModuleAccount" and acc['name'] == "treasury":
+    if acc['@type'] == "/cosmos.auth.v1beta1.ModuleAccount" and acc[
+        'name'] == "treasury":
         found_treasury = True
         acc['name'] = "transfer"
-        acc['base_account']['address'] = "ixo1yl6hdjhmkf37639730gffanpzndzdpmh32gmns"
+        acc['base_account'][
+            'address'] = "ixo1yl6hdjhmkf37639730gffanpzndzdpmh32gmns"
 
 if not found_treasury:
     first_unused_acc_number = str(len(data['app_state']['auth']['accounts']))
@@ -60,17 +62,18 @@ data['app_state']['bank']['denom_metadata'] = [
 ]
 
 # Migrating bonds
-for batch in data['app_state']['bonds']['batches']:
-    if batch['buy_prices'] is None:
-        batch['buy_prices'] = []
-    if batch['buys'] is None:
-        batch['buys'] = []
-    if batch['sell_prices'] is None:
-        batch['sell_prices'] = []
-    if batch['sells'] is None:
-        batch['sells'] = []
-    if batch['swaps'] is None:
-        batch['swaps'] = []
+if data['app_state']['bonds']:
+    for batch in data['app_state']['bonds']['batches']:
+        if batch['buy_prices'] is None:
+            batch['buy_prices'] = []
+        if batch['buys'] is None:
+            batch['buys'] = []
+        if batch['sell_prices'] is None:
+            batch['sell_prices'] = []
+        if batch['sells'] is None:
+            batch['sells'] = []
+        if batch['swaps'] is None:
+            batch['swaps'] = []
 
 for bond in data['app_state']['bonds']['bonds']:
     if bond['function_parameters'] is None:
@@ -81,9 +84,12 @@ if data['app_state']['bonds']['params']['reserved_bond_tokens'] is None:
 
 # Adding capability
 data['app_state']['capability'] = {"index": "2", "owners": []}
-data['app_state']['capability']['owners'].append({"index": "1", "index_owners": {"owners": []}})
-data['app_state']['capability']['owners'][0]['index_owners']['owners'].append({"module": "ibc", "name": "ports/transfer"})
-data['app_state']['capability']['owners'][0]['index_owners']['owners'].append({"module": "transfer", "name": "ports/transfer"})
+data['app_state']['capability']['owners'].append(
+    {"index": "1", "index_owners": {"owners": []}})
+data['app_state']['capability']['owners'][0]['index_owners']['owners'].append(
+    {"module": "ibc", "name": "ports/transfer"})
+data['app_state']['capability']['owners'][0]['index_owners']['owners'].append(
+    {"module": "transfer", "name": "ports/transfer"})
 
 # Migrating did
 for el in data['app_state']['did']['did_docs']:
@@ -110,13 +116,20 @@ for el in data['app_state']['did']['did_docs']:
     del el['value']
 
 # Adding ibc
-data['app_state']['ibc'] = {"channel_genesis": {"ack_sequences": [], "acknowledgements": [], "channels": [],
-                                                "commitments": [], "next_channel_sequence": "0", "receipts": [], "recv_sequences": [],
-                                                "send_sequences": []},
-                            "client_genesis": {"clients": [], "clients_consensus": [], "clients_metadata": [],
-                                               "create_localhost": False, "next_client_sequence": "0", "params": {"allowed_clients": []}},
-                            "connection_genesis": {"client_connection_paths": [], "connections": [], "next_connection_sequence": "0"}}
-data['app_state']['ibc']['client_genesis']['params']['allowed_clients'].append("07-tendermint")
+data['app_state']['ibc'] = {
+    "channel_genesis": {"ack_sequences": [], "acknowledgements": [],
+                        "channels": [],
+                        "commitments": [], "next_channel_sequence": "0",
+                        "receipts": [], "recv_sequences": [],
+                        "send_sequences": []},
+    "client_genesis": {"clients": [], "clients_consensus": [],
+                       "clients_metadata": [],
+                       "create_localhost": False, "next_client_sequence": "0",
+                       "params": {"allowed_clients": []}},
+    "connection_genesis": {"client_connection_paths": [], "connections": [],
+                           "next_connection_sequence": "0"}}
+data['app_state']['ibc']['client_genesis']['params']['allowed_clients'].append(
+    "07-tendermint")
 
 # Removing oracles
 del data['app_state']['oracles']
@@ -152,7 +165,8 @@ if len(data['app_state']['project']['claims']) > 0:
         if claims_list is None:
             data['app_state']['project']['claims'][i] = {"claims_list": []}
         else:
-            data['app_state']['project']['claims'][i] = {"claims_list": claims_list}
+            data['app_state']['project']['claims'][i] = {
+                "claims_list": claims_list}
 
 for project_doc in data['app_state']['project']['project_docs']:
     project_doc['project_did'] = project_doc['projectDid']
@@ -176,11 +190,14 @@ if len(data['app_state']['project']['withdrawal_infos']) > 0:
 
     for i, wd_list in enumerate(wds):
         if wd_list is None:
-            data['app_state']['project']['withdrawal_infos'][i] = {"docs_list": []}
+            data['app_state']['project']['withdrawal_infos'][i] = {
+                "docs_list": []}
         else:
-            data['app_state']['project']['withdrawal_infos'][i] = {"docs_list": wd_list}
+            data['app_state']['project']['withdrawal_infos'][i] = {
+                "docs_list": wd_list}
 
-data['app_state']['project']['withdrawals_infos'] = data['app_state']['project']['withdrawal_infos']
+data['app_state']['project']['withdrawals_infos'] = \
+data['app_state']['project']['withdrawal_infos']
 del data['app_state']['project']['withdrawal_infos']
 
 # Migrate staking
@@ -190,8 +207,10 @@ data['app_state']['staking']['exported'] = True
 del data['app_state']['treasury']
 
 # Adding transfer
-data['app_state']['transfer'] = {"denom_traces": [], "params": {"receive_enabled": False, "send_enabled": False}, "port_id": "transfer"}
-
+data['app_state']['transfer'] = {"denom_traces": [],
+                                 "params": {"receive_enabled": False,
+                                            "send_enabled": False},
+                                 "port_id": "transfer"}
 
 # Adding vesting
 data['app_state']['vesting'] = {}
