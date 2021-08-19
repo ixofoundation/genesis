@@ -206,6 +206,10 @@ data['genesis_time'] = '2021-08-19T12:00:00Z'
 # Update initial height
 data['initial_height'] = '1'
 
+# Change max validators to 50 as indicated in:
+# https://github.com/ixofoundation/governance/blob/main/proposals/001-stargate-upgrade/readme.md
+data['app_state']['staking']['params']['max_validators'] = 50
+
 # Finishing touches (replace & with unicode)
 data = json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False)
 data = data.replace('&', '\\u0026')
