@@ -1,15 +1,17 @@
-# ImpactHub-2 Upgrade Instructions
+# Upgrade Instructions: ImpactHub-2 -> ImpactHub-3
 
 The following document describes the necessary steps involved that full-node operators
 must take in order to upgrade from `impacthub-2` to `impacthub-3`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `((TODO))`, with the new and exported genesis file of `impacthub-3` having a genesis time of `2021-08-19T12:00:00Z`.
+The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2289900`, with the new and exported genesis file of `impacthub-3` having a genesis time of `2021-08-19T12:00:00Z`.
+
 
   - [Updates](#updates)
   - [Risks](#risks)
   - [Recovery](#recovery)
+  - [Halting impacthub-2](#recovery)
   - [Upgrade Procedure](#upgrade-procedure)
 
 ## Updates
@@ -55,12 +57,23 @@ It is critically important to back-up the `.ixod/data/priv_validator_state.json`
 In the event that the upgrade does not succeed, validators and operators must downgrade back to
 v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before restarting their nodes.
 
+## Halting impacthub-2
+
+The current chain, impacthub-2, is proposed to be stopped at block `2289900`. It is important that validators set their nodes to stop processing transactions and participating in consensus at this height, by doing the following:
+
+1. Access the `app.toml` configuration file in the `$HOME/.ixod` directory
+2. Set `halt-height = 2289900`
+3. Save your changes.
+4. Restart the `ixod.service` using `systemctl restart ixod.service`.
+5. Monitor your node at around the time of the halt, 11:35am UTC on Aug 19th, and ensure that it halts at the above block. This can be checked from the node's logs, RPC or Prometheus endpoint. 
+6. Blocks will stop being produced once 33%+ of voting power stops participating in consensus.
+
 ## Upgrade Procedure
 
 __Note__: It is assumed you are currently operating a full-node running v1.4.3 of _ixo-blockchain_.
 
 - The version/commit hash of ixo v1.6.0: `21e2c962e18220888d529bf156406260a321cf80`
-- The upgrade height as agreed upon: **`((TODO))`**
+- The upgrade height as agreed upon: **`2289900`**
 
 
 1. Verify you are currently running the correct version (v1.4.3) of the _ixo-blockchain_:
@@ -92,7 +105,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=((TODO)) > exported.json
+   $ ixod export --for-zero-height --height=2289900 > exported.json
    ```
 
 1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
@@ -193,7 +206,7 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    In config.toml:
    - ```moniker``` should be re-set
    - (optional) Set RPC laddr to ```0.0.0.0```
-   - ```persistent_peers``` should be set to ```"((TODO))"```
+   - ```persistent_peers``` should be set to ```"cbe8c6a5a77f861db8edb1426b734f2cf1fa4020@18.166.133.210:26656,36e4738c7efcf353d3048e5e6073406d045bae9d@80.64.208.42:26656,f0d4546fa5e0c2d84a4244def186b9da3c12ba1a@46.166.138.214:26656,c95af93f0386f8e19e65997262c9f874d1901dc5@18.163.242.188:26656"```
    - ```pex``` should be set to ```true```
 
 1. Move the new `genesis.json` to your `.ixod/config/` directory
