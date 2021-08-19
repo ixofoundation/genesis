@@ -5,7 +5,7 @@ must take in order to upgrade from `impacthub-2` to `impacthub-3`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2289900`, with the new and exported genesis file of `impacthub-3` having a genesis time of `2021-08-19T12:00:00Z`.
+The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2290600`, with the new and exported genesis file of `impacthub-3` having a genesis time of `2021-08-19T12:00:00Z`.
 
 
   - [Updates](#updates)
@@ -62,7 +62,7 @@ v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before 
 The current chain, impacthub-2, is proposed to be stopped at block `2289900`. It is important that validators set their nodes to stop processing transactions and participating in consensus at this height, by doing the following:
 
 1. Access the `app.toml` configuration file in the `$HOME/.ixod` directory
-2. Set `halt-height = 2289900`
+2. Set `halt-height = 2290600`
 3. Save your changes.
 4. Restart the `ixod.service` using `systemctl restart ixod.service`.
 5. Monitor your node at around the time of the halt, 11:35am UTC on Aug 19th, and ensure that it halts at the above block. This can be checked from the node's logs, RPC or Prometheus endpoint. 
@@ -73,7 +73,7 @@ The current chain, impacthub-2, is proposed to be stopped at block `2289900`. It
 __Note__: It is assumed you are currently operating a full-node running v1.4.3 of _ixo-blockchain_.
 
 - The version/commit hash of ixo v1.6.0: `21e2c962e18220888d529bf156406260a321cf80`
-- The upgrade height as agreed upon: **`2289900`**
+- The upgrade height as agreed upon: **`2290600`**
 
 
 1. Verify you are currently running the correct version (v1.4.3) of the _ixo-blockchain_:
@@ -105,7 +105,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
    ```bash
-   $ ixod export --for-zero-height --height=2289900 > exported.json
+   $ ixod export --for-zero-height --height=2290600 > exported.json
    ```
 
 1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
