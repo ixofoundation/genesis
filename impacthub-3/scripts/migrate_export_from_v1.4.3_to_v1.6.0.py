@@ -75,9 +75,10 @@ if data['app_state']['bonds'] and data['app_state']['bonds']['batches']:
         if batch['swaps'] is None:
             batch['swaps'] = []
 
-for bond in data['app_state']['bonds']['bonds']:
-    if bond['function_parameters'] is None:
-        bond['function_parameters'] = []
+if data['app_state']['bonds'] and data['app_state']['bonds']['bonds']:
+    for bond in data['app_state']['bonds']['bonds']:
+        if bond['function_parameters'] is None:
+            bond['function_parameters'] = []
 
 if data['app_state']['bonds']['params']['reserved_bond_tokens'] is None:
     data['app_state']['bonds']['params']['reserved_bond_tokens'] = []
