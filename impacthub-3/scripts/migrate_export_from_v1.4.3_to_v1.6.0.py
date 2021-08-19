@@ -35,6 +35,21 @@ if not found_treasury:
         }
     )
 
+# Add mint account
+first_unused_acc_number = str(len(data['app_state']['auth']['accounts']))
+data['app_state']['auth']['accounts'].append(
+    {
+        '@type': '/cosmos.auth.v1beta1.ModuleAccount',
+        'base_account': {
+            'account_number': first_unused_acc_number,
+            'address': 'ixo1m3h30wlvsf8llruxtpukdvsy0km2kum8hye2rn',
+            'pub_key': None,
+            'sequence': '0'
+        },
+        'name': 'mint',
+        'permissions': ['minter']
+    })
+
 # Migrating bank
 data['app_state']['bank']['denom_metadata'] = [
     {
