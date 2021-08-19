@@ -62,7 +62,7 @@ data['app_state']['bank']['denom_metadata'] = [
 ]
 
 # Migrating bonds
-if data['app_state']['bonds']:
+if data['app_state']['bonds'] and data['app_state']['bonds']['batches']:
     for batch in data['app_state']['bonds']['batches']:
         if batch['buy_prices'] is None:
             batch['buy_prices'] = []
