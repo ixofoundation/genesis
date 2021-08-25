@@ -96,7 +96,7 @@ If the status command succeeds, this will give output like:
   "catching_up": true
 }
 ```
-The main thing to watch is that the block height is increasing. Once you are caught up with the chain, catching_up will become false. At that point, you can start using your node to create a validator.
+The main thing to watch is that the block height is increasing. Once you are caught up with the chain, `catching_up` will become false. At that point, you can start using your node to create a validator.
 
 ## Registering validator
 
