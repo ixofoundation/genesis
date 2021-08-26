@@ -100,7 +100,7 @@ The main thing to watch is that the block height is increasing. Once you are cau
 
 ## Registering validator
 
-If you are upgrading, view [README_UPGRADE.md](./pandora-4/README_INSTALL.md).
+If you are upgrading, view [README_UPGRADE.md](./README_INSTALL.md).
 
 Firstly, generate your validator node's ixo public key. This is derived from the `priv_validator_key.json` file stored in `/home/ixo/.ixod/config/`.
 
