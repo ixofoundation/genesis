@@ -138,12 +138,11 @@ Ensure the node is receiving and processing blocks, which would look like this:
 	2:37PM INF Updating evidence pool last_block_height=1 last_block_time=2021-06-28T12:26:24Z module=evidence
 	2:37PM INF Indexed block height=1 module=txindex
 ```
-<br><br>	
-	
-**9. If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.**
+<br>		
+If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.**
 <br><br>
 
-**10. Create your validator key:**
+**9. Create your validator key:**
 ```
 su ixo
 ixod keys add <yourkey>
@@ -153,11 +152,11 @@ Replace <yourkey> by the name of your key. Back up the mnemonic in a safe and of
 You can add the flag --recover if you want to use an existing mnemonic.
 <br><br>
 	
-**11. Receive token:**
+**10. Receive token:**
 Put your ixo address beginning with `ixo1` in the validator channel to receive few tokens.
 <br><br>
 	
-**12. Create the validator:**
+**11. Create the validator:**
 Check if the chain is synched with the latest block height on the mainnet chain : https://blockscan.ixo.world/
 <br>
 When the result is "true", use the command the create your validator:
@@ -178,7 +177,7 @@ ixod tx staking create-validator \
 ```
 <br><br>
 	
-**13. Share your peer ID with other node operators:**
+**12. Share your peer ID with other node operators:**
 Peers use the following format : ```NODEID@PUBLICIP:PORT```
 Use the following commands:
 ```	
@@ -197,4 +196,4 @@ Your final result should look at something like this:
 ```19b5795d8ce3cbc8870a3b984c90fc9cc2abb1bd@46.105.92.97:26656```
 <br><br>
 	
-**14. Back up your priv_validator_key:**
+**13. Back up your priv_validator_key:**
