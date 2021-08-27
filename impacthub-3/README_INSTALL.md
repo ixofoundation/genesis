@@ -53,8 +53,10 @@ This script goes through the following steps:
 - Installs the IXO blockchain daemon
 - Configures the node to use impacthub-3's genesis file. 
 - Creates and an enables a systemd service with which the IXO node daemon will be run.
+
 <br>
 Follow the configuration steps as the node is installed.
+
 <br><br>
 
 **5. Switch to the new IXO user**
