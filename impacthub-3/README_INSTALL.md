@@ -28,16 +28,15 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 3. Access the root user's home directory and clone the repository
     ```
     cd $HOME
-    git clone https://github.com/ixofoundation/genesis.git && cd genesis && git checkout impacthub-3
+    git clone https://github.com/ixofoundation/genesis.git && cd genesis/impacthub-3
     ```
 
     The impacthub-3 directory includes:
-    - The network's genesis file `genesis.json ((TODO))`, which includes impacthub-3's network details, parameters and starting data.
+    - The network's genesis file `genesis.json`, which includes impacthub-3's network details, parameters and starting data.
     - `InstallImpacthub.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
 
-4. Access the impacthub-3 folder and run the installation script:
+4. Run the installation script:
     ```
-    cd impacthub-3
     bash InstallImpacthub.sh
     ```
 
