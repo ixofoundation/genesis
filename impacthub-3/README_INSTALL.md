@@ -11,22 +11,22 @@ The following server requirements are needed for Impacthub-3:
 - Networking: Allow incoming connections on port 26656
 - Static IP address
 - Don't install any package, the installation script will download the good version
-<br><br>
+
 
 ## Installation
 An installation script `InstallImpacthub.sh` has been included which prepares the environment, prerequisites, installs the IXO blockchain software and guides you through the node setup.
-<br>
+
 **1. These steps are to be run once logged in as **root** user. Use the following command to access the root user.**
 ```
 sudo -i
 ```
-<br><br>
+
 
 **2. Install git to clone this repository on the VM**
 ```
 apt-get install git
 ```
-<br><br>
+
 
 **3. Clone the repository**
 ```
@@ -36,7 +36,7 @@ git clone https://github.com/ixofoundation/genesis && cd genesis/impacthub-3
 The impacthub-3 directory includes:
 - The network's genesis file `genesis.json`, which includes impacthub-3's network details, parameters and starting data.
 - `InstallImpacthub.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
-<br><br>
+
 
 **4. Run the installation script:**
 ```
@@ -54,51 +54,48 @@ This script goes through the following steps:
 - Configures the node to use impacthub-3's genesis file. 
 - Creates and an enables a systemd service with which the IXO node daemon will be run.
 
-<br>
 Follow the configuration steps as the node is installed.
 
-<br><br>
 
 **5. Switch to the new IXO user**
 ```
 su ixo
 ```
-<br><br>
+
 
 **6. Access the node's configuration file and add Impacthub-3 peers.**
 ```
 nano $HOME/.ixod/config/config.toml
 ```
-<br>
+
 
 - **Optional**: The default value of the `moniker` can be changed as desired in the top of the file.
-<br>
+
 
 - **Required**: Find the `persistent_peers` parameter and add the following peers to its value. The default value of this entry should be `""`. This must be changed as follows:
 ```
 persistent_peers = "cbe8c6a5a77f861db8edb1426b734f2cf1fa4020@18.166.133.210:26656,36e4738c7efcf353d3048e5e6073406d045bae9d@80.64.208.42:26656,f0d4546fa5e0c2d84a4244def186b9da3c12ba1a@46.166.138.214:26656,c95af93f0386f8e19e65997262c9f874d1901dc5@18.163.242.188:26656"
 ```
-<br>
+
 
 - **Required**: Enable the peer exchange reactor `pex`, which enables nodes to share each other's peers. This ensures your node discovers other peers on the network. The default value of this entry should be "true", but you should confirm that this is the case:
 ```
 pex = true 
 ```
-<br><br>
+
 
 **7. Exit back to the root user and start the IXO blockchain daemon.**
 ```
 exit
 systemctl start ixod.service
 ```
-<br><br>
+
 
 **8. Check the node's logs as the root user**
 Tail the node's logs using the following:
 ```
 journalctl -f -u ixod.service
 ```
-<br>
 
 Ensure the node is receiving and processing blocks, which would look like this:
 ```
@@ -140,27 +137,27 @@ Ensure the node is receiving and processing blocks, which would look like this:
 	2:37PM INF Updating evidence pool last_block_height=1 last_block_time=2021-06-28T12:26:24Z module=evidence
 	2:37PM INF Indexed block height=1 module=txindex
 ```
-<br>		
+	
 If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.**
-<br><br>
+
 
 **9. Create your validator key:**
 ```
 su ixo
 ixod keys add <yourkey>
 ```
-<br>	
+	
 Replace <yourkey> by the name of your key. Back up the mnemonic in a safe and offline place.
 You can add the flag --recover if you want to use an existing mnemonic.
-<br><br>
+
 	
 **10. Receive token:**
 Put your ixo address beginning with `ixo1` in the validator channel to receive few tokens.
-<br><br>
+
 	
 **11. Create the validator:**
 Check if the chain is synched with the latest block height on the mainnet chain : https://blockscan.ixo.world/
-<br>
+
 When the result is "true", use the command the create your validator:
 ```
 ixod tx staking create-validator \
@@ -177,7 +174,7 @@ ixod tx staking create-validator \
 --gas-prices="0.1uoxi" \
 --from=yourkey \
 ```
-<br><br>
+
 	
 **12. Share your peer ID with other node operators:**
 Peers use the following format : ```NODEID@PUBLICIP:PORT```
@@ -185,17 +182,17 @@ Use the following commands:
 ```	
 curl -4 ifconfig.co
 ```
-<br>
+
 The result is your ```publicIP```
 
 ```	
 ixod tendermint show-node-id
 ```	
-<br>
+
 The result is your ```NODEID```
-<br>
+
 Your final result should look at something like this:
 ```19b5795d8ce3cbc8870a3b984c90fc9cc2abb1bd@46.105.92.97:26656```
-<br><br>
+
 	
 **13. Back up your priv_validator_key:**
