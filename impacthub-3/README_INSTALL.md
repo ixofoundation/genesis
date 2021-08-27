@@ -11,16 +11,16 @@ The following server requirements are needed for Impacthub-3:
 - Networking: Allow incoming connections on port 26656
 - Static IP address
 - Don't install any package, the installation script will download the good version
-
+<br>
 
 ## Installation
 An installation script `InstallImpacthub.sh` has been included which prepares the environment, prerequisites, installs the IXO blockchain software and guides you through the node setup.
-
+<br>
 **1. These steps are to be run once logged in as **root** user. Use the following command to access the root user.**
 ```
 sudo -i
 ```
-
+<br>
 
 **2. Install git to clone this repository on the VM**
 ```
