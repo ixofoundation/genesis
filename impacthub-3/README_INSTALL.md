@@ -28,7 +28,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 
 3. Clone the repository
     ```
-    git clone https://github.com/zdeadex/genesis && cd genesis/impacthub-3
+    git clone https://github.com/ixofoundation/genesis && cd genesis/impacthub-3
     ```
 
     The impacthub-3 directory includes:
