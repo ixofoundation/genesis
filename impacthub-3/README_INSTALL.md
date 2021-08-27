@@ -97,6 +97,7 @@ Tail the node's logs using the following:
 journalctl -f -u ixod.service
 ```
 <br>
+
 Ensure the node is receiving and processing blocks, which would look like this:
 ```
 	2:37PM INF Block{
