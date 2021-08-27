@@ -172,7 +172,7 @@ ixod tx staking create-validator \
 --details="descriptionofyourvalidator" \
 --website="yourwebsite" \
 --gas-prices="0.1uoxi" \
---from=yourkey \
+--from=yourkey
 ```
 
 	
