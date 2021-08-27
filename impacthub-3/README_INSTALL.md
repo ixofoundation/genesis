@@ -176,22 +176,22 @@ ixod tx staking create-validator \
 ```
 	
 13. Share your peer ID with other node operators:
-Peers use the following format : NODEID@PUBLICIP:PORT
+Peers use the following format : ```NODEID@PUBLICIP:PORT```
 Use the following commands:
 ```	
 curl -4 ifconfig.co
 ```
 	
-The result is your publicIP
+The result is your ```publicIP```
 
 ```	
 ixod tendermint show-node-id
 ```	
 	
-The result is your NODEID
+The result is your ```NODEID```
 	
 Your final result should look at something like this:
-19b5795d8ce3cbc8870a3b984c90fc9cc2abb1bd@46.105.92.97:26656
+```19b5795d8ce3cbc8870a3b984c90fc9cc2abb1bd@46.105.92.97:26656```
 
 	
 14. Back up your priv_validator_key:
