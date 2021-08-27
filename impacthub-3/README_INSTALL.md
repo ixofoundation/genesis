@@ -16,19 +16,19 @@ The following server requirements are needed for Impacthub-3:
 ## Installation
 An installation script `InstallImpacthub.sh` has been included which prepares the environment, prerequisites, installs the IXO blockchain software and guides you through the node setup.
 
-1. These steps are to be run once logged in as **root** user. Use the following command to access the root user.
+**1. These steps are to be run once logged in as **root** user. Use the following command to access the root user.**
 ```
 sudo -i
 ```
 
 
-2. Install git to clone this repository on the VM
+**2. Install git to clone this repository on the VM**
 ```
 apt-get install git
 ```
 
 
-3. Clone the repository
+**3. Clone the repository**
 ```
 git clone https://github.com/ixofoundation/genesis && cd genesis/impacthub-3
 ```
@@ -38,7 +38,7 @@ The impacthub-3 directory includes:
 - `InstallImpacthub.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
 
 
-4. Run the installation script:
+**4. Run the installation script:**
 ```
 bash InstallImpacthub.sh
 ```
@@ -57,13 +57,13 @@ This script goes through the following steps:
 Follow the configuration steps as the node is installed.
      
 
-5. Switch to the new IXO user
+**5. Switch to the new IXO user**
 ```
 su ixo
 ```
 
 
-6. Access the node's configuration file and add Impacthub-3 peers.
+**6. Access the node's configuration file and add Impacthub-3 peers.**
 ```
 nano $HOME/.ixod/config/config.toml
 ```
@@ -82,14 +82,14 @@ pex = true
 ```
 
 
-7. Exit back to the root user and start the IXO blockchain daemon.
+**7. Exit back to the root user and start the IXO blockchain daemon.**
 ```
 exit
 systemctl start ixod.service
 ```
 
 
-8. Check the node's logs as the root user
+**8. Check the node's logs as the root user**
 
 Tail the node's logs using the following:
 ```
@@ -138,10 +138,10 @@ Ensure the node is receiving and processing blocks, which would look like this:
 ```
 	
 	
-9. If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.
+**9. If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.**
 
 
-10. Create your validator key:
+**10. Create your validator key:**
 ```
 su ixo
 ixod keys add <yourkey>
@@ -151,11 +151,11 @@ Replace <yourkey> by the name of your key. Back up the mnemonic in a safe and of
 You can add the flag --recover if you want to use an existing mnemonic.
 	
 	
-11. Receive token:
+**11. Receive token:**
 Put your ixo address beginning with `ixo1` in the validator channel to receive few tokens.
 	
 	
-12. Create the validator:
+**12. Create the validator:**
 Check if the chain is synched with the latest block height on the mainnet chain : https://blockscan.ixo.world/
 
 When the result is "true", use the command the create your validator:
@@ -175,7 +175,7 @@ ixod tx staking create-validator \
 --from=yourkey \
 ```
 	
-13. Share your peer ID with other node operators:
+**13. Share your peer ID with other node operators:**
 Peers use the following format : ```NODEID@PUBLICIP:PORT```
 Use the following commands:
 ```	
@@ -194,5 +194,5 @@ Your final result should look at something like this:
 ```19b5795d8ce3cbc8870a3b984c90fc9cc2abb1bd@46.105.92.97:26656```
 
 	
-14. Back up your priv_validator_key:
+**14. Back up your priv_validator_key:**
 	
