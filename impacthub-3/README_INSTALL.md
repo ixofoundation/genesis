@@ -55,7 +55,8 @@ This script goes through the following steps:
 - Creates and an enables a systemd service with which the IXO node daemon will be run.
      
 Follow the configuration steps as the node is installed.
-<br>     
+<br>  
+<br>
 
 **5. Switch to the new IXO user**
 ```
