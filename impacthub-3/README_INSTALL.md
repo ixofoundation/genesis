@@ -26,7 +26,7 @@ sudo -i
 ```
 apt-get install git
 ```
-
+<br>
 
 **3. Clone the repository**
 ```
@@ -36,7 +36,7 @@ git clone https://github.com/ixofoundation/genesis && cd genesis/impacthub-3
 The impacthub-3 directory includes:
 - The network's genesis file `genesis.json`, which includes impacthub-3's network details, parameters and starting data.
 - `InstallImpacthub.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
-
+<br>
 
 **4. Run the installation script:**
 ```
@@ -55,13 +55,13 @@ This script goes through the following steps:
 - Creates and an enables a systemd service with which the IXO node daemon will be run.
      
 Follow the configuration steps as the node is installed.
-     
+<br>     
 
 **5. Switch to the new IXO user**
 ```
 su ixo
 ```
-
+<br>
 
 **6. Access the node's configuration file and add Impacthub-3 peers.**
 ```
@@ -80,14 +80,14 @@ persistent_peers = "cbe8c6a5a77f861db8edb1426b734f2cf1fa4020@18.166.133.210:2665
 ```
 pex = true 
 ```
-
+<br>
 
 **7. Exit back to the root user and start the IXO blockchain daemon.**
 ```
 exit
 systemctl start ixod.service
 ```
-
+<br>
 
 **8. Check the node's logs as the root user**
 
@@ -139,7 +139,7 @@ Ensure the node is receiving and processing blocks, which would look like this:
 	
 	
 **9. If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.**
-
+<br>
 
 **10. Create your validator key:**
 ```
@@ -149,11 +149,11 @@ ixod keys add <yourkey>
 	
 Replace <yourkey> by the name of your key. Back up the mnemonic in a safe and offline place.
 You can add the flag --recover if you want to use an existing mnemonic.
-	
+<br>	
 	
 **11. Receive token:**
 Put your ixo address beginning with `ixo1` in the validator channel to receive few tokens.
-	
+<br>	
 	
 **12. Create the validator:**
 Check if the chain is synched with the latest block height on the mainnet chain : https://blockscan.ixo.world/
@@ -174,6 +174,7 @@ ixod tx staking create-validator \
 --gas-prices="0.1uoxi" \
 --from=yourkey \
 ```
+<br>
 	
 **13. Share your peer ID with other node operators:**
 Peers use the following format : ```NODEID@PUBLICIP:PORT```
@@ -192,7 +193,7 @@ The result is your ```NODEID```
 	
 Your final result should look at something like this:
 ```19b5795d8ce3cbc8870a3b984c90fc9cc2abb1bd@46.105.92.97:26656```
-
+<br>
 	
 **14. Back up your priv_validator_key:**
 	
