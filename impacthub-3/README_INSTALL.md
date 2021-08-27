@@ -157,8 +157,9 @@ Put your ixo address beginning with `ixo1` in the validator channel to receive f
 	
 **11. Create the validator:**
 Check if the chain is synched with the latest block height on the mainnet chain : https://blockscan.ixo.world/
-
-When the result is "true", use the command the create your validator:
+To have your ```pubkey```, use the following command:
+```ixod tendermint  show-validator```
+	
 ```
 ixod tx staking create-validator \
 --commission-rate="0.10" \
@@ -172,7 +173,8 @@ ixod tx staking create-validator \
 --details="descriptionofyourvalidator" \
 --website="yourwebsite" \
 --gas-prices="0.1uoxi" \
---from=yourkey
+--from=yourkey \
+--pubkey=yourpubkey
 ```
 
 	
