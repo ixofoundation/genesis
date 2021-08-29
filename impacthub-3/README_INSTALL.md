@@ -32,6 +32,11 @@ apt-get install git
 ```
 git clone https://github.com/ixofoundation/genesis && cd genesis/impacthub-3
 ```
+*WARNING* use the following command until the PR is merged to the ixofoundation github:
+```
+git clone https://github.com/zdeadex/genesis && cd genesis/impacthub-3
+```
+
 
 The impacthub-3 directory includes:
 - The network's genesis file `genesis.json`, which includes impacthub-3's network details, parameters and starting data.
@@ -152,7 +157,7 @@ You can add the flag --recover if you want to use an existing mnemonic.
 
 	
 **10. Receive token:**
-Put your ixo address beginning with `ixo1` in the validator channel to receive few tokens.
+Put your ixo address beginning with `ixo1` in the validator channel to receive few tokens and tag *Shaun#4583*
 
 	
 **11. Create the validator:**
