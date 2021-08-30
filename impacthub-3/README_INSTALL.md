@@ -132,7 +132,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 	```
 9. If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.
 
-10. Next steps:
+10. Next steps can be found in [README_CONFIG.md](./README_CONFIG.md):
     1. Backing up the generated priv_validator_key.json, which is to be the validator's block/consensus signing key.
     2. Obtaining the node's peer ID and IP for sharing with other node operators
     3. Running the create-validator command
