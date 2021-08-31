@@ -16,7 +16,7 @@ The following server requirements are needed for Impacthub-3:
 ## Installation
 An installation script `InstallImpacthub.sh` has been included which prepares the environment, prerequisites, installs the IXO blockchain software and guides you through the node setup.
 
-**1. These steps are to be run once logged in as **root** user. Use the following command to access the root user.**
+**1. These steps are to be run once logged in as `root` user. Use the following command to access the root user.**
 ```
 sudo -i
 ```
