@@ -32,10 +32,6 @@ apt-get install git
 ```
 git clone https://github.com/ixofoundation/genesis && cd genesis/impacthub-3
 ```
-*WARNING* use the following command until the PR is merged to the ixofoundation github:
-```
-git clone https://github.com/zdeadex/genesis && cd genesis/impacthub-3
-```
 
 
 The impacthub-3 directory includes:
