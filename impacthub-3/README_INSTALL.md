@@ -32,7 +32,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
     ```
 
     The impacthub-3 directory includes:
-    - The network's genesis file `genesis.json ((TODO))`, which includes impacthub-3's network details, parameters and starting data.
+    - The network's genesis file `genesis.json`, which includes impacthub-3's network details, parameters and starting data.
     - `InstallImpacthub.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
 
 4. Access the impacthub-3 folder and run the installation script:
@@ -46,7 +46,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
      - Updates and upgrades Ubuntu packages. 
      - Prompts user to create a new IXO non-sudo user to run the software with.
      -  Sets required environmental variables for Golang.
-     - Clones the ixo-cosmos repo at the specific commit of impacthub-3, `((TODO))`. 
+     - Clones the ixo-cosmos repo at the specific commit of impacthub-3, `21e2c962e18220888d529bf156406260a321cf80`. 
      - Creates the directories required for the ixo node configurations and blockchain data.
      - Installs the IXO blockchain daemon
      - Configures the node to use impacthub-3's genesis file. 
