@@ -91,16 +91,6 @@ DAEMON=$GOBIN/$DAEMONNAME
 
 sleep 1
 
-mkdir /home/ixo/.ixod
-mkdir /home/ixo/.ixod/config
-
-cp /root/genesis/impacthub-3/genesis.json /home/ixo/.ixod/config/genesis.json
-
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
-
-
 su $USERNAME <<EOSU
 
 $DAEMON init "ImpactHub node"
