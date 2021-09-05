@@ -28,7 +28,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 3. Access the root user's home directory and clone the repository
     ```
     cd $HOME
-    git clone https://github.com/ixofoundation/genesis.git && cd genesis && cd impacthub-3
+    git clone https://github.com/ixofoundation/genesis.git && cd genesis
     ```
 
     The impacthub-3 directory includes:
