@@ -41,6 +41,8 @@ There are currently 2 ways to generate an ixo wallet. These are the following:
 
 To receive tokens to your wallet, you must distribute your wallet address to a 3rd party. On Keplr, this can be found on the UI.
 
+For testnet tokens, you may use this Telegram faucet bot to instantly receive tokens: https://t.me/joinchat/fz9ZZBScHbhiY2E0 
+
 However, whilst using `ixod`, you must use the following command to display the address of you generated wallet. This will ask for your passphrase prior to outputting the account details.
 
 ```
