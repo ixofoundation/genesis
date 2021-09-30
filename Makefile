@@ -7,7 +7,7 @@ GOARCH				 ?= amd64
 all: clone build-ixod
 
 clone:
-	@echo "Clonning repo ${IXO_ROOT}"
+	@echo "Cloning repo ${IXO_ROOT}"
 	test -d ${IXO_DST_FOLDER} || \
 	git clone ${IXO_ROOT} ${IXO_DST_FOLDER}
 	cd ${IXO_DST_FOLDER} && \
