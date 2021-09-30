@@ -9,8 +9,8 @@ clone:
 	@echo "Clonning repo ${IXO_ROOT}"
 	test -d ${IXO_DST_FOLDER} || \
 	git clone ${IXO_ROOT} ${IXO_DST_FOLDER}
-	cd ${IXO_DST_FOLDER}; \
-	git fetch --all; \
+	cd ${IXO_DST_FOLDER} && \
+	git fetch --all && \
 	git checkout ${IXO_RELEASE}
 
 build-ixod: clone
