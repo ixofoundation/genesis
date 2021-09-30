@@ -3,8 +3,6 @@ FROM docker.io/library/alpine:3.13
 ARG network
 ENV IXO_HOME=/home/ixo/
 
-RUN apk add --no-cache ca-certificates libgcc libstdc++ tzdata
-
 COPY bin/ixod /usr/bin/ixod
 
 COPY ${network}/genesis.json /ixo/genesis.json
