@@ -21,9 +21,7 @@ There are currently 2 ways to generate an ixo wallet. These are the following:
 
    1. This is installed through the Chrome extension store, and can be used to create a new account. Currently, token transfers are the only compatible transactions that can be done with Keplr.
 
-   2. Visit https://app-uat.ixo.world/projects/did:ixo:Qysd94Mtr91Y2AzTd4pe1t/exchange and select Keplr. A pop up will be displayed, which will allow you to add the mainnet and testnet networks of ixo to your Keplr extension.
-
-   3. Select between ixo Testnet and Impact Hub on Keplr, which will display your ixo address.
+  2. Select the `ixo` on Keplr, which will display your ixo address.
 
 2. `ixod` cli tool
 
