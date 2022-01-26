@@ -7,7 +7,7 @@ The following server requirements are needed for Impacthub-3:
 - Ubuntu 18.04 OS
 - 2 CPUs
 - 2 GB RAM
-- 50GB SSD
+- 75GB SSD
 - Networking: Allow incoming connections on port 26656
 - Static IP address
 
