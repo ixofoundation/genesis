@@ -1,5 +1,5 @@
 IXO_ROOT		   ?= https://github.com/ixofoundation/ixo-blockchain
-IXO_RELEASE	   ?= v1.6.0
+IXO_RELEASE	   ?= v0.16.0
 IXO_DST_FOLDER ?= ixo-blockchain-${IXO_RELEASE}
 GOOS 					 ?= linux
 GOARCH				 ?= amd64
