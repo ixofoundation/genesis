@@ -46,7 +46,7 @@ GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-blockchain"
-GITRELEASE="v0.16.0"
+GITRELEASE="v0.16.2"
 
 
 su $USERNAME <<EOSU
