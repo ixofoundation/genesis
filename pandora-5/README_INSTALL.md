@@ -1,6 +1,12 @@
 # ixo Network Validator: Pandora-5 Setup
 This documentation details the requirements and steps required to operate a validator on ixo's Pandora-5 testnet.
 
+## Notice
+
+Due to planning an upgrade first no genesis file is provided for pandora-5 yet, as such if you need to install a new validator node then you would need wait till after then upgrade.
+
+---
+
 ## Infrastructure
 
 The following server requirements are needed for Pandora-5:
