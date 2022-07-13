@@ -1,10 +1,11 @@
 # Pandora-5 Upgrade Instructions
 
-### Please Notice
+### Please Note
 
 Earlier this year we decided to change the versioning scheme of of the blockchain due to better reflect the state of the project and alignment to the Cosmos-SDK. 
 As a validator upgrading from Pandora-4 you your versions might indicate v1.6.0 while we are talking about v.0.16.0. Basically our Major version was moved to minor. The next new stable version would be v0.18.0.
 
+---
 
 The following document describes the necessary steps involved that full-node operators
 must take in order to upgrade from `pandora-4` to `pandora-5`. The IXO team
