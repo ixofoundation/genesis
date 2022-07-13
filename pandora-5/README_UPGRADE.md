@@ -158,7 +158,7 @@ v0.18.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    See [Recovery](#recovery) for details on how to proceed.
 
    ```bash
-   $ ixod unsafe-reset-all
+   $ ixod tendermint unsafe-reset-all
    ```
 
 1. Move the new `genesis.json` to your `.ixod/config/` directory
