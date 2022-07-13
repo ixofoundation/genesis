@@ -115,15 +115,13 @@ v0.18.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod version --long
    name: ixo
    server_name: ixod
-   version: 0.16.2
+   version: 0.18.0
    commit: 21e2c962e18220888d529bf156406260a321cf80
    build_tags: ""
    go: go version go1.16.4 linux/amd64
    build_deps:
-   - github.com/99designs/keyring@v1.1.6
    ...
-   - gopkg.in/yaml.v3@v3.0.0-20200313102051-9f266ea9e77c
-   cosmos_sdk_version: v0.42.6
+   cosmos_sdk_version: v0.45.4
    ```
 
 1. Migrate exported state from the current v0.16.0 version to the new v0.18.0 version. This will require running the migration Python script.
