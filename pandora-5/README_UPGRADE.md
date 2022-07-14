@@ -63,8 +63,8 @@ NEED TO UPDATE
    $ ixod version --long
    name: ixo
    server_name: ixod
-   version: 1.5.0-39-gce96460
-   commit: ce96460aec48758edba336fd7a66a908f0309972
+   version: 0.16.0
+   commit: 509f920ab615560551da865a268c137fb2228e50
    build_tags: ""
    go: go version go1.16.4 linux/amd64
    build_deps:
@@ -116,7 +116,7 @@ v0.18.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    name: ixo
    server_name: ixod
    version: 0.18.0
-   commit: 21e2c962e18220888d529bf156406260a321cf80
+   commit: 509f920ab615560551da865a268c137fb2228e50
    build_tags: ""
    go: go version go1.16.4 linux/amd64
    build_deps:
