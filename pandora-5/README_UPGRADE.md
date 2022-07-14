@@ -169,9 +169,6 @@ v0.18.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
 This section lists all steps that the [Python migration script](./scripts/migrate_export_from_v0.16.0_to_v0.18.0.py) performs.
 
-- [**bonds**] For each bond, sets reserve withdrawal address to fee address
-- [**bonds**] For each bond, disables reserve withdrawals by default
-- [**bonds**] For each bond, sets the available reserve to the current reserve
 - [**general**] Update chain ID to `pandora-5`
 - [**general**] Update genesis time
 - [**general**] Update initial height to `1`
