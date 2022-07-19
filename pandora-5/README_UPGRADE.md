@@ -2,8 +2,10 @@
 
 ### Please Note
 
-Earlier this year we decided to change the versioning scheme of of the blockchain due to better reflect the state of the project and alignment to the Cosmos-SDK. 
+1. Earlier this year we decided to change the versioning scheme of of the blockchain due to better reflect the state of the project and alignment to the Cosmos-SDK. 
 As a validator upgrading from Pandora-4 you your versions might indicate v1.6.0 while we are talking about v.0.16.0. Basically our Major version was moved to minor. The next new stable version would be v0.18.0.
+
+1. Please use the provided genesis.json file in the pandora-5 section to do this upgrade as for testnet this circumvents the need to export the chain which resulted is some errors do due a data discrepancy specifc to testnet and our testing on the chain.
 
 ---
 
