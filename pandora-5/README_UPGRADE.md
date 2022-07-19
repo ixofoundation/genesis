@@ -12,7 +12,7 @@ must take in order to upgrade from `pandora-4` to `pandora-5`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `July 14, 2022 at or around 10:00 UTC` by halting on block `5250000`, with the new and exported genesis file of `pandora-5` having a genesis time of `2022-07-14T10:00:00Z`.
+The upgrade procedure should be started on `July 19, 2022 at or around 8:00 UTC` by halting on block `5250000`, with the new and exported genesis file of `pandora-5` having a genesis time of `2022-07-14T10:00:00Z`.
 
   - [Updates](#updates)
   - [Risks](#risks)
@@ -89,17 +89,6 @@ NEED TO UPDATE
 
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
-   ```bash
-   $ ixod export --for-zero-height --height=5250000 > exported.json
-   ```
-
-1. Verify the SHA256 of the (sorted) exported genesis file. This command outputs a hash of the file, to be compared  with the rest of the community.
-
-   ```bash
-   $ jq -S -c -M '' exported.json | shasum -a 256
-   <hash output> -
-   ```
-
 1. At this point you now have a valid exported genesis state! All further steps now require
 v0.18.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
@@ -133,23 +122,6 @@ v0.18.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ cd genesis
    $ git checkout pandora-5
    $ cd pandora-5
-   ```
-
-   Move your previously generated _exported.json_ to the repo's /scripts folder, as the script requires for it to be in its folder.
-
-   ```bash
-   $ python migrate_export_from_v0.16.0_to_v0.18.0
-   ```
-
-   **NOTE**: The `migrate_export_from_v0.16.0_to_v0.18.0` script takes an input genesis state and migrates it to a genesis file _genesis.json_ readable by ixo v0.18.0, and updating the genesis time and initial height.
-   
-   **NOTE**: If you would like to understand what the Python migration script does, please refer to the [Python migration script steps](#python-migration-script-steps) section
-
-1. Verify the SHA256 of the final genesis JSON. This command outputs a hash of the file, to be compared with the rest of the community.
-
-   ```bash
-   $ jq -S -c -M '' genesis.json | shasum -a 256
-   <hash output>  genesis.json
    ```
 
 1. Reset state:
