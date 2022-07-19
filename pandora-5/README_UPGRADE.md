@@ -12,7 +12,7 @@ must take in order to upgrade from `pandora-4` to `pandora-5`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `July 19, 2022 at or around 8:00 UTC` by halting on block `5250000`, with the new and exported genesis file of `pandora-5` having a genesis time of `2022-07-14T10:00:00Z`.
+The upgrade procedure should be started on `July 19, 2022 at or around 8:00 UTC` by halting on block `5324000.`, with the new and exported genesis file of `pandora-5` having a genesis time of `2022-07-14T10:00:00Z`.
 
   - [Updates](#updates)
   - [Risks](#risks)
@@ -54,7 +54,7 @@ v0.16.2 of the _ixo-blockchain_ repo and restore to their latest snapshot before
 __Note__: It is assumed you are currently operating a full-node running v0.16.x of _ixo-blockchain_.
 
 - The version/commit hash of ixo v0.18.0: `21e2c962e18220888d529bf156406260a321cf80` NEED TO UPDATE
-- The upgrade height as agreed upon: **`5250000`** NEED TO UPDATE
+- The upgrade height as agreed upon: **`5324000`** NEED TO UPDATE
 
 
 1. Verify you are currently running the correct version (v0.16.0) of the _ixo-blockchain_:
