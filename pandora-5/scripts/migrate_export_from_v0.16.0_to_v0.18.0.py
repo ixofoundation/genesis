@@ -11,7 +11,7 @@ with open(in_file, 'r', encoding='utf-8') as f:
 data['chain_id'] = 'pandora-5'
 
 # Update genesis time
-data['genesis_time'] = '2022-07-019T10:00:00Z'
+data['genesis_time'] = '2022-07-19T10:00:00Z'
 
 # Update initial height
 data['initial_height'] = '1'
