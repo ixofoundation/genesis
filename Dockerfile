@@ -1,15 +1,6 @@
-FROM golang:1.16-buster AS build
+FROM golang:1.18.4-alpine3.16
 
 ARG IXO_FOLDER
-
-WORKDIR /app
-
-COPY ${IXO_FOLDER}/ /app
-
-RUN make install
-
-FROM alpine:3.13
-
 ARG NETWORK
 ARG IXO_RELEASE
 ARG BUILD_DATE
@@ -24,18 +15,20 @@ LABEL URL="https://hub.docker.com/repository/docker/gatewayfm/ixo"
 LABEL VCS_URL="https://github.com/ixofoundation/genesis"
 LABEL DOCKER.CMD="docker run -v $(pwd)/ixo:/home/ixo/.ixod -p 26656:26656 -p 26657:26657 ixo:${NETWORK}-${IXO_RELEASE} start"
 
-ENV IXO_HOME=/home/ixo/
+WORKDIR /app
 
-COPY --from=build /go/bin/ixod /usr/bin/ixod
-
+COPY ${IXO_FOLDER}/ /app
 COPY ${NETWORK}/genesis.json /ixo/genesis.json
 COPY entrypoint.sh /ixo/entrypoint.sh
 
-RUN apk add --no-cache ca-certificates libc6-compat
-
-RUN adduser -H -u 1000 -g 1000 -D ixo && \
-  mkdir -p ${IXO_HOME}/.ixod && \
-  chown -R ixo:ixo /home/ixo
+RUN apk update && \
+  apk upgrade && \
+  apk add --update alpine-sdk && \
+  apk add --no-cache bash git openssh make cmake && \
+  make install && \
+  apk del bash git openssh make cmake --quiet && \
+  mv /go/bin/ixod /usr/bin/ixod && \
+  adduser -H -u 1000 -g 1000 -D ixo
 
 USER ixo
 
