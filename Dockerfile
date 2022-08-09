@@ -1,4 +1,4 @@
-FROM golang:1.18.4-alpine3.16
+FROM golang:1.19.1-buster
 
 ARG IXO_FOLDER
 ARG NETWORK
@@ -21,14 +21,11 @@ COPY ${IXO_FOLDER}/ /app
 COPY ${NETWORK}/genesis.json /ixo/genesis.json
 COPY entrypoint.sh /ixo/entrypoint.sh
 
-RUN apk update && \
-  apk upgrade && \
-  apk add --update alpine-sdk && \
-  apk add --no-cache bash git openssh make cmake && \
-  make install && \
-  apk del bash git openssh make cmake --quiet && \
-  mv /go/bin/ixod /usr/bin/ixod && \
-  adduser -H -u 1000 -g 1000 -D ixo
+# Add user to run the application
+# and create application directories for uploaded data and static data
+RUN adduser --disabled-password --gecos '' ixo
+
+RUN make install && mv /go/bin/ixod /usr/bin/ixod
 
 USER ixo
 
