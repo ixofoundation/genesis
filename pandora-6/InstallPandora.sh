@@ -46,7 +46,7 @@ GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-blockchain"
-GITRELEASE="v0.18.1"
+GITRELEASE="v0.19.0"
 
 
 su $USERNAME <<EOSU
@@ -94,7 +94,7 @@ sleep 1
 mkdir /home/ixo/.ixod
 mkdir /home/ixo/.ixod/config
 
-cp /root/genesis/pandora-5/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/pandora-6/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/
@@ -109,7 +109,7 @@ EOSU
 
 sleep 5
 
-cp /root/genesis/pandora-5/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/pandora-6/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
 
