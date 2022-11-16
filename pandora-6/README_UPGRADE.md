@@ -122,7 +122,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ git clone https://github.com/ixofoundation/genesis
    $ cd genesis
    $ git checkout pandora6
-   $ cd pandora6
+   $ cd pandora-6
    $ cp genesis.json /home/.ixod/config/genesis.json
    ```
 1. Verify the genesis.json hash with:
