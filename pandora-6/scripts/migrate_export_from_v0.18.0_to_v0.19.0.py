@@ -14,20 +14,9 @@ with open(in_file, 'r', encoding='utf-8') as f:
 
 # Update chain ID
 data['chain_id'] = 'pandora-6'
-data['validators'] = [
-  {
-    "address": "AEBCA6C7DEF012E747318E5212A03CBA2D19776D",
-    "name": "local",
-    "power": "1",
-    "pub_key": {
-      "type": "tendermint/PubKeyEd25519",
-      "value": "QsUjUo1CEamUqF4yvC/XTfRGsGNpA3tTueUQKPm2n3M="
-    }
-  }
-]
 
 # Update genesis time
-data['genesis_time'] = '2022-11-09T10:00:00Z'
+data['genesis_time'] = '2022-11-16T10:00:00Z'
 
 data['app_state']['gov']['voting_params']['voting_period'] = "600s"
 
@@ -46,6 +35,25 @@ data['app_state']['token'] = {
   },
   "token_docs": []
 }
+
+for bondIndex in range(len(data['app_state']['bonds']['bonds'])):
+  if data['app_state']['bonds']['bonds'][bondIndex]['bond_did'] == 'did:ixo:64ikZMbaQZdoHp2i6fuB4J':
+    data['app_state']['bonds']['bonds'][bondIndex]['available_reserve'] = [
+      {
+        "amount": "5509845111803",
+        "denom": "uixo"
+      }
+    ]
+    data['app_state']['bonds']['bonds'][bondIndex]['current_reserve'] = [
+      {
+        "amount": "5509845111803",
+        "denom": "uixo"
+      }
+    ]
+    data['app_state']['bonds']['bonds'][bondIndex]['current_supply'] = {
+      "amount": "5509845111803",
+      "denom": "xusd"
+    }
 
 data['app_state']['wasm'] = {
   "codes": [
@@ -114,14 +122,14 @@ data['app_state']['wasm'] = {
     "instantiate_default_permission": "Nobody"
   },
   "sequences": [
-    {
-      "id_key": "BGxhc3RDb2RlSWQ=",
-      "value": "101"
-    },
-    {
-      "id_key": "BGxhc3RDb250cmFjdElk",
-      "value": "1"
-    }
+    # {
+    #   "id_key": "BGxhc3RDb2RlSWQ=",
+    #   "value": "101"
+    # },
+    # {
+    #   "id_key": "BGxhc3RDb250cmFjdElk",
+    #   "value": "1"
+    # }
   ]
 }
 
