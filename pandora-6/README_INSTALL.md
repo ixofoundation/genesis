@@ -1,9 +1,9 @@
-# ixo Network Validator: Pandora-5 Setup
-This documentation details the requirements and steps required to operate a validator on ixo's Pandora-5 testnet.
+# ixo Network Validator: Pandora-6 Setup
+This documentation details the requirements and steps required to operate a validator on ixo's Pandora-6 testnet.
 
 ## Infrastructure
 
-The following server requirements are needed for Pandora-5:
+The following server requirements are needed for Pandora-6:
 - Ubuntu 18.04 OS 
 - 2 CPUs 
 - 2 GB RAM 
@@ -37,7 +37,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 
 4. Access the pandora-5 folder and run the installation script:
     ```
-    cd pandora-5
+    cd pandora-6
     bash InstallPandora.sh
     ```
 
@@ -46,7 +46,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
      - Updates and upgrades Ubuntu packages. 
      - Prompts user to create a new IXO non-sudo user to run the software with.
      -  Sets required environmental variables for Golang.
-     - Clones the ixo-cosmos repo at the specific commit of pandora-4, `21e2c962e18220888d529bf156406260a321cf80`. 
+     - Clones the ixo-blockchain repo at the specific commit of pandora-6, `c2c16e4342a252ebc82d4fbce3a2fd39d87051e3`. 
      - Creates the directories required for the ixo node configurations and blockchain data.
      - Installs the IXO blockchain daemon
      - Configures the node to use pandora-4's genesis file. 
@@ -130,7 +130,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 	2:37PM INF Updating evidence pool last_block_height=1 last_block_time=2021-06-28T12:26:24Z module=evidence
 	2:37PM INF Indexed block height=1 module=txindex
 	```
-9. If the above steps were done successfully, the node should be syncing through the whole Pandora-5 blockchain.
+9. If the above steps were done successfully, the node should be syncing through the whole Pandora-6 blockchain.
 
 10. Next steps can be found in [README_CONFIG.md](./README_CONFIG.md):
     1. Backing up the generated priv_validator_key.json, which is to be the validator's block/consensus signing key.

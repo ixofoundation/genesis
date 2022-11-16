@@ -13,7 +13,7 @@ must take in order to upgrade from `pandora-5` to `pandora-6`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `November 16, 2022 at or around 8:00 UTC` by halting on block `5324000.`, with the new and exported genesis file of `pandora-6` having a genesis time of `2022-11-16T10:00:00Z`.
+The upgrade procedure should be started on `November 16, 2022 at or around 9:00 UTC` by halting on block `1817500.`, with the new and exported genesis file of `pandora-6` having a genesis time of `2022-11-16T10:00:00Z`.
 
   - [Updates](#updates)
   - [Risks](#risks)
@@ -106,7 +106,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    name: ixo
    server_name: ixod
    version: 0.19.0
-   commit: 509f920ab615560551da865a268c137fb2228e50
+   commit: c2c16e4342a252ebc82d4fbce3a2fd39d87051e3
    build_tags: ""
    go: go version go1.16.4 linux/amd64
    build_deps:
