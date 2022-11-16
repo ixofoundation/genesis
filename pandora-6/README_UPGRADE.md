@@ -121,18 +121,24 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    ```bash
    $ git clone https://github.com/ixofoundation/genesis
    $ cd genesis
-   $ git checkout pandora-6
-   $ cd pandora-6
+   $ git checkout pandora6
+   $ cd pandora6
+   $ cp genesis.json /home/.ixod/config/genesis.json
    ```
-
+1. Verify the genesis.json hash with:
+   ```bash
+   $ jq -S -c -M '' exported.json | shasum -a 256
+   ```
+   Hash ``` e625485c69ceca50ec0e8530c68af4c8aeca557990d0f5f1c84b113e78b4316d ```
+   If you exported manually the hash should be ```313d77fdf85f28f8de348c1c962bd0589e4b25ff00db13ea5c1a9c93bf7d86b6``` at height 1817500 
 1. Reset state:
 
    **NOTE**: Be sure you have a complete backed up state of your node before proceeding with this step.
    See [Recovery](#recovery) for details on how to proceed.
-
    ```bash
-   $ ixod tendermint unsafe-reset-all
+   $ ixod tendermint unsafe-reset-all --home /home/ixo/.ixod/
    ```
+   Specifying your home directory of the user being used to run the chain is essential, terndermint has had issues with this is previous versions.  
 
 1. Move the new `genesis.json` to your `.ixod/config/` directory
 
