@@ -129,7 +129,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    ```bash
    $ jq -S -c -M '' exported.json | shasum -a 256
    ```
-   Hash ``` e625485c69ceca50ec0e8530c68af4c8aeca557990d0f5f1c84b113e78b4316d ```
+   Hash ``` 5cb05e6340709212a88030c425d545a14c9a9955278290027de3669683735c3f ```
    If you exported manually the hash should be ```313d77fdf85f28f8de348c1c962bd0589e4b25ff00db13ea5c1a9c93bf7d86b6``` at height 1817500 
 1. Reset state:
 
