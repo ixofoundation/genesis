@@ -1,9 +1,9 @@
-# ixo Network Validator: Impacthub-3 Setup
-This documentation details the requirements and steps required to operate a validator on ixo's Impacthub-3 mainnet.
+# ixo Network Validator: ixo-4 Setup
+This documentation details the requirements and steps required to operate a validator on ixo's ixo-4 mainnet.
 
 ## Infrastructure
 
-The following server requirements are needed for Impacthub-3:
+The following server requirements are needed for ixo-4:
 - Ubuntu 18.04 OS
 - 2 CPUs
 - 2 GB RAM
@@ -13,7 +13,7 @@ The following server requirements are needed for Impacthub-3:
 
 ## Installation
 
-An installation script `InstallImpacthub.sh` has been included which prepares the environment, prerequisites, installs the IXO blockchain software and guides you through the node setup.
+An installation script `Installixo.sh` has been included which prepares the environment, prerequisites, installs the IXO blockchain software and guides you through the node setup.
 
 1. These steps are to be run once logged in as **root** user. Use the following command to access the root user.
     ```
@@ -28,17 +28,17 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 3. Access the root user's home directory and clone the repository
     ```
     cd $HOME
-    git clone https://github.com/ixofoundation/genesis.git && cd genesis && git checkout -b impacthub-3
+    git clone https://github.com/ixofoundation/genesis.git && cd genesis && git checkout -b ixo-4
     ```
 
-    The impacthub-3 directory includes:
-    - The network's genesis file `genesis.json`, which includes impacthub-3's network details, parameters and starting data.
-    - `InstallImpacthub.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
+    The ixo-4 directory includes:
+    - The network's genesis file `genesis.json`, which includes ixo-4's network details, parameters and starting data.
+    - `Installixo.sh`, which is to be run in the next step to install all the requirements and blockchain software to participate in the network.
 
-4. Access the impacthub-3 folder and run the installation script:
+4. Access the ixo-4 folder and run the installation script:
     ```
-    cd impacthub-3
-    bash InstallImpacthub.sh
+    cd ixo-4
+    bash Installixo.sh
     ```
 
     This script goes through the following steps:
@@ -46,11 +46,11 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
      - Updates and upgrades Ubuntu packages. 
      - Prompts user to create a new IXO non-sudo user to run the software with.
      -  Sets required environmental variables for Golang.
-     - Clones the ixo-cosmos repo at the specific commit of impacthub-3, `21e2c962e18220888d529bf156406260a321cf80`. 
+     - Clones the ixo-cosmos repo at the specific commit of ixo-4, `21e2c962e18220888d529bf156406260a321cf80`. 
      - Creates the directories required for the ixo node configurations and blockchain data.
      - Installs the IXO blockchain daemon
-     - Configures the node to use impacthub-3's genesis file. 
-     - Creates and an enables a systemd service with which the IXO node daemon will be run.
+     - Configures the node to use ixo-4's genesis file. 
+     - Creates and enables a systemd service with which the IXO node daemon will be run.
      
      Follow the configuration steps as the node is installed.
 
@@ -59,7 +59,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 	su ixo
 	```
 
-6. Access the node's configuration file and add Simply VC's Impacthub-3 peers.
+6. Access the node's configuration file and add Simply VC's ixo-4 peers.
 	```
 	nano $HOME/.ixod/config/config.toml
 	```
@@ -74,8 +74,8 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
     ```
     pex = true 
     ```
-    - **Optional**: The node's moniker can be changed from `ImpactHub node` to
-    anything of your liking. The default value of the `moniker` entry is `"ImpactHub node".` This can be changed as desired.
+    - **Optional**: The node's moniker can be changed from `ixo node` to
+    anything of your liking. The default value of the `moniker` entry is `"ixo node".` This can be changed as desired.
 
 7. Exit back to the root user and start the IXO blockchain daemon.
     ```
@@ -95,7 +95,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 	2:37PM INF Block{
 	  Header{
 	    Version:        {11 0}
-	    ChainID:        impacthub-3
+	    ChainID:        ixo-4
 	    Height:         1
 	    Time:           2021-06-28 12:26:24.49165307 +0000 UTC
 	    LastBlockID:    :0:000000000000
@@ -130,7 +130,7 @@ An installation script `InstallImpacthub.sh` has been included which prepares th
 	2:37PM INF Updating evidence pool last_block_height=1 last_block_time=2021-06-28T12:26:24Z module=evidence
 	2:37PM INF Indexed block height=1 module=txindex
 	```
-9. If the above steps were done successfully, the node should be syncing through the whole Impacthub-3 blockchain.
+9. If the above steps were done successfully, the node should be syncing through the whole ixo-4 blockchain.
 
 10. Next steps can be found in [README_CONFIG.md](./README_CONFIG.md):
     1. Backing up the generated priv_validator_key.json, which is to be the validator's block/consensus signing key.

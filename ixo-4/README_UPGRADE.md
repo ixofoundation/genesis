@@ -1,25 +1,25 @@
-# Upgrade Instructions: ImpactHub-2 -> ImpactHub-3
+# Upgrade Instructions: impacthub-3 -> ixo-4
 
 The following document describes the necessary steps involved that full-node operators
-must take in order to upgrade from `impacthub-2` to `impacthub-3`. The IXO team
+must take in order to upgrade from `impacthub-3` to `ixo-4`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2290600`, with the new and exported genesis file of `impacthub-3` having a genesis time of `2021-08-19T12:00:00Z`.
+The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2290600`, with the new and exported genesis file of `ixo-4` having a genesis time of `2021-08-19T12:00:00Z`.
 
 
   - [Updates](#updates)
   - [Risks](#risks)
   - [Recovery](#recovery)
-  - [Halting impacthub-2](#recovery)
+  - [Halting impacthub-3](#recovery)
   - [Upgrade Procedure](#upgrade-procedure)
 
 ## Updates
 
-Many changes have occurred to the ixod software since the launch of impacthub-2. These changes notably consist of an upgrade to
+Many changes have occurred to the ixod software since the launch of impacthub-3. These changes notably consist of an upgrade to
 v0.42.6 of Cosmos SDK "Stargate", removal of some modules, new messages, bug fixes, and general application structural changes
 that favor developer ergonomics and application development. There were also upgrades to the `bonds` module to enable reserve 
-withdrawals, typically for funding purposes. Any existing bond in impacthub-2 will have reserve withdrawals disabled.
+withdrawals, typically for funding purposes. Any existing bond in impacthub-3 will have reserve withdrawals disabled.
 
 - Upgraded to Cosmos SDK v0.42.6 "Stargate" 
   - Introduced protobuf and grpc-gateway
@@ -48,7 +48,7 @@ before resetting your validator.
 
 ## Recovery
 
-Prior to exporting `impacthub-2` state, validators are encouraged to take a full data snapshot at the
+Prior to exporting `impacthub-3` state, validators are encouraged to take a full data snapshot at the
 export height before proceeding. Snapshotting depends heavily on infrastructure, but generally this
 can be done by backing up the `.ixod` directory.
 
@@ -57,9 +57,9 @@ It is critically important to back-up the `.ixod/data/priv_validator_state.json`
 In the event that the upgrade does not succeed, validators and operators must downgrade back to
 v1.4.3 of the _ixo-blockchain_ repo and restore to their latest snapshot before restarting their nodes.
 
-## Halting impacthub-2
+## Halting impacthub-3
 
-The current chain, impacthub-2, is proposed to be stopped at block `2290600`. It is important that validators set their nodes to stop processing transactions and participating in consensus at this height, by doing the following:
+The current chain, impacthub-3, is proposed to be stopped at block `2290600`. It is important that validators set their nodes to stop processing transactions and participating in consensus at this height, by doing the following:
 
 1. Access the `app.toml` configuration file in the `$HOME/.ixod` directory
 2. Set `halt-height = 2290600`
@@ -95,12 +95,12 @@ __Note__: It is assumed you are currently operating a full-node running v1.4.3 o
    sudo apt-get install jq python
    ```
    
-1. Export existing state from `impacthub-2`:
+1. Export existing state from `impacthub-3`:
 
    **NOTE**: It is recommended for validators and operators to take a full data snapshot at the export
    height before proceeding in case the upgrade does not go as planned or if not enough voting power
    comes online in a sufficient and agreed upon amount of time. In such a case, the chain will fallback
-   to continue operating `impacthub-2`. See [Recovery](#recovery) for details on how to proceed.
+   to continue operating `impacthub-3`. See [Recovery](#recovery) for details on how to proceed.
 
    Before exporting state via the following command, the `ixod` binary must be stopped!
 
@@ -168,8 +168,8 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    ```bash
    $ git clone https://github.com/ixofoundation/genesis
    $ cd genesis
-   $ git checkout impacthub-3
-   $ cd impacthub-3
+   $ git checkout ixo-4
+   $ cd ixo-4
    ```
 
    Move the _exported_step_1.json_ file to the repo's /scripts folder, as the script requires for it to be in its folder.
@@ -248,6 +248,6 @@ This section lists all steps that the [Python migration script](./scripts/migrat
 
 ### General changes
 
-- [**general**] Update chain ID to `impacthub-3`
+- [**general**] Update chain ID to `ixo-4`
 - [**general**] Update genesis time
 - [**general**] Update initial height to `1`
