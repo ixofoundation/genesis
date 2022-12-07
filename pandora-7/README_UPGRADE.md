@@ -99,7 +99,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    **NOTE**: Go [1.18+](https://golang.org/dl/) is required!
 
    ```bash
-   $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.0; make install
+   $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.1; make install
    ```
 
 1. Verify you are currently running the correct version (v0.19.0) of _ixo_:
@@ -117,7 +117,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    cosmos_sdk_version: v0.45.9
    ```
 
-1. Migrate exported state from the current v0.19.0 version to the new v0.19.0 version. This will require running the migration Python script.
+1. Migrate exported state from the current v0.19.0 version to the new v0.19.1 version. This will require running the migration Python script.
    
    Clone this repo to download the Python migration script.
    
