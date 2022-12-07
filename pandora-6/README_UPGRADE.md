@@ -15,10 +15,13 @@ execute the following instructions in order to verify the resulting genesis file
 
 The upgrade procedure should be started on `November 16, 2022 at or around 9:00 UTC` by halting on block `1817500.`, with the new and exported genesis file of `pandora-6` having a genesis time of `2022-11-16T10:00:00Z`.
 
+- [Pandora-5 Upgrade Instructions](#pandora-5-upgrade-instructions)
+    - [Please Note](#please-note)
   - [Updates](#updates)
   - [Risks](#risks)
   - [Recovery](#recovery)
   - [Upgrade Procedure](#upgrade-procedure)
+  - [Python Migration Script Steps](#python-migration-script-steps)
 
 ## Updates
 
@@ -127,9 +130,9 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    ```
 1. Verify the genesis.json hash with:
    ```bash
-   $ jq -S -c -M '' exported.json | shasum -a 256
+   $ jq -S -c -M '' genesis.json | shasum -a 256
    ```
-   Hash ``` e625485c69ceca50ec0e8530c68af4c8aeca557990d0f5f1c84b113e78b4316d ```
+   Hash ``` f5741e7d6c955dff3a723fe91a481a8619b8727ead4e891ed0a8ebd32f8bdaba ```
    If you exported manually the hash should be ```313d77fdf85f28f8de348c1c962bd0589e4b25ff00db13ea5c1a9c93bf7d86b6``` at height 1817500 
 1. Reset state:
 
