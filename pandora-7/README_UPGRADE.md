@@ -1,4 +1,4 @@
-# Pandora-6 Upgrade Instructions
+# Pandora-7 Upgrade Instructions
 
 ### Please Note
 
@@ -15,7 +15,7 @@ execute the following instructions in order to verify the resulting genesis file
 
 The upgrade procedure should be started on `November 16, 2022 at or around 9:00 UTC` by halting on block `1817500.`, with the new and exported genesis file of `pandora-7` having a genesis time of `2022-11-16T10:00:00Z`.
 
-- [Pandora-6 Upgrade Instructions](#pandora-6-upgrade-instructions)
+- [Pandora-7 Upgrade Instructions](#pandora-7-upgrade-instructions)
     - [Please Note](#please-note)
   - [Updates](#updates)
   - [Risks](#risks)
@@ -51,7 +51,7 @@ can be done by backing up the `.ixod` directory.
 It is critically important to back-up the `.ixod/data/priv_validator_state.json` file after stopping your ixod process. This file is updated every block as your validator participates in a consensus rounds. It is a critical file needed to prevent double-signing, in case the upgrade fails and the previous chain needs to be restarted.
 
 In the event that the upgrade does not succeed, validators and operators must downgrade back to
-v0.16.x of the _ixo-blockchain_ repo and restore to their latest snapshot before restarting their nodes.
+v0.19.x of the _ixo-blockchain_ repo and restore to their latest snapshot before restarting their nodes.
 
 ## Upgrade Procedure
 
@@ -61,13 +61,13 @@ __Note__: It is assumed you are currently operating a full-node running v0.16.x 
 - The upgrade height as agreed upon: **`5324000`** NEED TO UPDATE
 
 
-1. Verify you are currently running the correct version (v0.18.0) of the _ixo-blockchain_:
+1. Verify you are currently running the correct version (v0.19.0) of the _ixo-blockchain_:
 NEED TO UPDATE
    ```bash
    $ ixod version --long
    name: ixo
    server_name: ixod
-   version: 0.18.0
+   version: 0.19.0
    commit: 509f920ab615560551da865a268c137fb2228e50
    build_tags: ""
    go: go version go1.16.4 linux/amd64
@@ -75,7 +75,7 @@ NEED TO UPDATE
    - github.com/99designs/keyring@v1.1.6
    ...
    - gopkg.in/yaml.v3@v3.0.0-20200313102051-9f266ea9e77c
-   cosmos_sdk_version: v0.45.4
+   cosmos_sdk_version: v0.45.9
    ```
 
 1. Verify you have `jq` and `python` installed. If not, use the following command:
@@ -108,7 +108,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ ixod version --long
    name: ixo
    server_name: ixod
-   version: 0.19.0
+   version: 0.19.1
    commit: c2c16e4342a252ebc82d4fbce3a2fd39d87051e3
    build_tags: ""
    go: go version go1.16.4 linux/amd64
@@ -117,7 +117,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    cosmos_sdk_version: v0.45.9
    ```
 
-1. Migrate exported state from the current v0.18.0 version to the new v0.19.0 version. This will require running the migration Python script.
+1. Migrate exported state from the current v0.19.0 version to the new v0.19.0 version. This will require running the migration Python script.
    
    Clone this repo to download the Python migration script.
    
@@ -149,7 +149,7 @@ v0.19.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
 ## Python Migration Script Steps
 
-This section lists all steps that the [Python migration script](./scripts/migrate_export_from_v0.18.0_to_v0.19.0.py) performs.
+This section lists all steps that the [Python migration script](./scripts/migrate_export_from_v0.19.0_to_v0.19.0.py) performs.
 
 - [**general**] Update chain ID to `pandora-7`
 - [**general**] Update genesis time
