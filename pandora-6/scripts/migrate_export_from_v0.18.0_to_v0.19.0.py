@@ -11,11 +11,13 @@ out_file = 'genesis.json'
 with open(in_file, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
+
 # Update chain ID
 data['chain_id'] = 'pandora-6'
 
+
 # Update genesis time
-data['genesis_time'] = '2022-11-16T10:00:00Z'
+data['genesis_time'] = '2022-12-07T10:00:00Z'
 
 data['app_state']['gov']['voting_params']['voting_period'] = "600s"
 
