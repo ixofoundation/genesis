@@ -1,5 +1,4 @@
 import json
-import codecs
 import base58
 import datetime
 import dateutil.parser
@@ -29,11 +28,12 @@ data['app_state']['authz'] = {
 }
 
 data['app_state']['token'] = {
-  "params": {
-    "NftContractAddress": "ixo14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sqa3vn7",
-    "NftContractMinter": "ixo14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sqa3vn7"
+  "Params": {
+    "cw20ContractCode": "0",
+    "cw721ContractCode": "0",
+    "ixo1155ContractCode": "0"
   },
-  "token_docs": []
+  "tokenMinters": []
 }
 
 for bondIndex in range(len(data['app_state']['bonds']['bonds'])):
@@ -152,8 +152,6 @@ data['app_state']['entity'] = {
 data['app_state']['iid'] = {'iid_docs': [], 'iid_meta': []}
 
 for did in data['app_state']['did']['did_docs']:
-  pubKeyBytes = did['pub_key'].encode('ascii')
-  pubKeyHex = 'F' + pubKeyBytes.hex()
   iid = {
     "accordedRight": [],
     "alsoKnownAs": "",
@@ -171,7 +169,13 @@ for did in data['app_state']['did']['did_docs']:
     "verificationMethod": [{
         "controller": did['did'],
         "id": did['did'],
-        "publicKeyMultibase": pubKeyHex,
+        "publicKeyBase58": did['pub_key'],
+        "type": "Ed25519VerificationKey2018"
+    },
+    {
+        "controller": did['did'] + "#" + did['pub_key'],
+        "id": did['did'],
+        "publicKeyBase58": did['pub_key'],
         "type": "Ed25519VerificationKey2018"
     }]
   }
@@ -199,9 +203,6 @@ def determineProjectTypeCode( projectType ):
       return "0"
 
 for project in data['app_state']['project']['project_docs']:
-  pubKeyBytes = did['pub_key'].encode('ascii')
-  pubKeyHex = 'F' + pubKeyBytes.hex()
-  
   iid = {
     "accordedRight": [],
     "alsoKnownAs": "",
@@ -219,7 +220,13 @@ for project in data['app_state']['project']['project_docs']:
     "verificationMethod": [{
         "controller": project['project_did'],
         "id": project['project_did'],
-        "publicKeyMultibase": pubKeyHex,
+        "publicKeyBase58": did['pub_key'],
+        "type": "Ed25519VerificationKey2018"
+    },
+    {
+        "controller": project['project_did'] + "#" + did['pub_key'],
+        "id": project['project_did'],
+        "publicKeyBase58": did['pub_key'],
         "type": "Ed25519VerificationKey2018"
     }]
   }
