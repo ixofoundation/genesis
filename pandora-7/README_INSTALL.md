@@ -95,7 +95,7 @@ An installation script `InstallPandora.sh` has been included which prepares the 
 	2:37PM INF Block{
 	  Header{
 	    Version:        {11 0}
-	    ChainID:        pandora-5
+	    ChainID:        pandora-7
 	    Height:         1
 	    Time:           2021-06-28 12:26:24.49165307 +0000 UTC
 	    LastBlockID:    :0:000000000000
