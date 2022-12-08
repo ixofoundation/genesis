@@ -18,8 +18,6 @@ data['chain_id'] = 'ixo-4'
 # Update genesis time
 data['genesis_time'] = '2022-12-08T10:00:00Z'
 
-# data['app_state']['gov']['voting_params']['voting_period'] = "600s"
-
 data['app_state']['ibc']['connection_genesis']['params'] =  {
   "max_expected_time_per_block": "30000000000"
 }
@@ -194,11 +192,6 @@ for project in data['app_state']['project'].get('project_docs', []) or []:
 
   data['app_state']['iid']['iid_docs'].append(iid)
   data['app_state']['iid']['iid_meta'].append(meta)
-
-
-# for denomMeta in data['app_state']['bank']['denom_metadata']:
-  # if denomMeta['name'] == '': denomMeta['name'] = denomMeta['display']
-  # if denomMeta['symbol'] == '': denomMeta['symbol'] = denomMeta['display']
 
 # Update initial height
 data['initial_height'] = '1'
