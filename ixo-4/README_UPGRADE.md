@@ -5,7 +5,7 @@ must take in order to upgrade from `impacthub-3` to `ixo-4`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `December 08, 2022 at or around 14h00 UTC` by halting on block `7029293`, with the new and exported genesis file of `ixo-4` having a genesis time of `2021-08-19T12:00:00Z`.
+The upgrade procedure should be started on `December 08, 2022 at or around 14h00 UTC` by halting on block `7029293`, with the new and exported genesis file of `ixo-4` having a genesis time of `2022-12-08T14:00:00Z`.
 
 
   - [Updates](#updates)
