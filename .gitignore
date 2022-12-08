@@ -4,3 +4,5 @@ bin
 ixo-blockchain*
 ixo
 .vscode
+*/scripts/exported.json
+*/scripts/genesis.json
