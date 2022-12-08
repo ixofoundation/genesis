@@ -5,7 +5,7 @@ must take in order to upgrade from `impacthub-3` to `ixo-4`. The IXO team
 will post an official updated genesis file, but it is recommended that validators
 execute the following instructions in order to verify the resulting genesis file.
 
-The upgrade procedure should be started on `August 19, 2021 at or around 11:35 UTC` by halting on block `2290600`, with the new and exported genesis file of `ixo-4` having a genesis time of `2021-08-19T12:00:00Z`.
+The upgrade procedure should be started on `December 08, 2022 at or around 14h00 UTC` by halting on block `2290600`, with the new and exported genesis file of `ixo-4` having a genesis time of `2021-08-19T12:00:00Z`.
 
 
   - [Updates](#updates)
@@ -121,7 +121,7 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    **NOTE**: Go [1.15+](https://golang.org/dl/) is required!
 
    ```bash
-   $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v1.6.0; make install
+   $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.1; make install
    ```
 
 1. Backup/rename config files
@@ -132,13 +132,13 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    $ mv config.toml config.toml.backup
    ```
 
-1. Verify you are currently running the correct version (v1.6.0) of _ixo_:
+1. Verify you are currently running the correct version (v0.19.1) of _ixo_:
 
    ```bash
    $ ixod version --long
    name: ixo
    server_name: ixod
-   version: 1.6.0
+   version: 0.19.1
    commit: 21e2c962e18220888d529bf156406260a321cf80
    build_tags: ""
    go: go version go1.16.4 linux/amd64
@@ -146,7 +146,7 @@ v1.6.0 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    - github.com/99designs/keyring@v1.1.6
    ...
    - gopkg.in/yaml.v3@v3.0.0-20200313102051-9f266ea9e77c
-   cosmos_sdk_version: v0.42.6
+   cosmos_sdk_version: v0.45.9
    ```
 
 1. Migrate exported state from the current v1.4.3 version to the new v1.6.0 version. This will require running an `ixod` command and the migration Python script.

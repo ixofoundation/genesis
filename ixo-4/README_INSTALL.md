@@ -28,7 +28,7 @@ An installation script `Installixo.sh` has been included which prepares the envi
 3. Access the root user's home directory and clone the repository
     ```
     cd $HOME
-    git clone https://github.com/ixofoundation/genesis.git && cd genesis && git checkout -b ixo-4
+    git clone https://github.com/ixofoundation/genesis.git && cd genesis
     ```
 
     The ixo-4 directory includes:
