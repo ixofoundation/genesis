@@ -190,7 +190,8 @@ v0.19.1 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    In config.toml:
    - ```moniker``` should be re-set
    - (optional) Set RPC laddr to ```0.0.0.0```
-   - ```persistent_peers``` should be set to ```"cbe8c6a5a77f861db8edb1426b734f2cf1fa4020@18.166.133.210:26656,36e4738c7efcf353d3048e5e6073406d045bae9d@80.64.208.42:26656,f0d4546fa5e0c2d84a4244def186b9da3c12ba1a@46.166.138.214:26656,c95af93f0386f8e19e65997262c9f874d1901dc5@18.163.242.188:26656"```
+   - ```persistent_peers``` should be set to ```"c95af93f0386f8e19e65997262c9f874d1901dc5@18.163.242.188:26656"```
+   - ```seeds``` should be set to ```"20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:16656"```
    - ```pex``` should be set to ```true```
 
 1. Move the new `genesis.json` to your `.ixod/config/` directory
