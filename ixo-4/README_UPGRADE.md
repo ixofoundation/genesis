@@ -108,7 +108,7 @@ __Note__: It is assumed you are currently operating a full-node running v1.6.0 o
 1. At this point you now have a valid exported genesis state! All further steps now require
 v0.19.1 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
 
-   **NOTE**: Go [1.15+](https://golang.org/dl/) is required!
+   **NOTE**: Go [1.19.3+](https://golang.org/dl/) is required!
 
    ```bash
    $ git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.1; make install
