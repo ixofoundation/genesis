@@ -131,7 +131,7 @@ v0.19.1 of [ixo](https://github.com/ixofoundation/ixo-blockchain).
    version: 0.19.1
    commit: 21e2c962e18220888d529bf156406260a321cf80
    build_tags: ""
-   go: go version go1.16.4 linux/amd64
+   go: go version go1.19.4 linux/amd64
    build_deps:
    - github.com/99designs/keyring@v1.1.6
    ...
