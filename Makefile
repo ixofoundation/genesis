@@ -20,7 +20,7 @@ build-ixod: clone
 	-v "$(CURDIR)/bin:/go/bin/" \
 	-e GOARCH=${GOARCH} \
 	-e GOOS=${GOOS} \
-	--workdir "/app" golang:1.16 make install
+	--workdir "/app" golang:1.19.4-buster make install
 
 build-image: clone
 ifndef network
