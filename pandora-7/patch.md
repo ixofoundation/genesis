@@ -5,7 +5,7 @@ ___
 ```
 sudo systemctl stop ixod
 ```
-### 1. Backup validator info
+### 2. Backup validator info
 This consists of:
 This key is essential in recovering your validator if this upgrade does not go as planned. The state is to make sure your validator does not double sign when restarting the node.
 - priv_validator_key.json
@@ -18,29 +18,29 @@ cp ~/.ixod/config/priv_validator_key.json ~/
 ```
 cp ~/.ixod/data/priv_validator_state.json ~/
 ```
-### 1. Backup data directory
+### 3. Backup data directory
 Incase we need to restore to take the export route. Might take a while to backup. Ensure 40GB of free space
 ```
 tar -c -z -v -f pandora-7.tar.gz /home/ixo/.ixod/data/
 ```
 
-### 1. Rolling back the troubled block
+### 4. Rolling back the troubled block
 This will revert block 263,762 and return to 263,761
 ```
 ixod rollback
 ```
-### 1. Restore validator info
+### 5. Restore validator info
 To prevent double signing
 ```
 cp ~/priv_validator_state.json ~/.ixod/data/priv_validator_state.json 
 ```
-### 1. Remove previous peers
+### 6. Remove previous peers
 This step is to remove the probability of an attempt to sync to a node that has not been through the upgrade provess and is running an older node. Missing this step could lead to attempting to sync to a node that has not taken part in the patch yet.
 ```
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.ixod/config/config.toml
 ```
-### 1. Add peers to config.toml
+### 7. Add peers to config.toml
 These peers are all verified to have started from the snapshot **TO BE ADDED**
 ```
 SEEDS=""
@@ -48,7 +48,7 @@ PEERS="650b6c33030c93c1c5aed92df52c08860c20f5b4@136.244.117.176:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.ixod/config/config.toml
 ```
-### 1. Verify golang version
+### 8. Verify golang version
 Check the golang version
 ```
 go version
@@ -64,11 +64,11 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
 ```
-### 1.  Download and install the new binary
+### 9.  Download and install the new binary
 ```
 git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.2; make install
 ```
-### 1. Verify Install
+### 10. Verify Install
 ```
 ixod version --long
 ```
@@ -185,7 +185,7 @@ build_deps:
 cosmos_sdk_version: v0.45.9
 ```
 
-### 1. Start chain
+### 11. Start chain
 Start the node
 ```
 systemctl restart ixod
