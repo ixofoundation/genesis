@@ -1,5 +1,5 @@
 IXO_ROOT		   ?= https://github.com/ixofoundation/ixo-blockchain
-IXO_RELEASE	   ?= v0.16.0
+IXO_RELEASE	   ?= v0.19.2
 IXO_DST_FOLDER ?= ixo-blockchain-${IXO_RELEASE}
 GOOS 					 ?= linux
 GOARCH				 ?= amd64
@@ -20,7 +20,7 @@ build-ixod: clone
 	-v "$(CURDIR)/bin:/go/bin/" \
 	-e GOARCH=${GOARCH} \
 	-e GOOS=${GOOS} \
-	--workdir "/app" golang:1.16 make install
+	--workdir "/app" golang:1.19.4-buster make install
 
 build-image: clone
 ifndef network
@@ -30,7 +30,7 @@ endif
 							 --build-arg NETWORK=$(network) \
 							 --build-arg IXO_RELEASE=$(IXO_RELEASE) \
 							 --build-arg BUILD_DATE=$(`date +'%y.%m.%d'`) \
-							 -t ixo:$(network)-${IXO_RELEASE} .
+							 -t gatewayfm/ixo:$(network)-${IXO_RELEASE} .
 
 clean:
 	rm -rf ${IXO_DST_FOLDER} bin
