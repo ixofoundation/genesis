@@ -1,5 +1,4 @@
-Upgrade.md
-**Upgrade instructions**
+**Patch instructions**
 ___
 ### 1. Stop the validator
 ```
