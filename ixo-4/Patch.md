@@ -42,7 +42,7 @@ To prevent double signing
 cp ~/priv_validator_state.json ~/.ixod/data/priv_validator_state.json 
 ```
 ### 1. Remove previous peers
-This step is to remove the probability of an attempt to sync to a node that has not been through the upgrade provess and is running an older node. Missing this step could lead to attempting to sync to a node that has not taken part in the patch yet.
+This step is to remove the probability of an attempt to sync to a node that has not been through the upgrade process and is running an older node. Missing this step could lead to attempting to sync to a node that has not taken part in the patch yet.
 ```
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.ixod/config/config.toml
@@ -60,7 +60,7 @@ Check the golang version
 ```
 go version
 ```
-If you aren't on 1.19.4 please update
+If you are not on 1.19.4 please update
 ```
 go version go1.19.4 linux/amd64
 ```
@@ -193,7 +193,7 @@ build_deps:
 cosmos_sdk_version: v0.45.9
 ```
 
-### 1. Start chain at ```2023/01/12 15:00 UTC```
+### 1. Start chain at ```January, 12 2023, 3 PM UTC```
 Start the node
 ```
 systemctl restart ixod
