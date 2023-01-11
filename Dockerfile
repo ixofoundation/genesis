@@ -1,4 +1,4 @@
-FROM golang:1.19.1-buster
+FROM golang:1.19.4-buster
 
 ARG IXO_FOLDER
 ARG NETWORK
