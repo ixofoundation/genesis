@@ -33,6 +33,7 @@ ixod tendermint unsafe-reset-all
 
 Snapshot guide provided by [k0kk0k](https://github.com/k0kk0k/cosmos-snapshots-doc/blob/main/ixo.md) . This will download a snapshot of the chain at block 308,205 and unzip it into the data directory.
 ```
+cd ~/.ixod/data
 SNAP_NAME=$(curl -s https://snapshots.stake2.me/ixo/ | egrep -o ">ixo.*tar" | tr -d ">" | tail -n1); \
 wget -O - https://snapshots.stake2.me/ixo/${SNAP_NAME} | tar xf -
 ```
