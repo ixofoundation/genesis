@@ -33,6 +33,7 @@ ixod tendermint unsafe-reset-all
 
 Snapshot guide provided by [k0kk0k](https://github.com/k0kk0k/cosmos-snapshots-doc/blob/main/ixo.md) . This will download a snapshot of the chain at block 308,205 and unzip it into the data directory.
 ```
+cd ~/.ixod/data
 SNAP_NAME=$(curl -s https://snapshots.stake2.me/ixo/ | egrep -o ">ixo.*tar" | tr -d ">" | tail -n1); \
 wget -O - https://snapshots.stake2.me/ixo/${SNAP_NAME} | tar xf -
 ```
@@ -51,7 +52,7 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.ixod/config/config.toml
 These peers are all verified to have started from the snapshot **TO BE ADDED**
 ```
 SEEDS=""
-PEERS="a8d9811a2f08b8a6c77e4319097d6fd84520645e@139.84.226.60:26656"
+PEERS="a8d9811a2f08b8a6c77e4319097d6fd84520645e@139.84.226.60:26656,f79da5c87e40587c4cfef5d7b7902b6e69ac62bf@188.166.183.216:26656,386277f9c6a0c402889032ff76585d0a2dae7bc5@104.248.1.56:26656,26593e0854848ede80d5cd963dc8a775634e2acc@23.88.69.167:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.ixod/config/config.toml
 ```
