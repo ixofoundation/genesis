@@ -18,13 +18,19 @@ cp ~/.ixod/config/priv_validator_key.json ~/
 cp ~/.ixod/data/priv_validator_state.json ~/
 ```
 ### 3. Backup data directory
-Incase we need to restore to take the export route. Might take a while to backup. Ensure 40GB of free space
+Incase we need to restore to take the export route. Might take a while to backup. Ensure 40GB of free space (Not necassary)
 ```
 tar -c -z -v -f pandora-7.tar.gz /home/ixo/.ixod/data/
 ```
+### 4.Downlaod the snapshot
 
-### 4. Rolling back the troubled block
-This will revert block 263,762 and return to 263,761
+```
+cd ~/.ixod/data/
+SNAP_NAME=$(curl -s https://snapshots.ixo.earth/ | egrep -o ">pandora-7.tar.gz" | tr -d ">" | tail -n1); \
+wget -O - https://snapshots.ixo.earth/${SNAP_NAME} | tar xfz -
+```
+###  Rolling back the troubled block
+We do recommend reverting one block after download the snapshot
 ```
 ixod rollback
 ```
@@ -64,6 +70,7 @@ export PATH=$PATH:/usr/local/go/bin
 go version
 ```
 ### 9.  Download and install the new binary
+#### SKIP this step if you are already on 0.19.2
 ```
 git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.2; make install
 ```
@@ -185,7 +192,7 @@ cosmos_sdk_version: v0.45.9
 ```
 
 ### 11. Start chain
-Start the node
+Start the node and wait for other validators to come online.
 ```
 systemctl restart ixod
 ```
