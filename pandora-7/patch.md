@@ -18,11 +18,11 @@ cp ~/.ixod/config/priv_validator_key.json ~/
 cp ~/.ixod/data/priv_validator_state.json ~/
 ```
 ### 3. Backup data directory
-Incase we need to restore to take the export route. Might take a while to backup. Ensure 40GB of free space (Not necassary)
+Incase we need to restore to take the export route. Might take a while to backup. Ensure 40GB of free space (Not necessary with this patch)
 ```
 tar -c -z -v -f pandora-7.tar.gz /home/ixo/.ixod/data/
 ```
-### 4.Downlaod the snapshot
+### 4.Download the snapshot
 
 ```
 cd ~/.ixod/data/
@@ -30,7 +30,7 @@ SNAP_NAME=$(curl -s https://snapshots.ixo.earth/ | egrep -o ">pandora-7.tar.gz" 
 wget -O - https://snapshots.ixo.earth/${SNAP_NAME} | tar xfz -
 ```
 ###  Rolling back the troubled block
-We do recommend reverting one block after download the snapshot
+We do recommend reverting one block after downloading the snapshot
 ```
 ixod rollback
 ```
