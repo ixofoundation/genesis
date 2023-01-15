@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOFILENAME="go1.16.4.linux-amd64.tar.gz"
+GOFILENAME="go1.19.4.linux-amd64.tar.gz"
 GODOWNLOADLINK="https://dl.google.com/go/$GOFILENAME"
 
 echo "Ixo Chain Installer"
@@ -46,7 +46,7 @@ GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-blockchain"
-GITRELEASE="v0.19.0"
+GITRELEASE="v0.19.2"
 
 
 su $USERNAME <<EOSU
