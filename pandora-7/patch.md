@@ -22,7 +22,14 @@ Incase we need to restore to take the export route. Might take a while to backup
 ```
 tar -c -z -v -f pandora-7.tar.gz /home/ixo/.ixod/data/
 ```
-### 4.Download the snapshot
+### 4. Remove chain data
+
+We are clearing the current state and restart from a snapshot starting out at block height 308,205
+```
+ixod tendermint unsafe-reset-all
+```
+
+### 5.Download the snapshot
 
 ```
 cd ~/.ixod/data/
@@ -34,18 +41,18 @@ We do recommend reverting one block after downloading the snapshot
 ```
 ixod rollback
 ```
-### 5. Restore validator info
+### 6. Restore validator info
 To prevent double signing
 ```
 cp ~/priv_validator_state.json ~/.ixod/data/priv_validator_state.json 
 ```
-### 6. Remove previous peers
+### 7. Remove previous peers
 This step is to remove the probability of an attempt to sync to a node that has not been through the upgrade provess and is running an older node. Missing this step could lead to attempting to sync to a node that has not taken part in the patch yet.
 ```
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.ixod/config/config.toml
 ```
-### 7. Add peers to config.toml
+### 8. Add peers to config.toml
 These peers are all verified to have started from the snapshot **TO BE ADDED**
 ```
 SEEDS=""
@@ -53,7 +60,7 @@ PEERS="650b6c33030c93c1c5aed92df52c08860c20f5b4@136.244.117.176:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.ixod/config/config.toml
 ```
-### 8. Verify golang version
+### 9. Verify golang version
 Check the golang version
 ```
 go version
@@ -69,12 +76,12 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
 ```
-### 9.  Download and install the new binary
+### 10.  Download and install the new binary
 #### SKIP this step if you are already on 0.19.2
 ```
 git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.2; make install
 ```
-### 10. Verify Install
+### 11. Verify Install
 ```
 ixod version --long
 ```
@@ -191,7 +198,7 @@ build_deps:
 cosmos_sdk_version: v0.45.9
 ```
 
-### 11. Start chain
+### 12. Start chain
 Start the node and wait for other validators to come online.
 ```
 systemctl restart ixod
