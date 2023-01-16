@@ -36,11 +36,6 @@ cd ~/.ixod/data/
 SNAP_NAME=$(curl -s https://snapshots.ixo.earth/ | egrep -o ">pandora-7.tar.gz" | tr -d ">" | tail -n1); \
 wget -O - https://snapshots.ixo.earth/${SNAP_NAME} | tar xfz -
 ```
-###  Rolling back the troubled block
-We do recommend reverting one block after downloading the snapshot
-```
-ixod rollback
-```
 ### 6. Restore validator info
 To prevent double signing
 ```
