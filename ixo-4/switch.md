@@ -1,10 +1,11 @@
-**Patch instructions**
+Upgrade.md
+**Upgrade instructions**
 ___
-### 1. Stop the validator
+### 1. Stop the validator (run as root)
 ```
 sudo systemctl stop ixod
 ```
-### 2. Backup validator info
+### 1. Backup validator info (run as ixo)
 This consists of:
 This key is essential in recovering your validator if this upgrade does not go as planned. The state is to make sure your validator does not double sign when restarting the node.
 - priv_validator_key.json
@@ -17,18 +18,17 @@ cp ~/.ixod/config/priv_validator_key.json ~/
 ```
 cp ~/.ixod/data/priv_validator_state.json ~/
 ```
-### 3. Backup data directory
-Incase we need to restore to take the export route. Might take a while to backup. Ensure 40GB of free space (Not necessary with this patch)
+### 1. Backup data directory (run as root)
+Incase we need to restore. Might take a while to backup. Ensure enough free space is available
+``` 
+tar -c -z -v -f ixo-4.tar.gz /home/ixo/.ixod/data/
 ```
-tar -c -z -v -f pandora-7.tar.gz /home/ixo/.ixod/data/
-cp ~/priv_validator_state.json ~/.ixod/data/priv_validator_state.json 
-```
-### 9. Verify golang version
+### 1. Verify golang version (run as ixo)
 Check the golang version
 ```
 go version
 ```
-If you aren't on 1.19.4 please update
+If you are not on 1.19.4 please update
 ```
 go version go1.19.4 linux/amd64
 ```
@@ -39,17 +39,17 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
 ```
-### 10.  Download and install the new binary
-#### SKIP this step if you are already on 0.19.3
+### 1.  Download and install the new binary (run as ixo)
 ```
 git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.19.3; make install
 ```
-### 11. Verify Install
+### 1. Verify Install (run as ixo)
 ```
 ixod version --long
 ```
 
-```name: ixo
+```
+name: ixo
 server_name: ixod
 version: 0.19.3
 commit: 418d28ebeafc8e261ee5d5ac84337c7345ce91db
@@ -157,9 +157,11 @@ build_deps:
 - gopkg.in/yaml.v2@v2.4.0
 - gopkg.in/yaml.v3@v3.0.1
 - nhooyr.io/websocket@v1.8.6
-cosmos_sdk_version: v0.45.9```
+cosmos_sdk_version: v0.45.9
+```
 
-### 12. Start the chain
+### 1. Start the chain (run as root)
+Start the node
 ```
 systemctl restart ixod
 ```
