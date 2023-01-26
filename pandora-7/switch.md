@@ -1,4 +1,4 @@
-**Patch instructions**
+**Instructions to switch out the binary**
 ___
 ### 1. Stop the validator
 ```

@@ -1,5 +1,4 @@
-Upgrade.md
-**Upgrade instructions**
+**Instructions to switch out the binary**
 ___
 ### 1. Stop the validator (run as root)
 ```
