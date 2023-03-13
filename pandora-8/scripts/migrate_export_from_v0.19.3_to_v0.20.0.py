@@ -4,14 +4,14 @@ import json
 in_file = 'exported.json'
 out_file = 'genesis.json'
 
-genesis_time = '2023-03-17T07:24:00Z'
+genesis_time = '2023-03-13T15:45:00Z'
 
 # Load genesis
 with open(in_file, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Update chain ID
-data['chain_id'] = 'ixo-5'
+data['chain_id'] = 'pandora-8'
 
 # Update genesis time (https://www.mintscan.io/ixo/blocks/1254500)
 data['genesis_time'] = genesis_time
