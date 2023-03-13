@@ -36,7 +36,6 @@ Incase we need to restore to take the export route. Might take a while to backup
 
 ```
 tar -c -z -v -f pandora-7.tar.gz /home/ixo/.ixod/data/
-cp ~/priv_validator_state.json ~/.ixod/data/priv_validator_state.json
 ```
 
 ### 4. Binary version
