@@ -54,10 +54,14 @@ This will output a file called genesis.json
 
     # go to config directory and export hash
     cd ~/.ixod/config
-    ixod export --for-zero-height --height=1029000 > exported.json
+    #make sure your user has docker permissions. Run this ONE command as root
+    usermod -aG docker ixo
+    #the docker file NEEDS to be run instead of doing the export through the binary since we ran into some issues regarding some of the modules.
+    docker run -v /home/ixo/:/ixo/ ghcr.io/ixofoundation/ixo-blockchain:debug-0.19.4 export --for-zero-height --height=1029000 > exported.json
 
     #check hash for exported genesis
     jq -S -c -M '' exported.json | shasum -a 256
+    result: 42faf5ec3cb924d831c1e4d14e019bc2c744a5a63722fd3c75ff369e7b892ea5  -
 
     #download migration script
     wget https://raw.githubusercontent.com/ixofoundation/genesis/main/pandora-8/scripts/migrate_export_from_v0.19.3_to_v0.20.0.py
@@ -67,7 +71,10 @@ This will output a file called genesis.json
 
     #check hash for migrated genesis
     jq -S -c -M '' genesis.json | shasum -a 256
+    result: bb4132cab90b8f942805215342e9c27d4db775c1f740edaee82bd7794ed91bec  - 
 
+
+If you initial hash is different please inform as via discord, however if the second hash is the same continue with the guide.
 ### 6. Reset validator
 
 This will this will remove the addressbook and everything in the data directory, including the priv_validator_state.json
