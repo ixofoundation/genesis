@@ -46,7 +46,7 @@ This should show
 
     0.19.3
 
-if you have already switched out the binary is not a issue.
+if you have already switched out the binary please revert to 0.19.3 for this step
 
 ### 5. Exporting genesis (IXO user)
 
