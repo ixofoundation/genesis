@@ -66,7 +66,7 @@ This will output a file called genesis.json
     python3 migrate_export_from_v0.19.3_to_v0.20.0.py
 
     #check hash for migrated genesis
-    jq -S -c -M '' exported.json | shasum -a 256
+    jq -S -c -M '' genesis.json | shasum -a 256
 
 ### 6. Reset validator
 
