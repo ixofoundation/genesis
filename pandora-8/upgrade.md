@@ -71,10 +71,10 @@ This will output a file called genesis.json
 
     #check hash for migrated genesis
     jq -S -c -M '' genesis.json | shasum -a 256
-    result: bb4132cab90b8f942805215342e9c27d4db775c1f740edaee82bd7794ed91bec  - 
-
+    result: bb4132cab90b8f942805215342e9c27d4db775c1f740edaee82bd7794ed91bec  -
 
 If you initial hash is different please inform as via discord, however if the second hash is the same continue with the guide.
+
 ### 6. Reset validator
 
 This will this will remove the addressbook and everything in the data directory, including the priv_validator_state.json
@@ -92,8 +92,7 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.ixod/config/config.toml
 
 ```
 SEEDS=""
-PEERS="650b6c33030c93c1c5aed92df52c08860c20f5b4@136.244.117.176:26656,2a7ef01058d42f9950b8e01415e60d6ee20e36f4@139.84.231.209:26656,245d3341fd17d302409f863e6e8863e276093150@57.128.144.250:26656
-"
+PEERS="650b6c33030c93c1c5aed92df52c08860c20f5b4@136.244.117.176:26656,2a7ef01058d42f9950b8e01415e60d6ee20e36f4@139.84.231.209:26656,245d3341fd17d302409f863e6e8863e276093150@57.128.144.250:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.ixod/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.ixod/config/config.toml
 ```

@@ -23,7 +23,7 @@ data['initial_height'] = '1'
 tokenMinters = data['app_state']['token'].get('tokenMinters', [])
 data['app_state']['token'] = {
     "params": {
-        "ixo1155ContractCode": "0"
+        "ixo1155ContractCode": "2"
     },
     "tokens": tokenMinters,
     "token_properties": []
@@ -43,7 +43,7 @@ data['app_state']['entity'] = {
     "params": {
         "createSequence": "0",
         "nftContractAddress": "ixo14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sqa3vn7",
-        "nftContractMinter": "ixo14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sqa3vn7"
+        "nftContractMinter": "ixo1g7xtrvc8ejkenee8a3gryvx6d4n9uu6gpsx63z"
     }
 }
 
@@ -87,7 +87,7 @@ data['app_state']['claims'] = {
     "disputes": [],
     "params": {
         "collection_sequence": "1",
-        "ixo_account": "ixo1y0d7w5xfj9a0p7ygpx0uwvyrnmmqj3fd4sva7t",
+        "ixo_account": "ixo1kqmtxkggcqa9u34lnr6shy0euvclgatw4f9zz5",
         "network_fee_percentage": "10.000000000000000000",
         "node_fee_percentage": "10.000000000000000000"
     }
@@ -111,6 +111,9 @@ data['app_state']['interchainaccounts'] = {
 
 # Add intertx
 data['app_state']['intertx'] = None
+
+# Update max_gas per block for wasm contracts safety
+data['consensus_params']['block']["max_gas"] = "50000000"
 
 # Remove projects from genesis as module removed, new entities should be created
 del data['app_state']['project']
