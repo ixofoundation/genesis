@@ -129,9 +129,7 @@ data['consensus_params']['block']["max_gas"] = "50000000"
 # Remove ibc client upgrade proposal plan so chain doesnt halt again at block height
 for index, proposal in enumerate(data['app_state']['gov'].get('proposals', [])):
     if proposal["content"]["@type"] == "/ibc.core.client.v1.UpgradeProposal":
-        newProposal = data['app_state']['gov']['proposals'][index]
-        del newProposal["content"]['plan']
-        data['app_state']['gov']['proposals'][index] = newProposal
+        data['app_state']['gov']['proposals'][index]['content']['plan']['height'] = "0"
 
 # Update iid docs, add metadata and linkedClaim
 for index, did in enumerate(data['app_state']['iid'].get('iid_docs', [])):
