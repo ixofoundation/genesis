@@ -98,13 +98,24 @@ data['app_state']['interchainaccounts'] = {
     "controller_genesis_state": {
         "active_channels": [],
         "interchain_accounts": [],
-        "params": {"controller_enabled": True},
+        "params": {
+            "controller_enabled": True
+        },
         "ports": []
     },
     "host_genesis_state": {
         "active_channels": [],
         "interchain_accounts": [],
-        "params": {"allow_messages": [], "host_enabled": True},
+        "params": {
+            "allow_messages": [
+                "/cosmos.bank.v1beta1.MsgSend", "/cosmos.bank.v1beta1.MsgMultiSend",
+                "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+                "/cosmos.gov.v1beta1.MsgVote", "/cosmos.gov.v1beta1.MsgVoteWeighted",
+                "/cosmos.staking.v1beta1.MsgDelegate", "/cosmos.staking.v1beta1.MsgUndelegate", "/cosmos.staking.v1beta1.MsgBeginRedelegate",
+                "/ibc.applications.transfer.v1.MsgTransfer"
+            ],
+            "host_enabled": True
+        },
         "port": "icahost"
     }
 }
@@ -114,6 +125,14 @@ data['app_state']['intertx'] = None
 
 # Update max_gas per block for wasm contracts safety
 data['consensus_params']['block']["max_gas"] = "50000000"
+
+# Remove ibc client upgrade proposal plan so chain doesnt halt again at block height
+for index, proposal in enumerate(data['app_state']['gov'].get('proposals', [])):
+    if proposal["@type"] == "/ibc.core.client.v1.UpgradeProposal":
+        newProposal = data['app_state']['gov']['proposals'][index]
+        del newProposal['plan']
+        data['app_state']['gov']['proposals'][index] = newProposal
+
 
 # Remove projects from genesis as module removed, new entities should be created
 del data['app_state']['project']
