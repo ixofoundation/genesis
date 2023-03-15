@@ -128,13 +128,26 @@ data['consensus_params']['block']["max_gas"] = "50000000"
 
 # Remove ibc client upgrade proposal plan so chain doesnt halt again at block height
 for index, proposal in enumerate(data['app_state']['gov'].get('proposals', [])):
-    if proposal["@type"] == "/ibc.core.client.v1.UpgradeProposal":
+    if proposal["content"]["@type"] == "/ibc.core.client.v1.UpgradeProposal":
         newProposal = data['app_state']['gov']['proposals'][index]
-        del newProposal['plan']
+        del newProposal["content"]['plan']
         data['app_state']['gov']['proposals'][index] = newProposal
 
+# Update iid docs, add metadata and linkedClaim
+for index, did in enumerate(data['app_state']['iid'].get('iid_docs', [])):
+    iid = {
+        **did,
+        "linkedClaim": [],
+        "metadata": {
+            "created": genesis_time,
+            "deactivated": False,
+            "updated": genesis_time,
+            "versionId": "1"
+        },
+    }
+    data['app_state']['iid']['iid_docs'][index] = iid
 
-# Remove projects from genesis as module removed, new entities should be created
+    # Remove projects from genesis as module removed, new entities should be created
 del data['app_state']['project']
 
 # Remove payments from genesis as module removed
