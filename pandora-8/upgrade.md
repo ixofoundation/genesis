@@ -57,7 +57,7 @@ This will output a file called genesis.json
     #make sure your user has docker permissions. Run this ONE command as root
     usermod -aG docker ixo
     #the docker file NEEDS to be run instead of doing the export through the binary since we ran into some issues regarding some of the modules.
-    docker run -v /home/ixo/:/ixo/ ghcr.io/ixofoundation/ixo-blockchain:debug-0.19.4 export --for-zero-height --height=1029000 > exported.json
+    docker run -v /home/ixo/:/ixo/ ghcr.io/ixofoundation/ixo-blockchain:debug-0.19.4 export --for-zero-height --height=1044099 > exported.json
 
     #check hash for exported genesis
     jq -S -c -M '' exported.json | shasum -a 256
