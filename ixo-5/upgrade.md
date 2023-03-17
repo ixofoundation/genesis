@@ -8,13 +8,12 @@ sudo systemctl stop ixod
 
 ### 2. Backup validator info
 
-For this prupose we would not be importing back in unless something goes wrong during the upgrade process.
-
-This consists of:
-This key is essential in recovering your validator if this upgrade does not go as planned. The state is to make sure your validator does not double sign when restarting the node.
+Backup your validator information.
 
 - priv_validator_key.json
+  - Recovers your validator if this upgrade does not go as planned.
 - priv_validator_state.json
+  - Prevents double signing when restarting the node.
 
 **priv validator key**
 
@@ -28,14 +27,21 @@ cp ~/.ixod/config/priv_validator_key.json ~/
 cp ~/.ixod/data/priv_validator_state.json ~/
 ```
 
+We will not import these unless something goes wrong during the upgrade process.
+
 ### 3. Backup data directory
 
-Incase we need to restore to take the export route. Might take a while to backup. Make sure you have adequate space before attempting a backup. The size estimate as of current is 91GB+.  
-Check the current size:
+Backup your data directory in case we need to restore and take the export route.
+
+NB: It might take a while for this backup to complete.
+
+Make sure you have adequate space before attempting the backup (current size estimate is 92GB).
+
+You can check the current size like this:
 
     du -h /home/ixo/.ixod/data/
 
-Backup to current directory
+You can backup to the current directory like this:
 
     tar -c -z -v -f ixo-4.tar.gz /home/ixo/.ixod/data/
 
@@ -47,13 +53,13 @@ This should show
 
     0.19.3
 
-if you have already switched out the binary please revert to 0.19.3 for this step
+If you have already switched out the binary and are not on 0.19.3, please revert to 0.19.3.
 
-### 5. Exporting genesis (IXO user)
+### 5. Exporting genesis (with IXO user)
 
 This will output a file called genesis.json
 
-    # go to config directory and export hash
+    # go to config directory and export
     cd ~/.ixod/config
     ixod export --for-zero-height --height={height} > exported.json
 
@@ -71,11 +77,12 @@ This will output a file called genesis.json
     jq -S -c -M '' genesis.json | shasum -a 256
     result: {result} 
 
+1. If your exported.json hash is different to the above, notify the `validator-chat` channel on Discord.
+1. If your genesis.json hash is the same as above you can continue with the guide.
 
-If your genesis.json hash is the same you can continue with the guide, If exported.json hash is different please do let as know via discord.
 ### 6. Reset validator
 
-This will this will remove the addressbook and everything in the data directory, including the priv_validator_state.json
+NB: This will remove the `addressbook` and everything in the data directory, including the priv_validator_state.json
 
     ixod tendermint unsafe-reset-all
 
@@ -103,33 +110,33 @@ Check the golang version
 go version
 ```
 
-If you aren't on 1.19.4 please update
-
 ```
 go1.19.4 linux/amd64
 ```
 
-Update only if you arent on go1.19.4 (HAS TO BE AS IXO USER)
+NB: Update if you are not on go1.19.4 (ensure this is with the IXO user!)
 
 ```
+#as the IXO user
 wget https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
 rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
 ```
 
-### 10. Download and install the new binary
+### 10. Download and install the new ixo binary
 
-#### SKIP this step if you are already on 0.20.0
+#### Skip this step if you are already on 0.20.0
 
 ```
 git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.20.0; make install
 ```
 
 ### 11. Verify Install
+Ensure that your node is on version 0.20.0.
 
     ixod version
 
-If the version matches 0.20.0 You can start the node
+If this shows 0.20.0, then start your node.
 
     systemctl restart ixod
