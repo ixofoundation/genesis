@@ -57,11 +57,11 @@ This will output a file called genesis.json
     #make sure your user has docker permissions. Run this ONE command as root
     usermod -aG docker ixo
     #the docker file NEEDS to be run instead of doing the export through the binary since we ran into some issues regarding some of the modules.
-    docker run -v /home/ixo/:/ixo/ ghcr.io/ixofoundation/ixo-blockchain:debug-0.19.4 export --for-zero-height --height=1044099 > exported.json
+    docker run -v /home/ixo/:/ixo/ ghcr.io/ixofoundation/ixo-blockchain:debug-0.19.4 export --for-zero-height --height=1044149 > exported.json
 
     #check hash for exported genesis
     jq -S -c -M '' exported.json | shasum -a 256
-    result: 42faf5ec3cb924d831c1e4d14e019bc2c744a5a63722fd3c75ff369e7b892ea5  -
+    result: 45a094e139dd3772c1ff3ef32b4be0c419a4d51723e43fa61245b2117f7efcdb  -
 
     #download migration script
     wget https://raw.githubusercontent.com/ixofoundation/genesis/main/pandora-8/scripts/migrate_export_from_v0.19.3_to_v0.20.0.py
@@ -71,7 +71,7 @@ This will output a file called genesis.json
 
     #check hash for migrated genesis
     jq -S -c -M '' genesis.json | shasum -a 256
-    result: bb4132cab90b8f942805215342e9c27d4db775c1f740edaee82bd7794ed91bec  -
+    result: 0be8f35153445012ba83733f3d0f25f706e35d5b49156d2269faaeab1cb89b1d  -
 
 If you initial hash is different please inform as via discord, however if the second hash is the same continue with the guide.
 
@@ -125,13 +125,13 @@ go version
 #### SKIP this step if you are already on 0.20.0
 
 ```
-git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.20.0; make install
+git clone https://github.com/ixofoundation/ixo-blockchain.git && cd ixo-blockchain && git checkout v0.20.0-rc.4; make install
 ```
 
 ### 11. Verify Install
 
     ixod version
 
-If the version matches 0.20.0 You can start the node
+If the version matches v0.20.0-rc.4 You can start the node
 
     systemctl restart ixod
