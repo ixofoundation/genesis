@@ -8,14 +8,11 @@ sudo systemctl stop ixod
 
 ### 2. Backup validator info
 
-Backup your validator information.
-
-- priv_validator_key.json
-  - Recovers your validator if this upgrade does not go as planned.
-- priv_validator_state.json
-  - Prevents double signing when restarting the node.
+NB: Important to backup your validator information.
 
 **priv validator key**
+- priv_validator_key.json
+  - Recovers your validator if this upgrade does not go as planned.
 
 ```
 cp ~/.ixod/config/priv_validator_key.json ~/
@@ -23,6 +20,8 @@ cp ~/.ixod/config/priv_validator_key.json ~/
 
 **priv validator state**
 
+- priv_validator_state.json
+  - Prevents double signing when restarting the node.
 ```
 cp ~/.ixod/data/priv_validator_state.json ~/
 ```
