@@ -139,3 +139,6 @@ Ensure that your node is on version 0.20.0.
 If this shows 0.20.0, then start your node.
 
     systemctl restart ixod
+
+### Note. External signers
+In case of external signers like TMKMS (Tendermint KMS) remember to change `id / chain_ids` and adapt `state_file`
