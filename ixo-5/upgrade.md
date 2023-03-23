@@ -60,7 +60,7 @@ This will output a file called genesis.json
 
     # go to config directory and export
     cd ~/.ixod/config
-    ixod export --for-zero-height --height={height} > exported.json
+    ixod export --for-zero-height --height=1344999 > exported.json
 
     #check hash for exported genesis
     jq -S -c -M '' exported.json | shasum -a 256
