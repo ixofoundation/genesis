@@ -4,16 +4,16 @@ import json
 in_file = 'exported.json'
 out_file = 'genesis.json'
 
-genesis_time = '2023-03-13T15:45:00Z'
+genesis_time = '2023-03-23T09:43:00Z'
 
 # Load genesis
 with open(in_file, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Update chain ID
-data['chain_id'] = 'pandora-8'
+data['chain_id'] = 'ixo-5'
 
-# Update genesis time (https://www.mintscan.io/ixo/blocks/1254500)
+# Update genesis time (https://www.mintscan.io/ixo/blocks/1345000)
 data['genesis_time'] = genesis_time
 
 # Update initial height
@@ -130,7 +130,6 @@ data['consensus_params']['block']["max_gas"] = "50000000"
 for index, proposal in enumerate(data['app_state']['gov'].get('proposals', [])):
     if proposal["content"]["@type"] == "/ibc.core.client.v1.UpgradeProposal":
         data['app_state']['gov']['proposals'][index]['content']['plan']['height'] = "0"
-
 
 # Remove projects from genesis as module removed, new entities should be created
 del data['app_state']['project']
