@@ -62,7 +62,7 @@ ixod keys show mykeyname
 
 ## Checking account balance
 
-Access [blockscan](https://blockscan-pandora.ixo.earth/) and paste the address in the top menu bar, which will direct you to your address' page.
+Access [blockscan-testet](https://blockscan-pandora.ixo.earth/), [minstscan-mainnet](https://www.mintscan.io/ixo) and paste the address in the top menu bar, which will direct you to your address' page.
 
 `ixod` can also be used to query your token balances as follows. Balances are in uixo which means that 1 ixo balance will be displayed as 1000000 uixo.
 ```
@@ -150,8 +150,7 @@ To check on the status of your validator:
 ixod status 2>&1 | jq .ValidatorInfo
 ```
 
-After you have completed this guide, your validator should be up and ready to receive delegations. To view the current validator list, check out the ixo explorer. https://blockscan-pandora.ixo.world/validators
-
+After you have completed this guide, your validator should be up and ready to receive delegations. To view the current validator list, check out the ixo explorer. [blockscan-testet](https://blockscan-pandora.ixo.earth/), [minstscan-mainnet](https://www.mintscan.io/ixo)
 
 ## Staking ixo
 
