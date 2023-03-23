@@ -67,7 +67,7 @@ This will output a file called genesis.json
     result: {result}
 
     #download migration script
-    wget {raw-link}
+    wget https://raw.githubusercontent.com/ixofoundation/genesis/main/ixo-5/scripts/migrate_export_from_v0.19.3_to_v0.20.0.py
 
     #run migrations
     python3 migrate_export_from_v0.19.3_to_v0.20.0.py
