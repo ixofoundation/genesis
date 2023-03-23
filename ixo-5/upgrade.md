@@ -64,7 +64,7 @@ This will output a file called genesis.json
 
     #check hash for exported genesis
     jq -S -c -M '' exported.json | shasum -a 256
-    result: {result}
+    result: 93e6a6fce0f9a859c920eee1c28b422f34d9ee98789534673904e6d4ed6148e8
 
     #download migration script
     wget https://raw.githubusercontent.com/ixofoundation/genesis/main/ixo-5/scripts/migrate_export_from_v0.19.3_to_v0.20.0.py
@@ -74,7 +74,7 @@ This will output a file called genesis.json
 
     #check hash for migrated genesis
     jq -S -c -M '' genesis.json | shasum -a 256
-    result: {result} 
+    result: cbd2eb53eaaad2a5783fbab1c1f428c11f4f26156185a4627119026ffd0dc01c 
 
 1. If your exported.json hash is different to the above, notify the `validator-chat` channel on Discord.
 1. If your genesis.json hash is the same as above you can continue with the guide.
