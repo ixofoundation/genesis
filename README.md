@@ -3,6 +3,6 @@
 Genesis files and configurations for ixo protocol networks:
 
 - [pandora-8 (testnet)](./pandora-8/)
-- [ixo-4 (mainnet)](./ixo-4/README.md)
+- [ixo-5 (mainnet)](./ixo-5/upgrade.md)
 
 - [config](./README_CONFIG.md)

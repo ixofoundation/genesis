@@ -3,7 +3,7 @@ Set environment variables specific to the network
 
 | Mainnet | Testnet |  
 | --- | --- |
-| ```export chain_id=ixo-4``` | ```export chain_id=pandora-8``` |  
+| ```export chain_id=ixo-5``` | ```export chain_id=pandora-8``` |  
 
 Also add this to your .bashrc file of the ixo user  
 ```
