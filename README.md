@@ -5,7 +5,7 @@
 [![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/ixo-blog)
 
 <p align="center">
-  <img src="./.github/assets/readme_banner.png" />
+  <img src="assets/images/readme_banner.png" />
 </p>
 <br />
 
