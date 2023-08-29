@@ -1,13 +1,10 @@
-> <p><font color="red" size="30">[!WARNING]</font></p>
-> The chain proposal Plan Info contains a link to binaries file with incorrect shasum. This is on purpose so that cosmovisor wont automatically download the binaries for v2 upgrade as the original v2 release had an issue, so the release was retagged to a working version and thus shausum also updated for v2. Please
->
-> Please add the v2 upgrade binary manually.
-
 # v2 Testnet Upgrade Guide
 
-Ixo v2 Gov Prop: <https://blockscan-pandora.ixo.earth/proposals/61>
+Ixo v2 Gov Prop: <https://www.mintscan.io/ixo/proposals/439>
 
-Height: 2193200
+Countdown: <https://www.mintscan.io/ixo/blocks/2383000>
+
+Height: 2383000
 
 ## First Time Cosmovisor Setup
 
@@ -152,7 +149,7 @@ journalctl -u cosmovisor -f
 
 ## Manual Option
 
-1. Wait for Ixo to reach the upgrade height 2193200
+1. Wait for Ixo to reach the upgrade height 2383000
 
 2. Look for a panic message, followed by endless peer logs. Stop the daemon
 
