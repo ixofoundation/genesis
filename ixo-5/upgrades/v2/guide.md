@@ -1,4 +1,4 @@
-# v2 Testnet Upgrade Guide
+# v2 Ixo Upgrade Guide
 
 Ixo v2 Gov Prop: <https://www.mintscan.io/ixo/proposals/439>
 
