@@ -8,8 +8,8 @@ echo -e "-------------------------\n\n"
 sleep 2
 
 if [ "$USER" != "root" ]; then
-        echo "You must be logged in as root to use this installer!"
-        exit 0;
+  echo "You must be logged in as root to use this installer!"
+  exit 0
 fi
 
 echo "Starting IXO based install"
@@ -33,10 +33,10 @@ USERNAME=ixo
 echo "Creating new IXO system user"
 sleep 1
 
-if getent passwd $USERNAME > /dev/null 2>&1; then
-	echo "the user exists"
+if getent passwd $USERNAME >/dev/null 2>&1; then
+  echo "the user exists"
 else
-	adduser $USERNAME --disabled-login
+  adduser $USERNAME --disabled-login
 fi
 sleep 1
 
@@ -46,8 +46,8 @@ GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
 GITNAME="ixofoundation"
 GITREPO="ixo-blockchain"
-GITRELEASE="v0.20.0-rc.4"
-
+# GITRELEASE="v2.0.0" # can use the upgrade versions directly if have snapshot of state for that version
+GITRELEASE="v0.20.0"
 
 su $USERNAME <<EOSU
 
@@ -94,12 +94,12 @@ sleep 1
 mkdir /home/ixo/.ixod
 mkdir /home/ixo/.ixod/config
 
-cp /root/genesis/pandora-6/genesis.json /home/ixo/.ixod/config/genesis.json
+# cp /root/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/pandora-8/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
-
 
 su $USERNAME <<EOSU
 
@@ -109,17 +109,17 @@ EOSU
 
 sleep 5
 
-cp /root/genesis/pandora-6/genesis.json /home/ixo/.ixod/config/genesis.json
+# cp /root/genesis.json /home/ixo/.ixod/config/genesis.json
+cp /root/genesis/pandora-8/genesis.json /home/ixo/.ixod/config/genesis.json
 
 chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
-
 
 echo "---"
 echo "Your peer ID:"
 $DAEMON tendermint show-node-id
 echo "---"
 
-  cat << EOF > /etc/systemd/system/$DAEMONNAME.service
+cat <<EOF >/etc/systemd/system/$DAEMONNAME.service
 # /etc/systemd/system/$DAEMONNAME.service
 
 [Unit]
