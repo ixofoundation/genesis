@@ -83,7 +83,7 @@ This will output a file called genesis.json
 
 NB: This will remove the `addressbook` and everything in the data directory, including the priv_validator_state.json
 
-    ixod tendermint unsafe-reset-all
+    ixod tendermint unsafe-reset-all --keep-addr-book
 
 ### 7. Remove previous peers
 
