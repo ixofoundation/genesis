@@ -6,3 +6,4 @@ ixo
 .vscode
 */scripts/exported.json
 */scripts/genesis.json
+.DS_Store
