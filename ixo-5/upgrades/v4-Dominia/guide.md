@@ -1,10 +1,10 @@
 # v4-Dominia Upgrade Guide
 
-Ixo Dominia Gov Prop: <https://explorer.ixo.earth/ixo/gov/455>
+Ixo Dominia Gov Prop: <https://explorer.ixo.earth/ixo/gov/456>
 
-Countdown: <https://explorer.ixo.earth/ixo/block/9256500>
+Countdown: <https://explorer.ixo.earth/ixo/block/9269290>
 
-Height: 9181350
+Height: 9269290
 
 ## First Time Cosmovisor Setup
 
@@ -49,7 +49,7 @@ Follow the instructions [here](../v2/guide.md#use-ixo-service-for-cosmovisor).
 
 ## Manual Option
 
-1. Wait for Ixo to reach the upgrade height 9256500
+1. Wait for Ixo to reach the upgrade height 9269290
 
 2. Look for a panic message, followed by endless peer logs. Stop the daemon
 
