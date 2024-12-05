@@ -1,10 +1,10 @@
-# v3 Upgrade Guide
+# v4-Dominia Upgrade Guide
 
-Ixo v3 Gov Prop: <https://www.mintscan.io/ixo/proposals/447>
+Ixo Dominia Gov Prop: <https://explorer.ixo.earth/ixo/gov/455>
 
-Countdown: <https://www.mintscan.io/ixo/block/5508000>
+Countdown: <https://explorer.ixo.earth/ixo/block/9256500>
 
-Height: 5508000
+Height: 9181350
 
 ## First Time Cosmovisor Setup
 
@@ -18,20 +18,30 @@ manually upgrade binaries during the upgrade, and instead can
 pre-install new binaries, and cosmovisor will automatically update them
 based on on-chain SoftwareUpgrade proposals.
 
+## Upgrade Prerequisites
+
+Ixo Dominia requires golang v1.22.4. Before attempting to build/install v4-Dominia
+please upgrade the golang version to v1.22.4. There is a script to quickly upgrade golang
+to the correct version [here](upgrade_go_v1.22.4.sh).
+
+Note after the script you may need to log out and log back in for changes to take effect.
+
 ## Cosmovisor Upgrade
 
-Create the v3 folder, make the build, and copy the daemon over to that folder
+First ensure you have golang v1.22.4 installed.
+
+Create the Dominia folder, make the build, and copy the daemon over to that folder
 
 ```sh
-mkdir -p ~/.ixod/cosmovisor/upgrades/v3/bin
+mkdir -p ~/.ixod/cosmovisor/upgrades/Dominia/bin
 cd $HOME/ixo
 git pull
-git checkout v3.0.0
+git checkout v4.0.0
 make build
-cp build/ixod ~/.ixod/cosmovisor/upgrades/v3/bin
+cp build/ixod ~/.ixod/cosmovisor/upgrades/Dominia/bin
 ```
 
-Now, at the upgrade height, Cosmovisor will upgrade to the v3 binary
+Now, at the upgrade height, Cosmovisor will upgrade to the Dominia binary
 
 ## Use Ixo Service for Cosmovisor
 
@@ -39,16 +49,18 @@ Follow the instructions [here](../v2/guide.md#use-ixo-service-for-cosmovisor).
 
 ## Manual Option
 
-1. Wait for Ixo to reach the upgrade height 5508000
+1. Wait for Ixo to reach the upgrade height 9256500
 
 2. Look for a panic message, followed by endless peer logs. Stop the daemon
 
-3. Run the following commands:
+3. Upgrade golang to v1.22.4
+
+4. Run the following commands:
 
 ```sh
 cd $HOME/ixo
 git pull
-git checkout v3.0.0
+git checkout v4.0.0
 make install
 ```
 
