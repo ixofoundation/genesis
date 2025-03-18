@@ -21,22 +21,52 @@
 - Storage: 50GB SSD (NVMe preferred)
 - Network: 100Mbps dedicated connection
 
-_These specifications ensure optimal performance and reliability for running a full node._
-
 ## Security Setup
 
 ```bash
+# SSH to your newly created server instance with the `root` user
+ssh root@your-IP-address
+
+# You will see the following message when you connect for the first time.
+# "The authenticity of host 'your-IP-address (your-IP-address)' can't be established.
+# "ED25519 key fingerprint is SHA256:moHx1ry2XgUxrlelNaL2wukQQdGc8lg+7Hmr4fQqWH8."
+# "This key is not known by any other names."
+# You can confirm the cryptographic fingerprint by:
+#   1. Running this command on the host console (usually a web browser terminal on your cloud provider).
+#     ssh-keygen -l -f /etc/ssh/ssh_host_ed25519_key.pub
+#   2. Comparing the hash with the "ED25519 key fingerprint is SHA256:moHx1ry2XgUxrlelNaL2wukQQdGc8lg+7Hms5fQqWH8."
+# You can continue and select "yes" when hey are the same.
+# "Are you sure you want to continue connecting (yes/no/[fingerprint])? yes"
+# "Warning: Permanently added 'your-IP-address' (ED25519) to the list of known hosts."
+
 # With the `root` user, create a new dedicated user, set the new user's password, switch to the new user, and confirm that it has `sudo` privileges
 useradd -m -s /bin/bash ixo
 usermod -aG sudo ixo
 # Store the password securely; preferrably to a password manager.
 passwd ixo
+# Switch to the new user
 su - ixo
+# Confirm that the new user has sudo privileges
 sudo whoami
 # `root` should be displayed
 
-# Secure SSH - The following measures assume that you have generated an SSH key pair on your local machine
+# Disconnect from SSH
+exit
 # Ensure that your public key is stored on the server.
+ssh-copy-id root@your-IP-address
+# SSH connect as the `root` user
+# Switch to the ixo user and create the .ssh directory with appropriate permissions
+su - ixo
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh/
+# Switch to the `root` user and copy the public key to the ixo user with appropriate permissions
+su - root
+cp /root/.ssh/authorized_keys /home/ixo/.ssh/authorized_keys
+chown ixo:ixo /home/ixo/.ssh/ -R
+chmod 600 /home/ixo/.ssh//authorized_keys
+# Test SSH Login as the ixo user from your local machine
+ssh ixo@your-IP-address
+# Secure SSH - The following measures assume that you have generated an SSH key pair on your local machine
 sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo systemctl restart sshd
@@ -45,11 +75,13 @@ sudo systemctl restart sshd
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
-sudo ufw allow 26656/tcp  # P2P port
-sudo ufw allow 26657/tcp  # RPC port (restrict to trusted IPs)
+# P2P port
+sudo ufw allow 26656/tcp
+# RPC port (restrict to trusted IPs)
+sudo ufw allow 26657/tcp
 sudo ufw enable
 
-# System security settings
+# Create the system security settings configuration
 sudo tee /etc/sysctl.d/99-ixo-node.conf > /dev/null <<EOF
 # Network security
 net.ipv4.tcp_syncookies=1
@@ -60,7 +92,9 @@ net.ipv4.tcp_synack_retries=3
 fs.file-max=65535
 vm.swappiness=1
 EOF
-
+# Confirm that the configuration was written to file
+cat /etc/sysctl.d/99-ixo-node.conf
+# Apply all sysctl changes immediately
 sudo sysctl --system
 ```
 
@@ -76,10 +110,14 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ### 2. Install Go
 
 ```bash
-ver="1.22.4"  # Check latest compatible version
+ver="1.22.4"  # Latest currently compatible version
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 # Verify checksum (check official Go website for correct hash)
 sha256sum "go$ver.linux-amd64.tar.gz"
+# Compare this with the official checksum from Go's download page
+echo "Checksum at site https://go.dev/dl is: ba79d4526102575196273416239cca418a651e049c2b099f3159db85e7bade7d for $ver"
+echo "Your downloaded file's checksum is: $(sha256sum go$ver.linux-amd64.tar.gz | awk '{print $1}')"
+# Clean up
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
@@ -103,20 +141,26 @@ mkdir -p ~/.ixod/cosmovisor/genesis/bin
 mkdir -p ~/.ixod/cosmovisor/upgrades
 ```
 
-### 4. Build IXO Node
+### 4. Build IXO
 
 ```bash
 git clone https://github.com/ixofoundation/ixo-blockchain.git
 cd ixo-blockchain
-git checkout latest  # Replace with specific version tag
-#git checkout v4.0.0
+# Replace with specific version tag based on your synchronisation method strategy
+# Full Sync requires > git checkout v0.20.0
+# State Sync and Snapshot Sync require > git checkout v4.0.0
+git checkout ...
 make install
 # Place the binary in the Cosmovisor directory structure
 mv $(which ixod) ~/.ixod/cosmovisor/genesis/bin/
-ls -l ~/.ixod/cosmovisor/genesis/bin/ixod # Verify the binary placement
-chmod +x ~/.ixod/cosmovisor/genesis/bin/ixod # Ensure the correct binary permissions
+# Verify the binary placement
+ls -l ~/.ixod/cosmovisor/genesis/bin/ixod
+# Ensure the correct binary permissions
+chmod +x ~/.ixod/cosmovisor/genesis/bin/ixod
+# Set up a symbolic link to ensure simple command-line usage
+ln -s ~/.ixod/cosmovisor/genesis/bin/ixod ~/go/bin/ixod
 # Verify installation
-ixod version
+ixod version --long | grep -e commit -e version
 ```
 
 ## Node Configuration
@@ -124,9 +168,14 @@ ixod version
 ### 1. Initialize Node
 
 ```bash
-ixod init "YourNodeName" --chain-id ixo-5  # Use current chain ID
+# Initialise with the current chain ID and replace "YourNodeName" with your organisation name
+ixod init "YourNodeName" --chain-id ixo-5
+# Set the default chain ID
+ixod config chain-id ixo-5
+# The command has changed in Cosmos SDK v0.50
+# ixod config set client chain-id ixo-5
 
-# Download genesis file
+# Download the suggested genesis file
 curl -s https://raw.githubusercontent.com/ixofoundation/genesis/main/ixo-5/genesis.json > ~/.ixod/config/genesis.json
 
 # Verify genesis checksum
@@ -141,8 +190,11 @@ jq -S -c -M '.' ~/.ixod/config/genesis.json | shasum -a 256
 sed -i.bak 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025uixo"/g' ~/.ixod/config/app.toml
 
 # Add seeds and persistent peers
-SEEDS="f79da5c87e40587c4cfef5d7b7902b6e69ac62bf@188.166.183.216:26656"  # Replace with actual seeds
-PEERS="f79da5c87e40587c4cfef5d7b7902b6e69ac62bf@188.166.183.216:26656"  # Replace with actual peers
+# Replace with actual seeds adn peers provided by the community
+# For example: SEEDS="f79da5c87e40587c4cfef5d7b7902b6e69ac62bf@188.166.183.216:26656"
+# And: PEERS="f79da5c87e40587c4cfef5d7b7902b6e69ac62bf@188.166.183.216:26656"
+SEEDS="node-id@node-ip-address:port"
+PEERS="node-id@node-ip-address:port"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.ixod/config/config.toml
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.ixod/config/config.toml
 
@@ -162,19 +214,10 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.ixod/config/app.toml
 
 # Add indexer capabilities
-indexer="kv"  # Change to "psql" if using PostgreSQL, or "null" to disable
+# Change to "psql" if using PostgreSQL, or "null" to disable
+indexer="kv"
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.ixod/config/config.toml
 ```
-
-### Pruning Explanation
-
-- **Pruning Configuration:** The pruning settings are added to manage the node's data storage efficiently. By setting `pruning` to `"custom"`, you can specify how much historical data to keep and how often to prune.
-- **Placement:** Adding these commands after the existing configuration settings ensures that all node parameters are set up in one place, making the setup process more organized and easier to follow.
-
-### Indexer Considerations
-
-- **PostgreSQL Setup:** If you choose `"psql"` for the indexer, ensure that you have a PostgreSQL database set up and configured to work with your node.
-- **Performance:** Enabling indexing can increase disk usage and may impact performance, so choose the indexing method that best fits your needs.
 
 ### 3. Setup Systemd Service
 
@@ -209,27 +252,94 @@ Once you have configured everything and enabled the service, you can start the I
 
 1. **Start the Node Service:**
 
-   - Use the following command to start the IXO node service:
-     ```bash
-     sudo systemctl start ixod
-     ```
+Use the following command to start the IXO node service:
+
+```bash
+sudo systemctl start ixod
+```
 
 2. **Check the Status:**
 
-   - To ensure that the node has started correctly, check the status of the service:
-     ```bash
-     sudo systemctl status ixod
-     ```
-   - Look for the "active (running)" status to confirm that the node is operational.
+To ensure that the node has started correctly, check the status of the service:
+
+```bash
+systemctl status ixod
+```
+
+Look for the "active (running)" status to confirm that the node is operational.
 
 3. **View Logs:**
-   - To monitor the node's activity and check for any errors, view the logs:
-     ```bash
-     journalctl -fu ixod -f
-     ```
-   - This will show real-time logs from the node, helping you verify that it is syncing with the network and operating as expected.
+   To monitor the node's activity and check for any errors, view the logs:
 
-### Additional Considerations
+```bash
+journalctl -fu ixod -f
+```
+
+This will show real-time logs from the node, helping you verify that it is syncing with the network and operating as expected.
+
+## Validator Setup
+
+### 1. Create or Recover Wallet
+
+```bash
+# Create your validator wallet or recover an existing one by replacing <walletname> with your wallet's name
+# Ensure that you choose a strong keyring passphrase and enter it twice when prompted
+ixod keys add <walletname>
+# Show your recently added account
+ixod keys list
+# Recover an existing wallet with this command
+# ixod keys add <walletname> --recover
+```
+
+### 2. Create Validator
+
+```bash
+# After receiving IXO tokens into your <walletname> account, create your validator for this node
+# <your-node-pub-key> can be retrieved with this command:
+ixod tendermint show-validator
+# First, create a JSON file with the following details.
+{
+        "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"<your-node-pub-key>"},
+        "amount": "1000000uixo",
+        "moniker": "<your-validator-name>",
+        "commission-rate": "0.1",
+        "commission-max-rate": "0.2",
+        "commission-max-change-rate": "0.01",
+}
+# Then, create your validator
+ixod tx staking create-validator /path/to/validator.json --from ixo-test-node --gas-prices 0.025uixo --gas auto --gas-adjustment 1.5
+# View details about your validator
+ixod tendermint show-address
+ixod tendermint show-node-id
+```
+
+### 3. Update Validator
+```bash
+ixod tx staking edit-validator \
+--new-moniker "Your_Moniker" \
+--identity "Keybase_ID" \
+--details "Your_Description" \
+--website "Your_Website" \
+--security-contact "Your_Email" \
+--chain-id ixo-5 \
+--commission-rate 0.05 \
+--from Wallet_Name \
+--gas 350000 -y
+```
+
+## Additional Information
+
+### Pruning Explanation
+
+- **Pruning Configuration:** The pruning settings are added to manage the node's data storage efficiently. By setting `pruning` to `"custom"`, you can specify how much historical data to keep and how often to prune.
+- **Placement:** Adding these commands after the existing configuration settings ensures that all node parameters are set up in one place, making the setup process more organized and easier to follow.
+
+### Indexer Considerations
+
+- **PostgreSQL Setup:** If you choose `"psql"` for the indexer, ensure that you have a PostgreSQL database set up and configured to work with your node.
+- **Performance:** Enabling indexing can increase disk usage and may impact performance, so choose the indexing method that best fits your needs.
+
+### Keep this in mind
 
 - **Automatic Start on Boot:**
 
@@ -277,76 +387,82 @@ sed -i 's/prometheus_listen_addr = ":26660"/prometheus_listen_addr = "127.0.0.1:
 
 1. **Edit Prometheus Configuration:**
 
-   - Open the Prometheus configuration file, usually located at `/etc/prometheus/prometheus.yml`, and add a job to scrape metrics from your IXO node:
-     ```yaml
-     scrape_configs:
-       - job_name: "ixo_node"
-         static_configs:
-           - targets: ["localhost:26660"]
-     ```
+Open the Prometheus configuration file, usually located at `/etc/prometheus/prometheus.yml`, and add a job to scrape metrics from your IXO node:
+
+```yaml
+scrape_configs:
+  - job_name: "ixo_node"
+    static_configs:
+      - targets: ["localhost:26660"]
+```
 
 2. **Restart Prometheus:**
 
-   - After editing the configuration, restart the Prometheus service to apply the changes:
-     ```bash
-     sudo systemctl restart prometheus
-     ```
+After editing the configuration, restart the Prometheus service to apply the changes:
+
+```bash
+sudo systemctl restart prometheus
+```
 
 #### 3. Install and Configure Node Exporter
 
 1. **Install Node Exporter:**
 
-   - Download and install Node Exporter to collect system metrics:
-     ```bash
-     wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
-     tar xvfz node_exporter-1.3.1.linux-amd64.tar.gz
-     sudo cp node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
-     ```
+Download and install Node Exporter to collect system metrics:
+
+```bash
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+tar xvfz node_exporter-1.3.1.linux-amd64.tar.gz
+sudo cp node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
+```
 
 2. **Create a Systemd Service for Node Exporter:**
 
-   - Create a service file for Node Exporter:
+Create a service file for Node Exporter:
 
-     ```bash
-     sudo tee /etc/systemd/system/node_exporter.service > /dev/null <<EOF
-     [Unit]
-     Description=Node Exporter
-     After=network.target
+```bash
+sudo tee /etc/systemd/system/node_exporter.service > /dev/null <<EOF
+[Unit]
+Description=Node Exporter
+After=network.target
 
-     [Service]
-     User=$USER
-     ExecStart=/usr/local/bin/node_exporter
+[Service]
+User=$USER
+ExecStart=/usr/local/bin/node_exporter
 
-     [Install]
-     WantedBy=default.target
-     EOF
-     ```
+[Install]
+WantedBy=default.target
+EOF
+```
 
 3. **Start and Enable Node Exporter:**
 
-   - Start the Node Exporter service and enable it to start on boot:
-     ```bash
-     sudo systemctl daemon-reload
-     sudo systemctl start node_exporter
-     sudo systemctl enable node_exporter
-     ```
+Start the Node Exporter service and enable it to start on boot:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+sudo systemctl enable node_exporter
+```
 
 4. **Add Node Exporter to Prometheus:**
 
-   - Add a new job to the Prometheus configuration to scrape metrics from Node Exporter:
-     ```yaml
-     scrape_configs:
-       - job_name: "node_exporter"
-         static_configs:
-           - targets: ["localhost:9100"]
-     ```
+Add a new job to the Prometheus configuration to scrape metrics from Node Exporter:
+
+```yaml
+scrape_configs:
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
+```
 
 5. **Restart Prometheus:**
 
-   - Restart Prometheus again to apply the new configuration:
-     ```bash
-     sudo systemctl restart prometheus
-     ```
+Restart Prometheus again to apply the new configuration:
+
+```bash
+sudo systemctl restart prometheus
+```
 
 #### 4. Access Prometheus Dashboard
 
@@ -408,32 +524,6 @@ You can backup to the current directory like this:
 
 ```bash
 tar -c -z -v -f ixo-4.tar.gz /home/ixo/.ixod/data/
-```
-
-## Validator Setup
-
-### 1. Create Validator
-
-```bash
-# Create wallet
-ixod keys add validator --keyring-backend file
-ixod keys list --keyring-backend file # Shows your recently added account
-
-# After receiving tokens, create validator
-ixod tx staking create-validator \
-  --amount=1000000uixo \
-  --pubkey=$(ixod tendermint show-validator) \
-  --moniker="YOUR_VALIDATOR_NAME" \
-  --chain-id=ixo-5 \
-  --commission-rate=0.10 \
-  --commission-max-rate=0.20 \
-  --commission-max-change-rate=0.01 \
-  --min-self-delegation=1 \
-  --gas=auto \
-  --gas-adjustment=1.5 \
-  --gas-prices=0.025uixo \
-  --from=validator \
-  --keyring-backend=file
 ```
 
 ## Maintenance
@@ -524,4 +614,7 @@ make install
 sudo systemctl start ixod
 ```
 
+## Support
+
 Remember to join the [IXO Discord](https://discord.gg/ixo) for community support and updates.
+The [IXO Telegram group](https://t.me/ixonetwork) is also very responsive.

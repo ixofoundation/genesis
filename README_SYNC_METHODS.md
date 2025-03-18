@@ -7,7 +7,11 @@ When setting up a new node on the IXO Impact Hub chain (or any Cosmos-based bloc
 
 ## Full Sync (Default Method)
 
-This is the most secure but slowest way to synchronize your node with the blockchain.
+This is the most secure but slowest way to synchronize your node with the blockchain.  
+
+**Note**
+- Ensure that you install v0.20.0 of ixo-blockchain.
+- Allow the Cosmosvisor binary updates to update when required.
 
 ### How It Works
 
@@ -37,7 +41,34 @@ ixod start
 
 ## State Sync (Fastest Method)
 
-This is the fastest way to catch up with the validators. Instead of replaying all historical blocks, it fetches the latest state snapshot and starts from there.
+This is the fastest way to catch up with the validators. Instead of replaying all historical blocks, it fetches the latest state snapshot and starts from there.  
+
+**Note**
+- Ensure that you install the latest version of ixo-blockchain; currently v4.0.0.
+- Make sure that you absolutely trust the source.
+
+### Instructions
+Using the STAVR StateSync facilities.  
+
+```bash
+systemctl stop ixod
+SNAP_RPC=https://ixo.rpc.m.stavr.tech:443
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
+s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.ixod/config/config.toml
+ixod tendermint unsafe-reset-all --home /home/ixo/.ixod
+wget -O $HOME/.ixod/config/addrbook.json "https://server-1.stavr.tech/Mainnet/Ixo/addrbook.json"
+curl -o - -L https://ixo.wasm.stavr.tech/wasm-ixod.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.ixod
+sudo systemctl restart ixod && journalctl -fu ixod -o cat
+```
 
 ### How It Works
 
@@ -77,7 +108,11 @@ ixod start
 
 ## Snapshot Sync (Midway Between Full Sync & State Sync)
 
-This method downloads a pre-synchronized blockchain snapshot, allowing the node to resume from a recent height.
+This method downloads a pre-synchronized blockchain snapshot, allowing the node to resume from a recent height.  
+
+**Note**
+- Ensure that you install the latest version of ixo-blockchain; currently v4.0.0.
+
 
 ### How It Works
 
