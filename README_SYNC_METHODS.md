@@ -7,11 +7,12 @@ When setting up a new node on the IXO Impact Hub chain (or any Cosmos-based bloc
 
 ## Full Sync (Default Method)
 
-This is the most secure but slowest way to synchronize your node with the blockchain.  
+This is the most secure but slowest way to synchronize your node with the blockchain.
 
 **Note**
+
 - Ensure that you install v0.20.0 of ixo-blockchain.
-- Allow the Cosmosvisor binary updates to update when required.
+- Allow the Cosmovisor binary updates to be installed at the correct block heights.
 
 ### How It Works
 
@@ -41,14 +42,28 @@ ixod start
 
 ## State Sync (Fastest Method)
 
-This is the fastest way to catch up with the validators. Instead of replaying all historical blocks, it fetches the latest state snapshot and starts from there.  
+This is the fastest way to catch up with the validator set that:
+
+- Downloads only the most recent application state (the current state of all accounts, balances, and smart contracts)
+- Skips downloading and verifying historical blocks entirely
+- Requires trust in the RPC providers offering the state sync service
+- Gets your node operational in minutes to hours
 
 **Note**
+
 - Ensure that you install the latest version of ixo-blockchain; currently v4.0.0.
 - Make sure that you absolutely trust the source.
 
+### How It Works
+
+- Your node connects to trusted RPC servers
+- It downloads a snapshot of the current blockchain state at a specific trusted height
+- It verifies this state against a trusted hash
+- Your node immediately starts participating in consensus from that point forward
+
 ### Instructions
-Using the STAVR StateSync facilities.  
+
+Using the STAVR StateSync facilities.
 
 ```bash
 systemctl stop ixod
@@ -69,11 +84,6 @@ wget -O $HOME/.ixod/config/addrbook.json "https://server-1.stavr.tech/Mainnet/Ix
 curl -o - -L https://ixo.wasm.stavr.tech/wasm-ixod.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.ixod
 sudo systemctl restart ixod && journalctl -fu ixod -o cat
 ```
-
-### How It Works
-
-• Instead of processing all blocks from genesis, the node fetches a recent application state snapshot.
-• After downloading the state, the node starts verifying new transactions from that point.
 
 ### Steps
 
@@ -108,16 +118,26 @@ ixod start
 
 ## Snapshot Sync (Midway Between Full Sync & State Sync)
 
-This method downloads a pre-synchronized blockchain snapshot, allowing the node to resume from a recent height.  
+Snapshot Sync is a middle ground approach that:
+
+- Downloads a compressed archive of blockchain data up to a recent height
+- Includes more historical data than state sync
+- Still requires downloading and extracting large files (gigabytes)
+- Takes more time than state sync but less than full sync
 
 **Note**
-- Ensure that you install the latest version of ixo-blockchain; currently v4.0.0.
 
+- Ensure that you install the latest version of ixo-blockchain; currently v4.0.0.
 
 ### How It Works
 
 • The node downloads a snapshot file containing the blockchain state up to a certain block height.
 • After extracting it, the node resumes normal syncing from that height onwards.
+
+- Download a tarball/archive of blockchain data
+- Extract it to your node's data directory
+- Your node still needs to sync blocks from the snapshot point to the current height
+- More verification happens compared to state sync
 
 ### Steps
 
@@ -157,3 +177,8 @@ ixod start
 - If you need speed - Use State Sync.
 - If you need security - Use Full Sync.
 - If you need a balance - Use Snapshot Sync.
+
+## Support
+
+Remember to join the [IXO Discord](https://discord.gg/ixo) for community support and updates.  
+The [IXO Telegram group](https://t.me/ixonetwork) is also very responsive.

@@ -10,8 +10,7 @@
 <br />
 
 The genesis repository provides information to support anyone who wants to run a full node of the [ixo Blockchain](https://github.com/ixofoundation/ixo-blockchain).  
-Full nodes are eligible to become part of the [Impact Hub validator set](https://explorer.ixo.earth/ixo/staking), secure the IXO network, and earn rewards for doing so.  
-Validators are also eligible to be part of any future chains created by the IXO World team in collaboration with partners.
+Full nodes are eligible to become part of the [Impact Hub validator set](https://explorer.ixo.earth/ixo/staking), secure the IXO network, and earn rewards for doing so. Validators are also eligible to be part of any future chains created by the IXO World team in collaboration with partners.
 
 The IXO network consists of
 

@@ -314,6 +314,7 @@ ixod tendermint show-node-id
 ```
 
 ### 3. Update Validator
+
 ```bash
 ixod tx staking edit-validator \
 --new-moniker "Your_Moniker" \
@@ -616,5 +617,5 @@ sudo systemctl start ixod
 
 ## Support
 
-Remember to join the [IXO Discord](https://discord.gg/ixo) for community support and updates.
+Remember to join the [IXO Discord](https://discord.gg/ixo) for community support and updates.  
 The [IXO Telegram group](https://t.me/ixonetwork) is also very responsive.
