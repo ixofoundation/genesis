@@ -548,6 +548,60 @@ sudo systemctl restart ixod
 sudo systemctl stop ixod
 ```
 
+## Decommissioning Node
+
+If you need to shut down your validator node and destroy the server, follow these steps for a graceful exit:
+
+### 1. Unjail Validator (if necessary)
+
+```bash
+ixod tx slashing unjail --from your-wallet-name --gas-prices 0.025uixo --gas auto --gas-adjustment 1.5
+```
+
+### 2. Remove Validator from Active Set
+
+```bash
+# Remove your validator from the active validator set
+ixod tx staking unbond $(ixod keys show your-wallet-name --bech val -a) <amount_to_unbond>uixo --from your-wallet-name --gas-prices 0.025uixo --gas auto --gas-adjustment 1.5
+```
+
+### 3. Backup Important Files
+
+Before shutting down, backup your validator keys:
+
+```bash
+# Create a backup directory on your local machine
+mkdir -p ixo_validator_backup
+
+# Copy important files (adjust paths if needed)
+scp ixo@your-server-ip:~/.ixod/config/priv_validator_key.json ixo_validator_backup/
+scp ixo@your-server-ip:~/.ixod/config/node_key.json ixo_validator_backup/
+scp ixo@your-server-ip:~/.ixod/config/client.toml ixo_validator_backup/
+scp -r ixo@your-server-ip:~/.ixod/keyring-* ixo_validator_backup/
+```
+
+### 4. Stop and Disable Services
+
+```bash
+sudo systemctl stop ixod
+sudo systemctl disable ixod
+```
+
+### 5. Optional: Withdraw Funds
+
+If your tokens have finished unbonding (typically 21 days) and you want to send them to another address:
+
+```bash
+ixod tx bank send $(ixod keys show your-wallet-name -a) <destination_address> <amount>uixo --from your-wallet-name --gas-prices 0.025uixo --gas auto --gas-adjustment 1.5
+```
+
+### Important Notes
+
+- The unbonding period is typically 21 days, during which your tokens are locked
+- Ensure you have backed up your mnemonic phrase/private keys before destroying the server
+- Consider informing the IXO community in Discord or Telegram if you've been an active validator
+- You can now safely terminate your server instance through your cloud provider's interface
+
 ## Troubleshooting
 
 ### Common Issues and Solutions
