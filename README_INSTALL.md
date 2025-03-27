@@ -77,8 +77,6 @@ sudo ufw default allow outgoing
 sudo ufw allow ssh
 # P2P port
 sudo ufw allow 26656/tcp
-# RPC port (restrict to trusted IPs)
-sudo ufw allow 26657/tcp
 sudo ufw enable
 
 # Create the system security settings configuration
@@ -186,9 +184,6 @@ jq -S -c -M '.' ~/.ixod/config/genesis.json | shasum -a 256
 ### 2. Configure Node
 
 ```bash
-# Set minimum gas price
-sed -i.bak 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025uixo"/g' ~/.ixod/config/app.toml
-
 # Add seeds and persistent peers
 # Replace with actual seeds adn peers provided by the community
 # For example: SEEDS="f79da5c87e40587c4cfef5d7b7902b6e69ac62bf@188.166.183.216:26656"
@@ -197,10 +192,6 @@ SEEDS="node-id@node-ip-address:port"
 PEERS="node-id@node-ip-address:port"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.ixod/config/config.toml
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.ixod/config/config.toml
-
-# Optimize configuration
-sed -i 's/timeout_commit = "5s"/timeout_commit = "3s"/g' ~/.ixod/config/config.toml
-sed -i 's/index_all_keys = false/index_all_keys = true/g' ~/.ixod/config/config.toml
 
 # Configure pruning
 pruning="custom"
@@ -212,11 +203,6 @@ sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.ixod/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.ixod/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.ixod/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.ixod/config/app.toml
-
-# Add indexer capabilities
-# Change to "psql" if using PostgreSQL, or "null" to disable
-indexer="kv"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.ixod/config/config.toml
 ```
 
 ### 3. Setup Systemd Service
@@ -335,11 +321,6 @@ ixod tx staking edit-validator \
 - **Pruning Configuration:** The pruning settings are added to manage the node's data storage efficiently. By setting `pruning` to `"custom"`, you can specify how much historical data to keep and how often to prune.
 - **Placement:** Adding these commands after the existing configuration settings ensures that all node parameters are set up in one place, making the setup process more organized and easier to follow.
 
-### Indexer Considerations
-
-- **PostgreSQL Setup:** If you choose `"psql"` for the indexer, ensure that you have a PostgreSQL database set up and configured to work with your node.
-- **Performance:** Enabling indexing can increase disk usage and may impact performance, so choose the indexing method that best fits your needs.
-
 ### Keep this in mind
 
 - **Automatic Start on Boot:**
@@ -369,7 +350,31 @@ echo "Voting power: $VOTING_POWER"
 EOF
 
 chmod +x monitor-ixo.sh
+
+# Using the `monitor-ixo.sh` Script
+
+# Execute the script directly
+./monitor-ixo.sh
+
+# Run it with a timestamp for logging
+date && ./monitor-ixo.sh
+
+# Set up as a cron job for regular checks (every 5 minutes)
+# First, edit your crontab:
+crontab -e
+# Then add this line:
+*/5 * * * * cd /home/ixo && ./monitor-ixo.sh >> monitor_logs.txt
 ```
+
+The output shows three critical metrics:
+
+- **Catching up**: `true` means your node is still syncing, `false` means it's in sync
+- **Latest block**: Compare this with explorer.ixo.earth to verify you're at the chain tip
+- **Voting power**: Should match your staked amount; 0 might indicate you're jailed or not in active set
+
+This script provides a quick health check - if you see "Catching up: true" for extended periods or your voting power drops unexpectedly, you should investigate immediately.
+
+Enhance this with alerts (via Telegram/Discord bots) on missed blocks and expanding the script to check system resources (CPU/RAM/disk space).
 
 ### 2. Additional Monitoring
 
@@ -472,6 +477,1006 @@ sudo systemctl restart prometheus
   - Access the Prometheus web interface by navigating to `http://<your-server-ip>:9090` in your web browser. Here, you can query and visualize metrics collected from your IXO node and system.
 
 By following these steps, you will have a basic monitoring setup using Prometheus and Node Exporter to track the performance and health of your IXO blockchain node.
+
+#### 5. Install and Configure Grafana
+
+Grafana provides powerful visualization capabilities for your monitoring data. Here's how to set it up:
+
+##### 1. **Install Grafana:**
+
+```bash
+# Add Grafana APT repository
+sudo apt-get install -y apt-transport-https software-properties-common
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.io/gpg.key
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.io stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+# Update and install
+sudo apt-get update
+sudo apt-get install -y grafana
+
+# Start and enable Grafana
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
+```
+
+##### 2. **Access Grafana UI:**
+
+- Open your browser and navigate to `http://<your-server-ip>:3000`
+- Log in with default credentials (admin/admin) and set a new password when prompted
+
+##### 3. **Add Prometheus as a Data Source:**
+
+- In Grafana, navigate to Configuration > Data Sources > Add data source
+- Select "Prometheus"
+- Set the URL to `http://localhost:9090`
+- Click "Save & Test" to ensure the connection works
+
+##### 4. **Import Validator Dashboard:**
+
+Grafana uses JSON files to import pre-configured dashboards.
+
+<details>
+  <summary>Click to view a basic dashboard for IXO validators</summary>
+
+```bash
+# Create a dashboard JSON file
+cat > ixo_validator_dashboard.json << 'EOF'
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Validator Status",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "tendermint_consensus_validator_power",
+          "interval": "",
+          "legendFormat": "Voting Power",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "lt",
+          "value": 1
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Validator Status",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "tendermint_consensus_latest_block_height",
+          "interval": "",
+          "legendFormat": "Block Height",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Latest Block Height",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                80
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Disk Usage Alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"})",
+          "interval": "",
+          "legendFormat": "Disk Usage %",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 80
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "lt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Peer Count Alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "tendermint_p2p_peers",
+          "interval": "",
+          "legendFormat": "Connected Peers",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "lt",
+          "value": 3
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Peer Count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                90
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Memory Usage Alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "100 * (1 - ((node_memory_MemAvailable_bytes or node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes))",
+          "interval": "",
+          "legendFormat": "Memory Usage",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 90
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                90
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "CPU Usage Alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)",
+          "interval": "",
+          "legendFormat": "CPU Usage",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 90
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "IXO Validator Dashboard",
+  "uid": "ixo_validator",
+  "version": 1
+}
+EOF
+```
+
+</details>
+
+##### 5. **Import the Dashboard:**
+
+- In Grafana, navigate to Dashboards > Import
+- Click "Upload JSON file" and select the `ixo_validator_dashboard.json` file you created
+- Select "Prometheus" as the data source
+- Click "Import"
+
+#### 6. Configure Alerting
+
+Grafana includes an alerting system that can send notifications when certain conditions are met:
+
+##### 1. **Set Up Notification Channel:**
+
+- Navigate to Alerting > Notification channels > New channel
+- Choose your preferred notification method (e.g., Email, Telegram, Discord Webhook)
+- Configure the channel with appropriate details
+- Test the notification to ensure it works
+
+##### 2. **Add Alert Rules for Critical Validator Metrics:**
+
+The imported dashboard includes some predefined alerts. You can modify these or create new ones for:
+
+- Missed blocks
+- Validator jailing
+- Disk space issues
+- Peer connectivity problems
+- Synchronization issues
+
+##### 3. **Example Prometheus Alert Rules:**
+
+For more advanced alerting, you can add custom rules to Prometheus:
+
+<details>
+  <summary>Click to expand an example Prometheus rules file</summary>
+
+```bash
+# Create Prometheus rules file
+sudo tee /etc/prometheus/rules/ixo_validator.rules.yml > /dev/null << EOF
+groups:
+- name: ixo_validator
+  rules:
+  - alert: ValidatorDown
+    expr: tendermint_consensus_validator_power < 1
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Validator is down or not in active set"
+      description: "Validator has no voting power for more than 5 minutes."
+
+  - alert: MissedBlocks
+    expr: (increase(tendermint_consensus_rounds_total[5m]) - increase(tendermint_consensus_num_txs[5m])) > 10
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Validator missing blocks"
+      description: "Validator might be missing blocks or not proposing transactions."
+
+  - alert: DiskSpaceCritical
+    expr: 100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"}) > 90
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Disk space critical"
+      description: "Validator running out of disk space (>90% used)."
+
+  - alert: LowPeerCount
+    expr: tendermint_p2p_peers < 3
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Low peer count"
+      description: "Validator has less than 3 peers for more than 10 minutes."
+EOF
+```
+
+</details>
+
+##### 4. **Update Prometheus Configuration:**
+
+Add the rules file to your Prometheus configuration:
+
+```bash
+sudo tee -a /etc/prometheus/prometheus.yml > /dev/null << EOF
+# Load rules once and periodically evaluate them
+rule_files:
+  - "rules/ixo_validator.rules.yml"
+EOF
+
+# Restart Prometheus to apply changes
+sudo systemctl restart prometheus
+```
+
+#### 7. Key Metrics to Monitor
+
+Focus on these critical metrics:
+
+##### 1. **Validator Health:**
+
+- **Voting Power**: Should match your stake - if it drops to 0, you're not in the active set
+- **Block Height**: Should increase steadily - stagnation indicates sync issues
+- **Peer Count**: Should be at least 3-5 peers - fewer peers may indicate network isolation
+
+##### 2. **System Resources:**
+
+- **Disk Usage**: Should stay below 80% - blockchain data grows over time
+- **Memory Usage**: High usage may indicate memory leaks
+- **CPU Usage**: Spikes during block proposal are normal, but sustained high usage is concerning
+
+##### 3. **Network Performance:**
+
+- **Block Production Rate**: For proposers, monitor successful block proposals
+- **Missed Blocks**: Indicates connectivity or performance issues
+- **Transaction Processing**: Monitor transaction throughput when your node is the proposer
+
+#### 8. Interpreting Dashboard Data
+
+- **Block Height Plateaus**: If your block height stops increasing while other validators continue, you're falling out of sync
+- **Voting Power Drops**: Immediate investigation required - could indicate jailing events
+- **Peer Count Fluctuations**: Normal to some degree, but persistent low counts require network troubleshooting
+- **Resource Usage Patterns**: Learn your node's normal patterns to identify abnormal behavior
+
+By combining these monitoring tools with proper alerting, you'll stay ahead of potential issues and maintain high validator performance on the IXO network.
 
 ## Backup Procedures
 
