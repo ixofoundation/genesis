@@ -9,11 +9,30 @@
 </p>
 <br />
 
-The genesis repository provides information to support anyone who wants to run a full node of the [ixo Blockchain](https://github.com/ixofoundation/ixo-blockchain). 
+The genesis repository provides information to support anyone who wants to run a full node of the [ixo Blockchain](https://github.com/ixofoundation/ixo-blockchain).  
+Full nodes are eligible to become part of the [Impact Hub validator set](https://explorer.ixo.earth/ixo/staking), secure the IXO network, and earn rewards for doing so. Validators are also eligible to be part of any future chains created by the IXO World team in collaboration with partners.
 
-[Instruction to set up and configure](./README_CONFIG.md) Testnet and/or Mainnet.
+The IXO network consists of
 
-The genesis files and upgrade instructions for the Testnet and Mainnet networks are respectively:
+- **Impact Hub** mainnet named [ixo-5](./ixo-5/)
+- **IXO Testnet** named [pandora-8](./pandora-8/)
 
-- [pandora-8 (testnet)](./pandora-8/upgrade.md)
-- [ixo-5 (mainnet)](./ixo-5/upgrade.md)
+## Install your node
+
+The [installation guide](./README_INSTALL.md) provides instructions to install a node.
+
+### Synchronise your node
+
+In order to become a part of the validator set, your node data has to be synced to the rest of the validator set.  
+The [sync methods guide](./README_SYNC_METHODS.md) describes the available options and explains the pros and cons related to speed, security, and more.
+
+## Upgrade your node
+
+Upgrades to the `ixod` binary are important for the stability and security of the IXO network.  
+The documentation for [upgrading a node](./README_UPGRADE.md) assumes that you are running a node.
+
+## Support
+
+This documentation aims to be as complete as possible but we may have missed a piece of the puzzle that you need. Please let us know if you cannot find something and we'll update it as soon as we can.
+
+You can find us on [Linktree](https://linktr.ee/ixo_world).
