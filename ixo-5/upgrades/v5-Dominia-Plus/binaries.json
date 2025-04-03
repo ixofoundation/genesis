@@ -1,0 +1,8 @@
+{
+  "binaries": {
+    "darwin/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v5.0.0/ixod-5.0.0-darwin-amd64?checksum=sha256:f58b97813158212a2b7c85e0c055a8a17ce0996ecffe14c92d5771f7d96f7fb8",
+    "darwin/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v5.0.0/ixod-5.0.0-darwin-arm64?checksum=sha256:7631cd51a3cb726c3816efc712b5799483527a4d8bf53c279eab8d983a81998a",
+    "linux/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v5.0.0/ixod-5.0.0-linux-amd64?checksum=sha256:bff3368459ee177b2cc8dbb666b3289987e86f563e6d326e9bac7c1de06338ab",
+    "linux/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v5.0.0/ixod-5.0.0-linux-arm64?checksum=sha256:bde147444cf76cc8a0ce898d849c4f39f7edfa624d64171b2c549fdf52473e49"
+  }
+}
