@@ -2,7 +2,7 @@
 
 Ixo Dominia-Plus Gov Prop: <https://explorer.ixo.earth/ixo/gov/477>
 
-Height: 11082500
+Height: 11083900
 
 ## First Time Cosmovisor Setup
 
@@ -44,7 +44,7 @@ Follow the instructions [here](../v2/guide.md#use-ixo-service-for-cosmovisor).
 
 ## Manual Option
 
-1. Wait for Ixo to reach the upgrade height 11082500
+1. Wait for Ixo to reach the upgrade height 11083900
 
 2. Look for a panic message, followed by endless peer logs. Stop the daemon
 
