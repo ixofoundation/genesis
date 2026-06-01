@@ -1,8 +1,8 @@
 # v7 (Opus) Testnet Upgrade Guide
 
-Ixo v7 (Opus) Gov Prop: <GOV_PROP_URL>
+Ixo v7 (Opus) Gov Prop: <https://explorer.ixo.earth/testnet-ixo/gov/108>
 
-Height: <UPGRADE_HEIGHT>
+Height: 17598648
 
 > The on-chain software-upgrade name for this release is **`Opus`**. Cosmovisor
 > therefore looks for the new binary under `~/.ixod/cosmovisor/upgrades/Opus/bin`
@@ -55,7 +55,7 @@ Follow the instructions [here](../v2/guide.md#use-ixo-service-for-cosmovisor).
 
 ## Manual Option
 
-1. Wait for Ixo to reach the upgrade height <UPGRADE_HEIGHT>
+1. Wait for Ixo to reach the upgrade height 17598648
 
 2. Look for a panic message, followed by endless peer logs. Stop the daemon
 
