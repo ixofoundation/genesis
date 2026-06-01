@@ -1,8 +1,8 @@
 {
   "binaries": {
-    "darwin/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-darwin-amd64?checksum=sha256:<SHA256_DARWIN_AMD64>",
-    "darwin/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-darwin-arm64?checksum=sha256:<SHA256_DARWIN_ARM64>",
-    "linux/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-linux-amd64?checksum=sha256:<SHA256_LINUX_AMD64>",
-    "linux/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-linux-arm64?checksum=sha256:<SHA256_LINUX_ARM64>"
+    "darwin/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-darwin-amd64?checksum=sha256:97070d1f3bba0918592720010d9bda5bfcdc750c83c845a7cc2dc4eebc8a668d",
+    "darwin/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-darwin-arm64?checksum=sha256:57fb417433457f5e6afa817b609127b225d537d2d0baba964985e00d836cbbcd",
+    "linux/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-linux-amd64?checksum=sha256:e5cb270e06bf7dc9b8b69cf244111a519b09fd422e09e194379ac897e1603528",
+    "linux/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v7.0.0/ixod-7.0.0-linux-arm64?checksum=sha256:1d7d673c68c551f7e768514c618b2ee5ae5b6be48faeaeab64093da8ceec5ffe"
   }
 }
