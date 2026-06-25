@@ -4,9 +4,16 @@ Ixo Dominia Gov Prop: <https://explorer.ixo.earth/testnet-ixo/gov/84>
 
 Height: 9284120
 
+> **Cosmovisor folder casing.** The on-chain upgrade name is **`Dominia`**. On
+> current Cosmovisor (≥ v1.4) the upgrade folder is **lowercase `dominia`**; on older
+> Cosmovisor (≤ v1.3, incl. v1.0.0) use the exact case **`Dominia`** instead. The
+> steps below use lowercase `dominia` — for older Cosmovisor, or one setup that works
+> on any version, see the
+> [Cosmovisor Guide](../../../COSMOVISOR.md#upgrade-directory-casing).
+
 ## First Time Cosmovisor Setup
 
-If you have never setup Cosmovisor before, follow the instructions [here](../v2/guide.md#first-time-cosmovisor-setup).
+If you have never setup Cosmovisor before, follow the instructions [here](../../../COSMOVISOR.md#first-time-cosmovisor-setup).
 
 If you have already setup Cosmovisor, skip to the next section.
 
@@ -28,15 +35,15 @@ Note after the script you may need to log out and log back in for changes to tak
 
 First ensure you have golang v1.22.4 installed.
 
-Create the Dominia folder, make the build, and copy the daemon over to that folder
+Create the upgrade folder, make the build, and copy the daemon over to that folder
 
 ```sh
-mkdir -p ~/.ixod/cosmovisor/upgrades/Dominia/bin
+mkdir -p ~/.ixod/cosmovisor/upgrades/dominia/bin
 cd $HOME/ixo
 git pull
 git checkout v4.0.0-rc.3
 make build
-cp build/ixod ~/.ixod/cosmovisor/upgrades/Dominia/bin
+cp build/ixod ~/.ixod/cosmovisor/upgrades/dominia/bin
 ```
 
 Now, at the upgrade height, Cosmovisor will upgrade to the Dominia binary

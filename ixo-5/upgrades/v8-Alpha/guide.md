@@ -6,19 +6,16 @@ Height: 17871000
 
 > **This is an emergency security release. Please upgrade promptly.**
 
-> The on-chain software-upgrade name for this release is **`Alpha`** (the exact
-> string in `~/.ixod/data/upgrade-info.json`). Cosmovisor preloads the new binary
-> under `~/.ixod/cosmovisor/upgrades/<name>/bin`.
->
-> ⚠️ **Casing:** although the upgrade name is `Alpha`, several operators' Cosmovisor
-> setups have resolved the directory as lowercase **`alpha`** (the same happened
-> with `Opus` → `opus`). To avoid getting stuck at the halt, create the binary under
-> **both** names — a real `alpha` directory plus an `Alpha` symlink — so Cosmovisor
-> finds it whichever case it uses. The steps below do this for you.
+> **Cosmovisor folder casing.** The on-chain upgrade name is **`Alpha`**. On
+> current Cosmovisor (≥ v1.4) the upgrade folder is **lowercase `alpha`**; on older
+> Cosmovisor (≤ v1.3, incl. v1.0.0) use the exact case **`Alpha`** instead. The
+> steps below use lowercase `alpha` — for older Cosmovisor, or one setup that works
+> on any version, see the
+> [Cosmovisor Guide](../../../COSMOVISOR.md#upgrade-directory-casing).
 
 ## First Time Cosmovisor Setup
 
-If you have never setup Cosmovisor before, follow the instructions [here](../v2/guide.md#first-time-cosmovisor-setup).
+If you have never setup Cosmovisor before, follow the instructions [here](../../../COSMOVISOR.md#first-time-cosmovisor-setup).
 
 If you have already setup Cosmovisor, skip to the next section.
 
@@ -45,9 +42,8 @@ go version   # should print go1.22.11
 
 First ensure you have golang v1.22.11 installed.
 
-Build the binary and place it under the upgrade folder. To cover the casing
-discrepancy, create the binary under a lowercase `alpha` directory and add a
-capitalised `Alpha` symlink so Cosmovisor resolves either form:
+Build the binary and place it under the **lowercase `alpha`** upgrade folder
+(if you run an older Cosmovisor, see the casing note above):
 
 ```sh
 mkdir -p ~/.ixod/cosmovisor/upgrades/alpha/bin
@@ -56,8 +52,6 @@ git fetch --all --tags
 git checkout v8.0.0
 make build
 cp build/ixod ~/.ixod/cosmovisor/upgrades/alpha/bin
-# expose the capitalised on-chain name too, so either case resolves:
-cd ~/.ixod/cosmovisor/upgrades && ln -s alpha Alpha
 ```
 
 Now, at the upgrade height, Cosmovisor will automatically switch to the Alpha (v8) binary.

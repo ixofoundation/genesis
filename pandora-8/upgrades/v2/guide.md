@@ -11,7 +11,9 @@ Height: 2193200
 
 ## First Time Cosmovisor Setup
 
-If you have never setup Cosmovisor before, follow the following instructions.
+If you have never setup Cosmovisor before, follow the instructions below — or see
+the canonical [Cosmovisor Guide](../../../COSMOVISOR.md), which also documents the
+upgrade-directory **casing** differences between Cosmovisor versions.
 
 If you have already setup Cosmovisor, skip to the next section.
 

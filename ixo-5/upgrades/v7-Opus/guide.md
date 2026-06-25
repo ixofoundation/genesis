@@ -4,19 +4,16 @@ Ixo v7 (Opus) Gov Prop: <https://explorer.ixo.earth/ixo/gov/481>
 
 Height: 17655000
 
-> The on-chain software-upgrade name for this release is **`Opus`** (the exact
-> string in `~/.ixod/data/upgrade-info.json`). Cosmovisor preloads the new binary
-> under `~/.ixod/cosmovisor/upgrades/<name>/bin` (the upgrade name, not the `v7` tag).
->
-> ⚠️ **Casing:** although the upgrade name is `Opus`, several operators' Cosmovisor
-> setups have resolved the directory as lowercase **`opus`**. To avoid getting stuck
-> at the halt, create the binary under **both** names — a real `opus` directory plus
-> an `Opus` symlink — so Cosmovisor finds it whichever case it uses. The steps below
-> do this for you.
+> **Cosmovisor folder casing.** The on-chain upgrade name is **`Opus`**. On
+> current Cosmovisor (≥ v1.4) the upgrade folder is **lowercase `opus`**; on older
+> Cosmovisor (≤ v1.3, incl. v1.0.0) use the exact case **`Opus`** instead. The
+> steps below use lowercase `opus` — for older Cosmovisor, or one setup that works
+> on any version, see the
+> [Cosmovisor Guide](../../../COSMOVISOR.md#upgrade-directory-casing).
 
 ## First Time Cosmovisor Setup
 
-If you have never setup Cosmovisor before, follow the instructions [here](../v2/guide.md#first-time-cosmovisor-setup).
+If you have never setup Cosmovisor before, follow the instructions [here](../../../COSMOVISOR.md#first-time-cosmovisor-setup).
 
 If you have already setup Cosmovisor, skip to the next section.
 
@@ -53,8 +50,6 @@ git pull
 git checkout v7.0.0
 make build
 cp build/ixod ~/.ixod/cosmovisor/upgrades/opus/bin
-# expose the capitalised on-chain name too, so either case resolves:
-cd ~/.ixod/cosmovisor/upgrades && ln -s opus Opus
 ```
 
 Now, at the upgrade height, Cosmovisor will upgrade to the Opus (v7) binary.
