@@ -4,9 +4,15 @@ Ixo v7 (Opus) Gov Prop: <https://explorer.ixo.earth/testnet-ixo/gov/108>
 
 Height: 17598648
 
-> The on-chain software-upgrade name for this release is **`Opus`**. Cosmovisor
-> therefore looks for the new binary under `~/.ixod/cosmovisor/upgrades/Opus/bin`
-> (the upgrade name, not the `v7` tag).
+> The on-chain software-upgrade name for this release is **`Opus`** (the exact
+> string in `~/.ixod/data/upgrade-info.json`). Cosmovisor preloads the new binary
+> under `~/.ixod/cosmovisor/upgrades/<name>/bin` (the upgrade name, not the `v7` tag).
+>
+> ⚠️ **Casing:** although the upgrade name is `Opus`, several operators' Cosmovisor
+> setups have resolved the directory as lowercase **`opus`**. To avoid getting stuck
+> at the halt, create the binary under **both** names — a real `opus` directory plus
+> an `Opus` symlink — so Cosmovisor finds it whichever case it uses. The steps below
+> do this for you.
 
 ## First Time Cosmovisor Setup
 
@@ -36,15 +42,19 @@ go version   # should print go1.22.11
 
 First ensure you have golang v1.22.11 installed.
 
-Create the Opus folder, make the build, and copy the daemon over to that folder
+Build the binary and place it under the upgrade folder. To cover the casing
+discrepancy, create the binary under a lowercase `opus` directory and add a
+capitalised `Opus` symlink so Cosmovisor resolves either form:
 
 ```sh
-mkdir -p ~/.ixod/cosmovisor/upgrades/Opus/bin
+mkdir -p ~/.ixod/cosmovisor/upgrades/opus/bin
 cd $HOME/ixo
 git pull
 git checkout v7.0.0
 make build
-cp build/ixod ~/.ixod/cosmovisor/upgrades/Opus/bin
+cp build/ixod ~/.ixod/cosmovisor/upgrades/opus/bin
+# expose the capitalised on-chain name too, so either case resolves:
+cd ~/.ixod/cosmovisor/upgrades && ln -s opus Opus
 ```
 
 Now, at the upgrade height, Cosmovisor will upgrade to the Opus (v7) binary.
